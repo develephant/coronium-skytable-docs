@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  
+  <link rel="shortcut icon" href="../img/favicon.ico">
+  <title>Server Guide - Coronium SkyTable</title>
+  <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
+
+  <link rel="stylesheet" href="../css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../css/theme_extra.css" type="text/css" />
+  <link rel="stylesheet" href="../css/highlight.css">
+  
+  <script>
+    // Current page data
+    var mkdocs_page_name = "Server Guide";
+    var mkdocs_page_input_path = "server.md";
+    var mkdocs_page_url = "/server/";
+  </script>
+  
+  <script src="../js/jquery-2.1.1.min.js"></script>
+  <script src="../js/modernizr-2.8.3.min.js"></script>
+  <script type="text/javascript" src="../js/highlight.pack.js"></script> 
+  
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+      <div class="wy-side-nav-search">
+        <a href=".." class="icon icon-home"> Coronium SkyTable</a>
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+	<ul class="current">
+          
+            <li>
+    <li class="toctree-l1 ">
+        <a class="" href="..">Introduction</a>
+        
+    </li>
+<li>
+          
+            <li>
+    <li class="toctree-l1 ">
+        <a class="" href="../guide/">Client Guide</a>
+        
+    </li>
+<li>
+          
+            <li>
+    <li class="toctree-l1 ">
+        <a class="" href="../events/">Client Events</a>
+        
+    </li>
+<li>
+          
+            <li>
+    <li class="toctree-l1 ">
+        <a class="" href="../api/">Client API</a>
+        
+    </li>
+<li>
+          
+            <li>
+    <li class="toctree-l1 current">
+        <a class="current" href="./">Server Guide</a>
+        
+            <ul>
+            
+                <li class="toctree-l3"><a href="#system-services">System Services</a></li>
+                
+                    <li><a class="toctree-l4" href="#configuration">Configuration</a></li>
+                
+                    <li><a class="toctree-l4" href="#viewing-logs">Viewing Logs</a></li>
+                
+            
+            </ul>
+        
+    </li>
+<li>
+          
+            <li>
+    <li class="toctree-l1 ">
+        <a class="" href="../development/">Development Tips</a>
+        
+    </li>
+<li>
+          
+            <li>
+    <li class="toctree-l1 ">
+        <a class="" href="../example/">Example Setup</a>
+        
+    </li>
+<li>
+          
+            <li>
+    <li class="toctree-l1 ">
+        <a class="" href="../about/">About</a>
+        
+    </li>
+<li>
+          
+        </ul>
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="..">Coronium SkyTable</a>
+      </nav>
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="..">Docs</a> &raquo;</li>
+    
+      
+    
+    <li>Server Guide</li>
+    <li class="wy-breadcrumbs-aside">
+      
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main">
+            <div class="section">
+              
+                <h1 id="system-services">System Services</h1>
+<p>When your <strong>Coronium SkyTable</strong> instance starts, its monitored by a utility called <strong>Monit</strong>, which makes sure that your instance keeps running. In the event that the server runs into an issue or crashes, it will be restarted shortly.</p>
+<p>In the rare case where you need to manually stop or start the instance services, log in using the <code>skytable</code> user.</p>
+<p><code>ssh skytable@&lt;your-instance-ip&gt;</code></p>
+<p><strong>redis</strong></p>
+<table>
+<thead>
+<tr>
+<th>Action</th>
+<th>Command</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>stop</td>
+<td><code>sudo monit stop redis</code></td>
+</tr>
+<tr>
+<td>start</td>
+<td><code>sudo monit start redis</code></td>
+</tr>
+<tr>
+<td>restart</td>
+<td><code>sudo monit restart redis</code></td>
+</tr>
+</tbody>
+</table>
+<p><strong>nginx</strong></p>
+<table>
+<thead>
+<tr>
+<th>Action</th>
+<th>Command</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>stop</td>
+<td><code>sudo monit stop nginx</code></td>
+</tr>
+<tr>
+<td>start</td>
+<td><code>sudo monit start nginx</code></td>
+</tr>
+<tr>
+<td>restart</td>
+<td><code>sudo monit restart nginx</code></td>
+</tr>
+</tbody>
+</table>
+<p><em>You will be prompted for your password. The default is <strong>coroniumadmin</strong>.</em></p>
+<div class="admonition caution">
+<p class="admonition-title">Caution</p>
+<p>You should rarely need to manually control the instance services.</p>
+</div>
+<hr />
+<h2 id="configuration">Configuration</h2>
+<h3 id="server-key">Server Key</h3>
+<hr />
+<h2 id="viewing-logs">Viewing Logs</h2>
+<p>When developing your application, there may be times when you'd like to see what's happening on the server side. You can view the log file to acheive this.</p>
+<p>First, log into your instance using the <code>skytable</code> user:</p>
+<p><code>ssh skytable@&lt;your-instance-ip&gt;</code></p>
+<p>To follow the <strong>redis</strong> log file, run the following on the command line:</p>
+<p><code>tail -f /home/skytable/logs/redis.log</code></p>
+<p>To follow the <strong>nginx</strong> log file, run the following on the command line:</p>
+<p><code>tail -f /home/skytable/logs/nginx.log</code></p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The log files are managed automatically, and will be "rotated" once they exceed a certain size limit.</p>
+</div>
+              
+            </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../development/" class="btn btn-neutral float-right" title="Development Tips">Next <span class="icon icon-circle-arrow-right"></span></a>
+      
+      
+        <a href="../api/" class="btn btn-neutral" title="Client API"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+    
+      <p>&copy;2017 C. Byerley - develephant.com</p>
+    
+  </div>
+
+  Built with <a href="http://www.mkdocs.org">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+	  
+        </div>
+      </div>
+
+    </section>
+    
+  </div>
+
+  <div class="rst-versions" role="note" style="cursor: pointer">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      
+      
+        <span><a href="../api/" style="color: #fcfcfc;">&laquo; Previous</a></span>
+      
+      
+        <span style="margin-left: 15px"><a href="../development/" style="color: #fcfcfc">Next &raquo;</a></span>
+      
+    </span>
+</div>
+    <script src="../js/theme.js"></script>
+
+</body>
+</html>
