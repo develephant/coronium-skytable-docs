@@ -8,7 +8,7 @@
   
   
   <link rel="shortcut icon" href="../img/favicon.ico">
-  <title>Example Setup - Coronium SkyTable</title>
+  <title>Examples - Coronium SkyTable</title>
   <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
 
   <link rel="stylesheet" href="../css/theme.css" type="text/css" />
@@ -17,7 +17,7 @@
   
   <script>
     // Current page data
-    var mkdocs_page_name = "Example Setup";
+    var mkdocs_page_name = "Examples";
     var mkdocs_page_input_path = "example.md";
     var mkdocs_page_url = "/example/";
   </script>
@@ -55,20 +55,6 @@
           
             <li>
     <li class="toctree-l1 ">
-        <a class="" href="../guide/">Client Guide</a>
-        
-    </li>
-<li>
-          
-            <li>
-    <li class="toctree-l1 ">
-        <a class="" href="../events/">Client Events</a>
-        
-    </li>
-<li>
-          
-            <li>
-    <li class="toctree-l1 ">
         <a class="" href="../api/">Client API</a>
         
     </li>
@@ -76,25 +62,39 @@
           
             <li>
     <li class="toctree-l1 ">
-        <a class="" href="../server/">Server Guide</a>
-        
-    </li>
-<li>
-          
-            <li>
-    <li class="toctree-l1 ">
-        <a class="" href="../development/">Development Tips</a>
+        <a class="" href="../guide/">Client Guide</a>
         
     </li>
 <li>
           
             <li>
     <li class="toctree-l1 current">
-        <a class="current" href="./">Example Setup</a>
+        <a class="current" href="./">Examples</a>
         
             <ul>
             
-                <li class="toctree-l3"><a href="#mainlua">main.lua</a></li>
+                <li class="toctree-l3"><a href="#basic-get">Basic Get</a></li>
+                
+            
+                <li class="toctree-l3"><a href="#get-with-path">Get with Path</a></li>
+                
+            
+                <li class="toctree-l3"><a href="#get-with-tags">Get with Tags</a></li>
+                
+            
+                <li class="toctree-l3"><a href="#basic-set">Basic Set</a></li>
+                
+            
+                <li class="toctree-l3"><a href="#set-with-path">Set with Path</a></li>
+                
+            
+                <li class="toctree-l3"><a href="#set-with-tags">Set with Tags</a></li>
+                
+            
+                <li class="toctree-l3"><a href="#set-with-options">Set with Options</a></li>
+                
+            
+                <li class="toctree-l3"><a href="#set-with-expiry">Set with Expiry</a></li>
                 
             
             </ul>
@@ -131,7 +131,7 @@
     
       
     
-    <li>Example Setup</li>
+    <li>Examples</li>
     <li class="wy-breadcrumbs-aside">
       
     </li>
@@ -141,8 +141,197 @@
           <div role="main">
             <div class="section">
               
-                <h1 id="mainlua">main.lua</h1>
-<div class="codehilite"><pre><span></span><span class="kd">local</span> <span class="n">skytable</span> <span class="o">=</span> <span class="nb">require</span><span class="p">(</span><span class="s1">&#39;skytable.client&#39;</span><span class="p">)</span>
+                <h1 id="basic-get">Basic Get</h1>
+<div class="codehilite"><pre><span></span><span class="kd">local</span> <span class="n">skytable</span> <span class="o">=</span> <span class="nb">require</span><span class="p">(</span><span class="s2">&quot;skytable.client&quot;</span><span class="p">)</span>
+
+<span class="kd">local</span> <span class="n">profile</span> <span class="o">=</span> <span class="n">skytable</span><span class="p">:</span><span class="n">open</span><span class="p">(</span><span class="s2">&quot;profile&quot;</span><span class="p">)</span>
+
+<span class="kd">local</span> <span class="kr">function</span> <span class="nf">onResult</span><span class="p">(</span><span class="n">evt</span><span class="p">)</span>
+  <span class="kr">if</span> <span class="n">evt</span><span class="p">.</span><span class="n">isError</span> <span class="kr">then</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">evt</span><span class="p">.</span><span class="n">error</span><span class="p">)</span>
+  <span class="kr">else</span>
+    <span class="kd">local</span> <span class="n">tbl</span> <span class="o">=</span> <span class="n">evt</span><span class="p">.</span><span class="n">data</span> <span class="c1">--data table</span>
+  <span class="kr">end</span>
+<span class="kr">end</span>
+
+<span class="n">profile</span><span class="p">:</span><span class="n">get</span><span class="p">(</span><span class="n">onResult</span><span class="p">)</span>
+</pre></div>
+
+
+<hr />
+<h1 id="get-with-path">Get with Path</h1>
+<div class="codehilite"><pre><span></span><span class="kd">local</span> <span class="n">skytable</span> <span class="o">=</span> <span class="nb">require</span><span class="p">(</span><span class="s2">&quot;skytable.client&quot;</span><span class="p">)</span>
+
+<span class="kd">local</span> <span class="n">profile</span> <span class="o">=</span> <span class="n">skytable</span><span class="p">:</span><span class="n">open</span><span class="p">(</span><span class="s2">&quot;profile&quot;</span><span class="p">)</span>
+
+<span class="kd">local</span> <span class="kr">function</span> <span class="nf">onResult</span><span class="p">(</span><span class="n">evt</span><span class="p">)</span>
+  <span class="kr">if</span> <span class="n">evt</span><span class="p">.</span><span class="n">isError</span> <span class="kr">then</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">evt</span><span class="p">.</span><span class="n">error</span><span class="p">)</span>
+  <span class="kr">else</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">evt</span><span class="p">.</span><span class="n">data</span><span class="p">.</span><span class="n">name</span><span class="p">)</span>
+  <span class="kr">end</span>
+<span class="kr">end</span>
+
+<span class="n">profile</span><span class="p">:</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;name&quot;</span><span class="p">,</span> <span class="n">onResult</span><span class="p">)</span>
+</pre></div>
+
+
+<hr />
+<h1 id="get-with-tags">Get with Tags</h1>
+<div class="codehilite"><pre><span></span><span class="kd">local</span> <span class="n">skytable</span> <span class="o">=</span> <span class="nb">require</span><span class="p">(</span><span class="s2">&quot;skytable.client&quot;</span><span class="p">)</span>
+
+<span class="kd">local</span> <span class="n">profile</span> <span class="o">=</span> <span class="n">skytable</span><span class="p">:</span><span class="n">open</span><span class="p">(</span><span class="s2">&quot;profile&quot;</span><span class="p">)</span>
+<span class="kd">local</span> <span class="n">location</span> <span class="o">=</span> <span class="n">skytable</span><span class="p">:</span><span class="n">open</span><span class="p">(</span><span class="s2">&quot;location&quot;</span><span class="p">)</span>
+
+<span class="kd">local</span> <span class="kr">function</span> <span class="nf">onResult</span><span class="p">(</span><span class="n">evt</span><span class="p">)</span>
+  <span class="kr">if</span> <span class="n">evt</span><span class="p">.</span><span class="n">isError</span> <span class="kr">then</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">evt</span><span class="p">.</span><span class="n">error</span><span class="p">)</span>
+  <span class="kr">else</span>
+    <span class="kr">if</span> <span class="n">evt</span><span class="p">.</span><span class="n">tag</span> <span class="o">==</span> <span class="s2">&quot;get-name&quot;</span> <span class="kr">then</span>
+      <span class="nb">print</span><span class="p">(</span><span class="n">evt</span><span class="p">.</span><span class="n">data</span><span class="p">.</span><span class="n">name</span><span class="p">)</span>
+    <span class="kr">elseif</span> <span class="n">evt</span><span class="p">.</span><span class="n">tag</span> <span class="o">==</span> <span class="s2">&quot;get-street&quot;</span> <span class="kr">then</span>
+      <span class="nb">print</span><span class="p">(</span><span class="n">evt</span><span class="p">.</span><span class="n">data</span><span class="p">.</span><span class="n">street</span><span class="p">)</span>
+    <span class="kr">end</span>
+  <span class="kr">end</span>
+<span class="kr">end</span>
+
+<span class="n">profile</span><span class="p">:</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;name&quot;</span><span class="p">,</span> <span class="n">onResult</span><span class="p">,</span> <span class="p">{</span><span class="n">tag</span><span class="o">=</span><span class="s2">&quot;get-name&quot;</span><span class="p">})</span>
+<span class="n">location</span><span class="p">:</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;address.street&quot;</span><span class="p">,</span> <span class="n">onResult</span><span class="p">,</span> <span class="p">{</span><span class="n">tag</span><span class="o">=</span><span class="s2">&quot;get-street&quot;</span><span class="p">})</span>
+</pre></div>
+
+
+<hr />
+<h1 id="basic-set">Basic Set</h1>
+<div class="codehilite"><pre><span></span><span class="kd">local</span> <span class="n">skytable</span> <span class="o">=</span> <span class="nb">require</span><span class="p">(</span><span class="s2">&quot;skytable.client&quot;</span><span class="p">)</span>
+
+<span class="kd">local</span> <span class="n">location</span> <span class="o">=</span> <span class="n">skytable</span><span class="p">:</span><span class="n">open</span><span class="p">(</span><span class="s2">&quot;location&quot;</span><span class="p">)</span>
+
+<span class="kd">local</span> <span class="kr">function</span> <span class="nf">onSetResult</span><span class="p">(</span><span class="n">evt</span><span class="p">)</span>
+  <span class="kr">if</span> <span class="n">evt</span><span class="p">.</span><span class="n">isError</span> <span class="kr">then</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">evt</span><span class="p">.</span><span class="n">error</span><span class="p">)</span>
+  <span class="kr">else</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">evt</span><span class="p">.</span><span class="n">success</span><span class="p">)</span>
+  <span class="kr">end</span>
+<span class="kr">end</span>
+
+<span class="kd">local</span> <span class="n">locationData</span> <span class="o">=</span> 
+<span class="p">{</span>
+  <span class="n">address</span> <span class="o">=</span> 
+  <span class="p">{</span>
+    <span class="n">street</span> <span class="o">=</span> <span class="s2">&quot;123 Main St.&quot;</span><span class="p">,</span>
+    <span class="n">city</span> <span class="o">=</span> <span class="s2">&quot;San City&quot;</span><span class="p">,</span>
+    <span class="n">state</span> <span class="o">=</span> <span class="s2">&quot;Anywhere&quot;</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="n">location</span><span class="p">:</span><span class="n">set</span><span class="p">(</span><span class="n">locationData</span><span class="p">,</span> <span class="n">onSetResult</span><span class="p">)</span>
+</pre></div>
+
+
+<hr />
+<h1 id="set-with-path">Set with Path</h1>
+<div class="codehilite"><pre><span></span><span class="kd">local</span> <span class="n">skytable</span> <span class="o">=</span> <span class="nb">require</span><span class="p">(</span><span class="s2">&quot;skytable.client&quot;</span><span class="p">)</span>
+
+<span class="kd">local</span> <span class="n">location</span> <span class="o">=</span> <span class="n">skytable</span><span class="p">:</span><span class="n">open</span><span class="p">(</span><span class="s2">&quot;location&quot;</span><span class="p">)</span>
+
+<span class="kd">local</span> <span class="kr">function</span> <span class="nf">onSetResult</span><span class="p">(</span><span class="n">evt</span><span class="p">)</span>
+  <span class="kr">if</span> <span class="n">evt</span><span class="p">.</span><span class="n">isError</span> <span class="kr">then</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">evt</span><span class="p">.</span><span class="n">error</span><span class="p">)</span>
+  <span class="kr">else</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">evt</span><span class="p">.</span><span class="n">success</span><span class="p">)</span>
+  <span class="kr">end</span>
+<span class="kr">end</span>
+
+<span class="n">location</span><span class="p">:</span><span class="n">set</span><span class="p">(</span><span class="s2">&quot;address.state&quot;</span><span class="p">,</span> <span class="s2">&quot;Someplace&quot;</span><span class="p">,</span> <span class="n">onSetResult</span><span class="p">)</span>
+</pre></div>
+
+
+<hr />
+<h1 id="set-with-tags">Set with Tags</h1>
+<div class="codehilite"><pre><span></span><span class="kd">local</span> <span class="n">skytable</span> <span class="o">=</span> <span class="nb">require</span><span class="p">(</span><span class="s2">&quot;skytable.client&quot;</span><span class="p">)</span>
+
+<span class="kd">local</span> <span class="n">location</span> <span class="o">=</span> <span class="n">skytable</span><span class="p">:</span><span class="n">open</span><span class="p">(</span><span class="s2">&quot;location&quot;</span><span class="p">)</span>
+<span class="kd">local</span> <span class="n">profile</span> <span class="o">=</span> <span class="n">skytable</span><span class="p">:</span><span class="n">open</span><span class="p">(</span><span class="s2">&quot;profile&quot;</span><span class="p">)</span>
+
+<span class="kd">local</span> <span class="kr">function</span> <span class="nf">onSetResult</span><span class="p">(</span><span class="n">evt</span><span class="p">)</span>
+  <span class="kr">if</span> <span class="n">evt</span><span class="p">.</span><span class="n">isError</span> <span class="kr">then</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">evt</span><span class="p">.</span><span class="n">error</span><span class="p">)</span>
+  <span class="kr">else</span>
+    <span class="kr">if</span> <span class="n">evt</span><span class="p">.</span><span class="n">tag</span> <span class="o">==</span> <span class="s2">&quot;set-location&quot;</span> <span class="kr">then</span>
+      <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Set location&quot;</span><span class="p">,</span> <span class="n">evt</span><span class="p">.</span><span class="n">success</span><span class="p">)</span>
+    <span class="kr">elseif</span> <span class="n">evt</span><span class="p">.</span><span class="n">tag</span> <span class="o">==</span> <span class="s2">&quot;set-profile-name&quot;</span> <span class="kr">then</span>
+      <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Set profile&quot;</span><span class="p">,</span> <span class="n">evt</span><span class="p">.</span><span class="n">success</span><span class="p">)</span>
+    <span class="kr">end</span>
+  <span class="kr">end</span>
+<span class="kr">end</span>
+
+<span class="kd">local</span> <span class="n">locationData</span> <span class="o">=</span> 
+<span class="p">{</span>
+  <span class="n">address</span> <span class="o">=</span> 
+  <span class="p">{</span>
+    <span class="n">street</span> <span class="o">=</span> <span class="s2">&quot;123 Main St.&quot;</span><span class="p">,</span>
+    <span class="n">city</span> <span class="o">=</span> <span class="s2">&quot;San City&quot;</span><span class="p">,</span>
+    <span class="n">state</span> <span class="o">=</span> <span class="s2">&quot;Anywhere&quot;</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="n">location</span><span class="p">:</span><span class="n">set</span><span class="p">(</span><span class="n">locationData</span><span class="p">,</span> <span class="n">onSetResult</span><span class="p">,</span> <span class="p">{</span><span class="n">tag</span><span class="o">=</span><span class="s2">&quot;set-location&quot;</span><span class="p">})</span>
+<span class="n">profile</span><span class="p">:</span><span class="n">set</span><span class="p">(</span><span class="s2">&quot;name&quot;</span><span class="p">,</span> <span class="s2">&quot;Steve&quot;</span><span class="p">,</span> <span class="n">onSetResult</span><span class="p">,</span> <span class="p">{</span><span class="n">tag</span><span class="o">=</span><span class="s2">&quot;set-profile-name&quot;</span><span class="p">})</span>
+</pre></div>
+
+
+<hr />
+<h1 id="set-with-options">Set with Options</h1>
+<div class="codehilite"><pre><span></span><span class="kd">local</span> <span class="n">skytable</span> <span class="o">=</span> <span class="nb">require</span><span class="p">(</span><span class="s2">&quot;skytable.client&quot;</span><span class="p">)</span>
+
+<span class="kd">local</span> <span class="n">location</span> <span class="o">=</span> <span class="n">skytable</span><span class="p">:</span><span class="n">open</span><span class="p">(</span><span class="s2">&quot;location&quot;</span><span class="p">)</span>
+
+<span class="kd">local</span> <span class="kr">function</span> <span class="nf">onSetResult</span><span class="p">(</span><span class="n">evt</span><span class="p">)</span>
+  <span class="kr">if</span> <span class="n">evt</span><span class="p">.</span><span class="n">isError</span> <span class="kr">then</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">evt</span><span class="p">.</span><span class="n">error</span><span class="p">)</span>
+  <span class="kr">else</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">evt</span><span class="p">.</span><span class="n">success</span><span class="p">)</span>
+  <span class="kr">end</span>
+<span class="kr">end</span>
+
+<span class="kd">local</span> <span class="n">locationData</span> <span class="o">=</span> 
+<span class="p">{</span>
+  <span class="n">address</span> <span class="o">=</span> 
+  <span class="p">{</span>
+    <span class="n">street</span> <span class="o">=</span> <span class="s2">&quot;555 1st Ave.&quot;</span><span class="p">,</span>
+    <span class="n">city</span> <span class="o">=</span> <span class="s2">&quot;Citopia&quot;</span><span class="p">,</span>
+    <span class="n">state</span> <span class="o">=</span> <span class="s2">&quot;Bliss&quot;</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="n">location</span><span class="p">:</span><span class="n">set</span><span class="p">(</span><span class="n">locationData</span><span class="p">,</span> <span class="n">onSetResult</span><span class="p">,</span> <span class="p">{</span><span class="n">flag</span> <span class="o">=</span> <span class="s2">&quot;XX&quot;</span><span class="p">})</span>
+</pre></div>
+
+
+<h1 id="set-with-expiry">Set with Expiry</h1>
+<div class="codehilite"><pre><span></span><span class="kd">local</span> <span class="n">skytable</span> <span class="o">=</span> <span class="nb">require</span><span class="p">(</span><span class="s2">&quot;skytable.client&quot;</span><span class="p">)</span>
+
+<span class="kd">local</span> <span class="n">location</span> <span class="o">=</span> <span class="n">skytable</span><span class="p">:</span><span class="n">open</span><span class="p">(</span><span class="s2">&quot;location&quot;</span><span class="p">)</span>
+
+<span class="kd">local</span> <span class="kr">function</span> <span class="nf">onSetResult</span><span class="p">(</span><span class="n">evt</span><span class="p">)</span>
+  <span class="kr">if</span> <span class="n">evt</span><span class="p">.</span><span class="n">isError</span> <span class="kr">then</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">evt</span><span class="p">.</span><span class="n">error</span><span class="p">)</span>
+  <span class="kr">else</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">evt</span><span class="p">.</span><span class="n">success</span><span class="p">,</span> <span class="n">evt</span><span class="p">.</span><span class="n">expiry</span><span class="p">)</span>
+  <span class="kr">end</span>
+<span class="kr">end</span>
+
+<span class="kd">local</span> <span class="n">locationData</span> <span class="o">=</span> 
+<span class="p">{</span>
+  <span class="n">address</span> <span class="o">=</span> 
+  <span class="p">{</span>
+    <span class="n">street</span> <span class="o">=</span> <span class="s2">&quot;555 1st Ave.&quot;</span><span class="p">,</span>
+    <span class="n">city</span> <span class="o">=</span> <span class="s2">&quot;Citopia&quot;</span><span class="p">,</span>
+    <span class="n">state</span> <span class="o">=</span> <span class="s2">&quot;Bliss&quot;</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="n">location</span><span class="p">:</span><span class="n">set</span><span class="p">(</span><span class="n">locationData</span><span class="p">,</span> <span class="n">onSetResult</span><span class="p">,</span> <span class="p">{</span><span class="n">expiry</span> <span class="o">=</span> <span class="mi">60</span><span class="p">})</span>
 </pre></div>
               
             </div>
@@ -154,7 +343,7 @@
         <a href="../about/" class="btn btn-neutral float-right" title="About">Next <span class="icon icon-circle-arrow-right"></span></a>
       
       
-        <a href="../development/" class="btn btn-neutral" title="Development Tips"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../guide/" class="btn btn-neutral" title="Client Guide"><span class="icon icon-circle-arrow-left"></span> Previous</a>
       
     </div>
   
@@ -182,7 +371,7 @@
     <span class="rst-current-version" data-toggle="rst-current-version">
       
       
-        <span><a href="../development/" style="color: #fcfcfc;">&laquo; Previous</a></span>
+        <span><a href="../guide/" style="color: #fcfcfc;">&laquo; Previous</a></span>
       
       
         <span style="margin-left: 15px"><a href="../about/" style="color: #fcfcfc">Next &raquo;</a></span>

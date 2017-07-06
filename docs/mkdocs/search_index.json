@@ -2,7 +2,7 @@
     "docs": [
         {
             "location": "/",
-            "text": "Coronium SkyTable\n\n\nA performant user scoped data table store and client for use with \nCorona\n.\n\n\nInstallation\n\n\nCoronium SkyTable\n runs best on a \nDigitalOcean\n \nUbuntu 16.04\n droplet.\n\n\n\n\nTip\n\n\nIf you're new to \nDigitalOcean\n please consider signing up with \nthis link\n. Not only will you receive a $10 credit (2 free months), but it also helps support the continued development, and testing of \nCoronium SkyTable\n.\n\n\n\n\nCreate A New Droplet\n\n\nOnce you log into your \nDigitalOcean\n account, click the \"Create Droplet\" button.\n\n\n\n\nOn the next screen, first select a \nUbuntu 17.04\n droplet distribution.\n\n\n \n\n\nSelect your preferred droplet size. A \n512MB/1 CPU\n droplet is a good starting point. You can always increase the size later.\n\n\n\n\nNext, select a region for the droplet. Consider choosing a location closest to your most active user base.\n\n\n\n\nSelect your SSH profile to attach to the droplet.\n\n\n\n\n\n\nCaution\n\n\nThere is an option where you can use a password instead of an SSH key, which may be easier if you're only testing \nCoronium SkyTable\n, though I wouldn't recommend it. You can learn more about generating SSH keys for \nDigitalOcean\n here: \nCreating SSH Keys\n.\n\n\n\n\nNow give your droplet a hostname.\n\n\n\n\nBe sure to replace \nskytable.develephant.com\n with your own hostname.\n\n\nAnd finally, click the \"Create\" button to spin up the droplet.\n\n\n\n\nConnect To The Droplet\n\n\nOnce your droplet is done spinning up, note the ip address on the overview page.\n\n\n\n\nUsing a terminal/shell of your choice, SSH into the droplet.\n\n\n\n\nTip\n\n\nYou can use the built in shells on both OSX and Linux. For Windows, check out \nPuTTY\n.\n\n\n\n\nssh root@<your-instance-ip>\n\n\nReplace \n<your-instance-ip>\n with the address that was assigned to your droplet.\n\n\nOnce you are connected to the droplet, copy and paste the following line into the terminal:\n\n\ncurl -LO https://s3.amazonaws.com/coronium-skytable/install.sh && sudo bash ./install.sh && rm install.sh\n\n\nOnce the installation is complete, \nCoronium SkyTable\n is ready for connections. Log out of the server by typing \nexit\n on the command line.\n\n\nIf you need to view logs, etc. then log in with the \nskytable\n user.\n\n\nssh skytable@<your-instance-ip>\n\n\n\n\nNote\n\n\nThe default password for a fresh install is: \ncoroniumadmin\n.\n\n\n\n\n\n\nImportant\n\n\nYou should change the default password after the install. Making sure to log in as the \nskytable\n user, enter \nsudo passwd\n in the shell, and then follow the prompts.",
+            "text": "Coronium SkyTable\n\n\nA performant user scoped data table store and client for use with \nCorona\n.\n\n\n\n\nGet The Client\n\n\nFirst point your browser to the \nCoronium SkyTable Client GitHub repo\n.\n\n\nNext, click the \"Clone or Download\" button and select \"Download ZIP\" to a location on your computer.\n\n\n\n\nExpand the \ncoronium-skytable-master.zip\n file and navigate to \ncoronium-skytable-master/skytable\n directory.\n\n\n\n\nCopy the \nskytable\n directory to the root of your Corona SDK project.\n\n\n\n\nAdding The Client\n\n\nOnce you have the \nskytable\n directory in your project, do the following to incorporate it.\n\n\nOpen your \nmain.lua\n file and add the following:\n\n\nlocal\n \nskytable\n \n=\n \nrequire\n(\n'skytable.client'\n)\n\n\n\n\n\n\n\n\nTip\n\n\nSee \nClient API\n to start using the API.",
             "title": "Introduction"
         },
         {
@@ -11,73 +11,18 @@
             "title": "Coronium SkyTable"
         },
         {
-            "location": "/#installation",
-            "text": "Coronium SkyTable  runs best on a  DigitalOcean   Ubuntu 16.04  droplet.   Tip  If you're new to  DigitalOcean  please consider signing up with  this link . Not only will you receive a $10 credit (2 free months), but it also helps support the continued development, and testing of  Coronium SkyTable .",
-            "title": "Installation"
-        },
-        {
-            "location": "/#create-a-new-droplet",
-            "text": "Once you log into your  DigitalOcean  account, click the \"Create Droplet\" button.   On the next screen, first select a  Ubuntu 17.04  droplet distribution.     Select your preferred droplet size. A  512MB/1 CPU  droplet is a good starting point. You can always increase the size later.   Next, select a region for the droplet. Consider choosing a location closest to your most active user base.   Select your SSH profile to attach to the droplet.    Caution  There is an option where you can use a password instead of an SSH key, which may be easier if you're only testing  Coronium SkyTable , though I wouldn't recommend it. You can learn more about generating SSH keys for  DigitalOcean  here:  Creating SSH Keys .   Now give your droplet a hostname.   Be sure to replace  skytable.develephant.com  with your own hostname.  And finally, click the \"Create\" button to spin up the droplet.",
-            "title": "Create A New Droplet"
-        },
-        {
-            "location": "/#connect-to-the-droplet",
-            "text": "Once your droplet is done spinning up, note the ip address on the overview page.   Using a terminal/shell of your choice, SSH into the droplet.   Tip  You can use the built in shells on both OSX and Linux. For Windows, check out  PuTTY .   ssh root@<your-instance-ip>  Replace  <your-instance-ip>  with the address that was assigned to your droplet.  Once you are connected to the droplet, copy and paste the following line into the terminal:  curl -LO https://s3.amazonaws.com/coronium-skytable/install.sh && sudo bash ./install.sh && rm install.sh  Once the installation is complete,  Coronium SkyTable  is ready for connections. Log out of the server by typing  exit  on the command line.  If you need to view logs, etc. then log in with the  skytable  user.  ssh skytable@<your-instance-ip>   Note  The default password for a fresh install is:  coroniumadmin .    Important  You should change the default password after the install. Making sure to log in as the  skytable  user, enter  sudo passwd  in the shell, and then follow the prompts.",
-            "title": "Connect To The Droplet"
-        },
-        {
-            "location": "/guide/",
-            "text": "Corona SDK\n\n\nCoronium SkyTable\n works with Corona SDK with a custom module. You will need this module to interact with your Coronium CS instance.\n\n\nGet The Client\n\n\nFirst point your browser to the \nCoronium SkyTable GitHub repo\n.\n\n\nNext, click the \"Clone or Download\" button and select \"Download ZIP\" to a location on your computer.\n\n\n\n\nExpand the \ncoronium-skytable-master.zip\n file and navigate to \ncoronium-skytable-master/skytable\n directory.\n\n\n\n\nCopy the \nskytable\n directory to the root of your Corona SDK project.\n\n\nAdding The Client\n\n\nOnce you have the \nskytable\n directory in your project, do the following to incorporate it.\n\n\nOpen your \nmain.lua\n file and add the following:\n\n\nlocal\n \nskytable\n \n=\n \nrequire\n(\n'skytable.client'\n)\n\n\n\n\n\n\nInitialization\n\n\nlocal\n \nskytable\n \n=\n \nrequire\n(\n'skytable.client'\n)\n\n\n\nskytable\n:\ninit\n({\n\n  \nhost\n \n=\n \n'<your-ip-address>'\n,\n\n  \nkey\n \n=\n \n'1234'\n\n\n})\n\n\n\n\n\n\nInit Parameters\n\n\n\n\n\n\n\n\nParameter\n\n\nDescription\n\n\nRequired\n\n\n\n\n\n\n\n\n\n\nhost\n\n\nThe instance address\n\n\nY\n\n\n\n\n\n\nkey\n\n\nThe client display name\n\n\nY\n\n\n\n\n\n\nbase\n\n\nThe base path (i.e: app1)\n\n\nN\n\n\n\n\n\n\nuser_key\n\n\nThe users key\n\n\nN\n\n\n\n\n\n\ndebug\n\n\nOutput client-side debugging info.\n\n\nN\n\n\n\n\n\n\n\n\n\n\nTip\n\n\nSee \nClient API\n to start using the API.",
-            "title": "Client Guide"
-        },
-        {
-            "location": "/guide/#corona-sdk",
-            "text": "Coronium SkyTable  works with Corona SDK with a custom module. You will need this module to interact with your Coronium CS instance.",
-            "title": "Corona SDK"
-        },
-        {
-            "location": "/guide/#get-the-client",
-            "text": "First point your browser to the  Coronium SkyTable GitHub repo .  Next, click the \"Clone or Download\" button and select \"Download ZIP\" to a location on your computer.   Expand the  coronium-skytable-master.zip  file and navigate to  coronium-skytable-master/skytable  directory.   Copy the  skytable  directory to the root of your Corona SDK project.",
+            "location": "/#get-the-client",
+            "text": "First point your browser to the  Coronium SkyTable Client GitHub repo .  Next, click the \"Clone or Download\" button and select \"Download ZIP\" to a location on your computer.   Expand the  coronium-skytable-master.zip  file and navigate to  coronium-skytable-master/skytable  directory.   Copy the  skytable  directory to the root of your Corona SDK project.",
             "title": "Get The Client"
         },
         {
-            "location": "/guide/#adding-the-client",
-            "text": "Once you have the  skytable  directory in your project, do the following to incorporate it.  Open your  main.lua  file and add the following:  local   skytable   =   require ( 'skytable.client' )",
+            "location": "/#adding-the-client",
+            "text": "Once you have the  skytable  directory in your project, do the following to incorporate it.  Open your  main.lua  file and add the following:  local   skytable   =   require ( 'skytable.client' )    Tip  See  Client API  to start using the API.",
             "title": "Adding The Client"
         },
         {
-            "location": "/guide/#initialization",
-            "text": "local   skytable   =   require ( 'skytable.client' )  skytable : init ({ \n   host   =   '<your-ip-address>' , \n   key   =   '1234'  })",
-            "title": "Initialization"
-        },
-        {
-            "location": "/guide/#init-parameters",
-            "text": "Parameter  Description  Required      host  The instance address  Y    key  The client display name  Y    base  The base path (i.e: app1)  N    user_key  The users key  N    debug  Output client-side debugging info.  N      Tip  See  Client API  to start using the API.",
-            "title": "Init Parameters"
-        },
-        {
-            "location": "/events/",
-            "text": "Event Table\n\n\n\n\n\n\n\n\nEvent Name\n\n\nDescription\n\n\nScope\n\n\n\n\n\n\n\n\n\n\nOnError\n\n\nThe client has received an error message.\n\n\nclient\n\n\n\n\n\n\n\n\n\n\nEvent Listeners\n\n\nTo listen for events, add an event listener:\n\n\nlocal\n \nskytable\n \n=\n \nrequire\n(\n'skytable.client'\n)\n\n\n\nskytable\n.\ninit\n({\n\n  \nhost\n \n=\n \n\"<instance-ip-address>\"\n,\n\n  \nbase\n \n=\n \n\"app1\"\n\n\n})\n\n\n\nlocal\n \nfunction\n \nnetListener\n(\nevt\n)\n\n\n\nend\n\n\n\nskytable\n.\nrequest\n(\naction\n,\n \npath\n,\n \npayload\n,\n \nnewListener\n)\n\n\n\n\n\n\n\n\nNote\n\n\nAll event properties can be found on the \ndata\n object of the event (\nevt.data.<prop>\n). See the following event details for their available properties.\n\n\n\n\n\n\nOnError\n\n\nThe client has received an error message.\n\n\n\n\nNote\n\n\nThe \nOnError\n event triggers on both local and server-side errors.\n\n\n\n\n\n\nImportant\n\n\nThe \nOnError\n event does not contain a \ndata\n property. To access the error, use the \nerror\n key directly on the event: \nevt.error\n.",
-            "title": "Client Events"
-        },
-        {
-            "location": "/events/#event-table",
-            "text": "Event Name  Description  Scope      OnError  The client has received an error message.  client",
-            "title": "Event Table"
-        },
-        {
-            "location": "/events/#event-listeners",
-            "text": "To listen for events, add an event listener:  local   skytable   =   require ( 'skytable.client' )  skytable . init ({ \n   host   =   \"<instance-ip-address>\" , \n   base   =   \"app1\"  })  local   function   netListener ( evt )  end  skytable . request ( action ,   path ,   payload ,   newListener )    Note  All event properties can be found on the  data  object of the event ( evt.data.<prop> ). See the following event details for their available properties.",
-            "title": "Event Listeners"
-        },
-        {
-            "location": "/events/#onerror",
-            "text": "The client has received an error message.   Note  The  OnError  event triggers on both local and server-side errors.    Important  The  OnError  event does not contain a  data  property. To access the error, use the  error  key directly on the event:  evt.error .",
-            "title": "OnError"
-        },
-        {
             "location": "/api/",
-            "text": "SkyTable\n\n\nnew\n\n\nCreate a new skytable key entry\n\n\nlocal\n \nfunction\n \nnetListener\n(\nevt\n)\n\n  \nif\n \nnot\n \nevt\n.\nisError\n \nthen\n\n    \nprint\n(\nevt\n.\nresponse\n)\n\n  \nend\n\n\nend\n\n\n\nskytable\n.\nnew\n(\n\"profile\"\n,\n \n{\nage\n=\n20\n},\n \nnetListener\n)\n\n\n\n\n\n\nreplace\n\n\nUpdate a skytable key entry\n\n\nlocal\n \nfunction\n \nnetListener\n(\nevt\n)\n\n  \nif\n \nnot\n \nevt\n.\nisError\n \nthen\n\n    \nprint\n(\nevt\n.\nresponse\n)\n\n  \nend\n\n\nend\n\n\n\nskytable\n.\nreplace\n(\n\"profile\"\n,\n \n{\ncolor\n=\n\"Blue\"\n},\n \nnetListener\n)\n\n\n\n\n\n\nclear\n\n\nRemove a skytable key entry\n\n\nlocal\n \nfunction\n \nnetListener\n(\nevt\n)\n\n  \nif\n \nnot\n \nevt\n.\nisError\n \nthen\n\n    \nprint\n(\nevt\n.\nresponse\n)\n\n  \nend\n\n\nend\n\n\n\nskytable\n.\nclear\n(\n\"profile\"\n,\n \nnetListener\n)\n\n\n\n\n\n\nData\n\n\nset\n\n\nSet a value in a skytable\n\n\nlocal\n \nfunction\n \nnetListener\n(\nevt\n)\n\n  \nif\n \nnot\n \nevt\n.\nisError\n \nthen\n\n    \nprint\n(\nevt\n.\nresponse\n)\n\n  \nend\n\n\nend\n\n\n\nskytable\n.\nset\n(\n\"profile.age\"\n,\n \n23\n,\n \nnetListener\n)\n\n\n\n\n\n\nget\n\n\nGet a value from a skytable\n\n\nlocal\n \nfunction\n \nnetListener\n(\nevt\n)\n\n  \nif\n \nnot\n \nevt\n.\nisError\n \nthen\n\n    \nprint\n(\nevt\n.\nresponse\n)\n\n  \nend\n\n\nend\n\n\n\nskytable\n.\nget\n(\n\"profile.age\"\n,\n \nnetListener\n)\n\n\n\n\n\n\ndelete\n\n\nDelete a value in a skytable\n\n\nlocal\n \nfunction\n \nnetListener\n(\nevt\n)\n\n  \nif\n \nnot\n \nevt\n.\nisError\n \nthen\n\n    \nprint\n(\nevt\n.\nresponse\n)\n\n  \nend\n\n\nend\n\n\n\nskytable\n.\ndelete\n(\n\"profile.color\"\n,\n \nnetListener\n)\n\n\n\n\n\n\nkeys\n\n\nReturns the skytable keys\n\n\nlocal\n \nfunction\n \nnetListener\n(\nevt\n)\n\n  \nif\n \nnot\n \nevt\n.\nisError\n \nthen\n\n    \nprint\n(\nevt\n.\nresponse\n)\n\n  \nend\n\n\nend\n\n\n\nskytable\n.\nkeys\n(\n\"profile\"\n,\n \nnetListener\n)\n\n\n\n\n\n\nlength\n\n\nReturns the object key count\n\n\nlocal\n \nfunction\n \nnetListener\n(\nevt\n)\n\n  \nif\n \nnot\n \nevt\n.\nisError\n \nthen\n\n    \nprint\n(\nevt\n.\nresponse\n)\n\n  \nend\n\n\nend\n\n\n\nskytable\n.\nlength\n(\n\"profile\"\n,\n \nnetListener\n)\n\n\n\n\n\n\n\n\nString\n\n\nstr.append\n\n\nAppend a string value to a skytable string value\n\n\nlocal\n \nfunction\n \nnetListener\n(\nevt\n)\n\n  \nif\n \nnot\n \nevt\n.\nisError\n \nthen\n\n    \nprint\n(\nevt\n.\nresponse\n)\n\n  \nend\n\n\nend\n\n\n\nskytable\n.\nstr\n.\nappend\n(\n\"profile.name\"\n,\n \n\"somestring\"\n,\n \nnetListener\n)\n\n\n\n\n\n\nstr.length\n\n\nReturn the current string length a path\n\n\nlocal\n \nfunction\n \nnetListener\n(\nevt\n)\n\n  \nif\n \nnot\n \nevt\n.\nisError\n \nthen\n\n    \nprint\n(\nevt\n.\nresponse\n)\n\n  \nend\n\n\nend\n\n\n\nskytable\n.\nstr\n.\nlength\n(\n\"profile.name\"\n,\n \nnetListener\n)\n\n\n\n\n\n\n\n\nArray\n\n\narr.push\n\n\nInsert value at end.\n\n\nlocal\n \nfunction\n \nnetListener\n(\nevt\n)\n\n  \nif\n \nnot\n \nevt\n.\nisError\n \nthen\n\n    \nprint\n(\nevt\n.\nresponse\n)\n\n  \nend\n\n\nend\n\n\n\nskytable\n.\narr\n.\npush\n(\n\"colors\"\n,\n \n\"Green\"\n,\n \nnetListener\n)\n\n\n\n\n\n\narr.pop\n\n\nRemove value at end\n\n\nlocal\n \nfunction\n \nnetListener\n(\nevt\n)\n\n  \nif\n \nnot\n \nevt\n.\nisError\n \nthen\n\n    \nprint\n(\nevt\n.\nresponse\n)\n\n  \nend\n\n\nend\n\n\n\nskytable\n.\narr\n.\npop\n(\n\"colors\"\n,\n \nnetListener\n)\n\n\n\n\n\n\narr.shift\n\n\nInsert value at start\n\n\nlocal\n \nfunction\n \nnetListener\n(\nevt\n)\n\n  \nif\n \nnot\n \nevt\n.\nisError\n \nthen\n\n    \nprint\n(\nevt\n.\nresponse\n)\n\n  \nend\n\n\nend\n\n\n\nskytable\n.\nshift\n(\n\"colors\"\n,\n \n\"Red\"\n,\n \nnetListener\n)\n\n\n\n\n\n\narr.unshift\n\n\nRemove value at start\n\n\nlocal\n \nfunction\n \nnetListener\n(\nevt\n)\n\n  \nif\n \nnot\n \nevt\n.\nisError\n \nthen\n\n    \nprint\n(\nevt\n.\nresponse\n)\n\n  \nend\n\n\nend\n\n\n\nskytable\n.\narr\n.\nunshift\n(\n\"colors\"\n,\n \nnetListener\n)\n\n\n\n\n\n\narr.insert\n\n\nInsert value into an array\n\n\nlocal\n \nfunction\n \nnetListener\n(\nevt\n)\n\n  \nif\n \nnot\n \nevt\n.\nisError\n \nthen\n\n    \nprint\n(\nevt\n.\nresponse\n)\n\n  \nend\n\n\nend\n\n\n\nskytable\n.\narr\n.\ninsert\n(\n\"colors\"\n,\n \n2\n,\n \n\"Yellow\"\n,\n \nnetListener\n)\n\n\n\n\n\n\narr.remove\n\n\nRemove a value from an array index\n\n\nlocal\n \nfunction\n \nnetListener\n(\nevt\n)\n\n  \nif\n \nnot\n \nevt\n.\nisError\n \nthen\n\n    \nprint\n(\nevt\n.\nresponse\n)\n\n  \nend\n\n\nend\n\n\n\nskytable\n.\narr\n.\nremove\n(\n\"colors\"\n,\n \n1\n,\n \nnetListener\n)\n\n\n\n\n\n\narr.trim\n\n\nRemove all but subset of array\n\n\nlocal\n \nfunction\n \nnetListener\n(\nevt\n)\n\n  \nif\n \nnot\n \nevt\n.\nisError\n \nthen\n\n    \nprint\n(\nevt\n.\nresponse\n)\n\n  \nend\n\n\nend\n\n\n\nskytable\n.\narr\n.\ntrim\n(\n\"colors\"\n,\n \n1\n,\n \n3\n,\n \nnetListener\n)\n\n\n\n\n\n\narr.indexOf\n\n\nFind the first index position of scalar type (string, number)\n\n\nlocal\n \nfunction\n \nnetListener\n(\nevt\n)\n\n  \nif\n \nnot\n \nevt\n.\nisError\n \nthen\n\n    \nprint\n(\nevt\n.\nresponse\n)\n\n  \nend\n\n\nend\n\n\n\nskytable\n.\narr\n.\nindexOf\n(\n\"colors\"\n,\n \n\"Green\"\n,\n \nnetListener\n)\n\n\n\n\n\n\narr.length\n\n\nGet the array length\n\n\nlocal\n \nfunction\n \nnetListener\n(\nevt\n)\n\n  \nif\n \nnot\n \nevt\n.\nisError\n \nthen\n\n    \nprint\n(\nevt\n.\nresponse\n)\n\n  \nend\n\n\nend\n\n\n\nskytable\n.\narr\n.\nlength\n(\n\"colors\"\n,\n \nnetListener\n)\n\n\n\n\n\n\n\n\nNumber\n\n\nnum.inc\n\n\nIncrements a number value\n\n\nlocal\n \nfunction\n \nnetListener\n(\nevt\n)\n\n  \nif\n \nnot\n \nevt\n.\nisError\n \nthen\n\n    \nprint\n(\nevt\n.\nresponse\n)\n\n  \nend\n\n\nend\n\n\n\nskytable\n.\nnum\n.\ninc\n(\n\"profile.score\"\n,\n \n10\n,\n \nnetListener\n)\n\n\n\n\n\n\nnum.dec\n\n\nDecrements a number value\n\n\nlocal\n \nfunction\n \nnetListener\n(\nevt\n)\n\n  \nif\n \nnot\n \nevt\n.\nisError\n \nthen\n\n    \nprint\n(\nevt\n.\nresponse\n)\n\n  \nend\n\n\nend\n\n\n\nskytable\n.\nnum\n.\ndec\n(\n\"profile.score\"\n,\n \n1\n,\n \nnetListener\n)\n\n\n\n\n\n\nnum.mult\n\n\nMultiply a number value\n\n\nlocal\n \nfunction\n \nnetListener\n(\nevt\n)\n\n  \nif\n \nnot\n \nevt\n.\nisError\n \nthen\n\n    \nprint\n(\nevt\n.\nresponse\n)\n\n  \nend\n\n\nend\n\n\n\nskytable\n.\nnum\n.\nmult\n(\n\"profile.score\"\n,\n \n2\n,\n \nnetListener\n)\n\n\n\n\n\n\n\n\nUser\n\n\nuser.create\n\n\nCreate a new skytable user scope\n\n\nlocal\n \nfunction\n \nnetListener\n(\nevt\n)\n\n  \nif\n \nnot\n \nevt\n.\nisError\n \nthen\n\n    \nprint\n(\nevt\n.\nresponse\n)\n\n  \nend\n\n\nend\n\n\n\nskytable\n.\nuser\n.\ncreate\n(\n\"user@email.com\"\n,\n \n\"password\"\n,\n \nnetListener\n)\n\n\n\n\n\n\nuser.update\n\n\nUpdate a skytable user scope\n\n\nlocal\n \nfunction\n \nnetListener\n(\nevt\n)\n\n  \nif\n \nnot\n \nevt\n.\nisError\n \nthen\n\n    \nprint\n(\nevt\n.\nresponse\n)\n\n  \nend\n\n\nend\n\n\n\nskytable\n.\nuser\n.\nupdate\n(\nuser_email\n,\n \nuser_password\n,\n \nnew_email\n,\n \nnew_password\n,\n \nnetListener\n)\n\n\n\n\n\n\nuser.delete\n\n\nDelete the skytable user scope\n\n\nlocal\n \nfunction\n \nnetListener\n(\nevt\n)\n\n  \nif\n \nnot\n \nevt\n.\nisError\n \nthen\n\n    \nprint\n(\nevt\n.\nresponse\n)\n\n  \nend\n\n\nend\n\n\n\nskytable\n.\nuser\n.\ndelete\n(\nuser_email\n,\n \nuser_password\n,\n \nnetListener\n)",
+            "text": "SkyTable\n\n\ninit\n\n\nInitialize the SkyTable module.\n\n\n:\ninit\n(\nconfig\n)\n\n\n\n\n\n\nParameters\n\n\n\n\n\n\n\n\nName\n\n\nDescription\n\n\nType\n\n\nRequired\n\n\n\n\n\n\n\n\n\n\nconfig\n\n\nThe SkyTable configuration.\n\n\nTable\n\n\nY\n\n\n\n\n\n\n\n\nConfig Properties\n\n\n\n\n\n\n\n\nName\n\n\nDescription\n\n\nType\n\n\nRequired\n\n\n\n\n\n\n\n\n\n\nuser\n\n\nThe SkyTable user.\n\n\nString\n\n\nY\n\n\n\n\n\n\npassword\n\n\nThe user password.\n\n\nString\n\n\nY\n\n\n\n\n\n\nbase\n\n\nThe SkyTable base.\n\n\nString\n\n\nY\n\n\n\n\n\n\nhost\n\n\nThe SkyTable server host.\n\n\nString\n\n\nY\n\n\n\n\n\n\nkey\n\n\nThe SkyTable server key\n\n\nString\n\n\nY\n\n\n\n\n\n\ndebug\n\n\nOutput response data.\n\n\nBoolean\n\n\nN\n\n\n\n\n\n\n\n\nExample\n\n\nskytable\n:\ninit\n({\n\n  \nuser\n \n=\n \n\"<user-email>\"\n,\n\n  \npassword\n \n=\n \n\"<user-password>\"\n,\n\n  \nbase\n \n=\n \n\"app1\"\n,\n\n  \nhost\n \n=\n \n\"http://skytable-host\"\n,\n\n  \nkey\n \n=\n \n\"<server-key>\"\n,\n\n  \ndebug\n \n=\n \ntrue\n\n\n})\n\n\n\n\n\n\n\n\nopen\n\n\nOpen a SkyTable for usage.\n\n\n:\nopen\n(\ntable_name\n)\n\n\n\n\n\n\nParameters\n\n\n\n\n\n\n\n\nName\n\n\nDescription\n\n\nType\n\n\nRequired\n\n\n\n\n\n\n\n\n\n\ntable_name\n\n\nThe name of the SkyTable to use.\n\n\nString\n\n\nY\n\n\n\n\n\n\n\n\nExample\n\n\nlocal\n \nprofile\n \n=\n \nskytable\n:\nopen\n(\n\"profile\"\n)\n\n\n\n\n\n\n\n\nset\n\n\nSet a value in a SkyTable.\n\n\n:set([data_path,] data, listener[, options])\n\n\n\n\n\nParameters\n\n\n\n\n\n\n\n\nName\n\n\nDescription\n\n\nType\n\n\nRequired\n\n\n\n\n\n\n\n\n\n\ndata_path\n\n\nPath to the item data. (See \nData Paths\n)\n\n\nString\n\n\nN\n\n\n\n\n\n\ndata\n\n\nThe data to set the item to.\n\n\nString\n\n\nY\n\n\n\n\n\n\nlistener\n\n\nA listener function. (See \nListeners\n)\n\n\nFunction\n\n\nY\n\n\n\n\n\n\noptions\n\n\nAdditional options.\n\n\nTable\n\n\nN\n\n\n\n\n\n\n\n\nOptions Properties\n\n\n\n\n\n\n\n\nName\n\n\nDescription\n\n\nType\n\n\nRequired\n\n\n\n\n\n\n\n\n\n\ntag\n\n\nA descriptive name for the event. (See \nTags\n)\n\n\nString\n\n\nN\n\n\n\n\n\n\nflag\n\n\nNX\n or \nXX\n. (See \nFlags\n)\n\n\nString\n\n\nN\n\n\n\n\n\n\nexpiry\n\n\nTable expiration in seconds. (See \nExpiry\n)\n\n\nNumber\n\n\nN\n\n\n\n\n\n\n\n\nExample\n\n\nprofile\n:\nset\n(\n\"age\"\n,\n \n23\n,\n \nonSetResult\n)\n\n\n\n\n\n\n\n\nTip\n\n\nSee \nSet\n in the \nClient Guide\n for detailed usage information.\n\n\n\n\n\n\nget\n\n\nGet a value from a SkyTable.\n\n\n:get([data_path,] listener[, options])\n\n\n\n\n\nParameters\n\n\n\n\n\n\n\n\nName\n\n\nDescription\n\n\nType\n\n\nRequired\n\n\n\n\n\n\n\n\n\n\ndata_path\n\n\nPath to the item data. (See \nData Paths\n)\n\n\nString\n\n\nN\n\n\n\n\n\n\nlistener\n\n\nA listener function. (See \nListeners\n)\n\n\nFunction\n\n\nY\n\n\n\n\n\n\noptions\n\n\nAdditional options.\n\n\nTable\n\n\nN\n\n\n\n\n\n\n\n\nOptions Properties\n\n\n\n\n\n\n\n\nName\n\n\nDescription\n\n\nType\n\n\nRequired\n\n\n\n\n\n\n\n\n\n\ntag\n\n\nA descriptive name for the event. (See \nTags\n)\n\n\nString\n\n\nN\n\n\n\n\n\n\n\n\nExample\n\n\nprofile\n:\nget\n(\n\"age\"\n,\n \nonResult\n)\n\n\n\n\n\n\n\n\nTip\n\n\nSee \nGet\n in the \nClient Guide\n for detailed usage information.\n\n\n\n\n\n\ndelete\n\n\nDelete a value in a SkyTable.\n\n\n:delete([data_path,] listener[, options])\n\n\n\n\n\nParameters\n\n\n\n\n\n\n\n\nName\n\n\nDescription\n\n\nType\n\n\nRequired\n\n\n\n\n\n\n\n\n\n\ndata_path\n\n\nPath to the item data. (See \nData Paths\n)\n\n\nString\n\n\nN\n\n\n\n\n\n\nlistener\n\n\nA listener function. (See \nListeners\n)\n\n\nFunction\n\n\nY\n\n\n\n\n\n\noptions\n\n\nAdditional options.\n\n\nTable\n\n\nN\n\n\n\n\n\n\n\n\nOptions Properties\n\n\n\n\n\n\n\n\nName\n\n\nDescription\n\n\nType\n\n\nRequired\n\n\n\n\n\n\n\n\n\n\ntag\n\n\nA descriptive name for the event. (See \nTags\n)\n\n\nString\n\n\nN\n\n\n\n\n\n\n\n\nExample\n\n\nprofile\n:\ndelete\n(\n\"color\"\n,\n \nonResult\n)\n\n\n\n\n\n\n\n\nTip\n\n\nSee \nDelete\n in the \nClient Guide\n for detailed usage information.\n\n\n\n\n\n\nkeys\n\n\nReturns the SkyTable keys.\n\n\n:keys([data_path,] listener[, options])\n\n\n\n\n\nParameters\n\n\n\n\n\n\n\n\nName\n\n\nDescription\n\n\nType\n\n\nRequired\n\n\n\n\n\n\n\n\n\n\ndata_path\n\n\nPath to the item data. (See \nData Paths\n)\n\n\nString\n\n\nN\n\n\n\n\n\n\nlistener\n\n\nA listener function. (See \nListeners\n)\n\n\nFunction\n\n\nY\n\n\n\n\n\n\noptions\n\n\nAdditional options.\n\n\nTable\n\n\nN\n\n\n\n\n\n\n\n\nOptions Properties\n\n\n\n\n\n\n\n\nName\n\n\nDescription\n\n\nType\n\n\nRequired\n\n\n\n\n\n\n\n\n\n\ntag\n\n\nA descriptive name for the event. (See \nTags\n)\n\n\nString\n\n\nN\n\n\n\n\n\n\n\n\nExample\n\n\nprofile\n:\nkeys\n(\nonResult\n)",
             "title": "Client API"
         },
         {
@@ -86,209 +31,134 @@
             "title": "SkyTable"
         },
         {
-            "location": "/api/#new",
-            "text": "Create a new skytable key entry  local   function   netListener ( evt ) \n   if   not   evt . isError   then \n     print ( evt . response ) \n   end  end  skytable . new ( \"profile\" ,   { age = 20 },   netListener )",
-            "title": "new"
+            "location": "/api/#init",
+            "text": "Initialize the SkyTable module.  : init ( config )   Parameters     Name  Description  Type  Required      config  The SkyTable configuration.  Table  Y     Config Properties     Name  Description  Type  Required      user  The SkyTable user.  String  Y    password  The user password.  String  Y    base  The SkyTable base.  String  Y    host  The SkyTable server host.  String  Y    key  The SkyTable server key  String  Y    debug  Output response data.  Boolean  N     Example  skytable : init ({ \n   user   =   \"<user-email>\" , \n   password   =   \"<user-password>\" , \n   base   =   \"app1\" , \n   host   =   \"http://skytable-host\" , \n   key   =   \"<server-key>\" , \n   debug   =   true  })",
+            "title": "init"
         },
         {
-            "location": "/api/#replace",
-            "text": "Update a skytable key entry  local   function   netListener ( evt ) \n   if   not   evt . isError   then \n     print ( evt . response ) \n   end  end  skytable . replace ( \"profile\" ,   { color = \"Blue\" },   netListener )",
-            "title": "replace"
-        },
-        {
-            "location": "/api/#clear",
-            "text": "Remove a skytable key entry  local   function   netListener ( evt ) \n   if   not   evt . isError   then \n     print ( evt . response ) \n   end  end  skytable . clear ( \"profile\" ,   netListener )",
-            "title": "clear"
-        },
-        {
-            "location": "/api/#data",
-            "text": "",
-            "title": "Data"
+            "location": "/api/#open",
+            "text": "Open a SkyTable for usage.  : open ( table_name )   Parameters     Name  Description  Type  Required      table_name  The name of the SkyTable to use.  String  Y     Example  local   profile   =   skytable : open ( \"profile\" )",
+            "title": "open"
         },
         {
             "location": "/api/#set",
-            "text": "Set a value in a skytable  local   function   netListener ( evt ) \n   if   not   evt . isError   then \n     print ( evt . response ) \n   end  end  skytable . set ( \"profile.age\" ,   23 ,   netListener )",
+            "text": "Set a value in a SkyTable.  :set([data_path,] data, listener[, options])  Parameters     Name  Description  Type  Required      data_path  Path to the item data. (See  Data Paths )  String  N    data  The data to set the item to.  String  Y    listener  A listener function. (See  Listeners )  Function  Y    options  Additional options.  Table  N     Options Properties     Name  Description  Type  Required      tag  A descriptive name for the event. (See  Tags )  String  N    flag  NX  or  XX . (See  Flags )  String  N    expiry  Table expiration in seconds. (See  Expiry )  Number  N     Example  profile : set ( \"age\" ,   23 ,   onSetResult )    Tip  See  Set  in the  Client Guide  for detailed usage information.",
             "title": "set"
         },
         {
             "location": "/api/#get",
-            "text": "Get a value from a skytable  local   function   netListener ( evt ) \n   if   not   evt . isError   then \n     print ( evt . response ) \n   end  end  skytable . get ( \"profile.age\" ,   netListener )",
+            "text": "Get a value from a SkyTable.  :get([data_path,] listener[, options])  Parameters     Name  Description  Type  Required      data_path  Path to the item data. (See  Data Paths )  String  N    listener  A listener function. (See  Listeners )  Function  Y    options  Additional options.  Table  N     Options Properties     Name  Description  Type  Required      tag  A descriptive name for the event. (See  Tags )  String  N     Example  profile : get ( \"age\" ,   onResult )    Tip  See  Get  in the  Client Guide  for detailed usage information.",
             "title": "get"
         },
         {
             "location": "/api/#delete",
-            "text": "Delete a value in a skytable  local   function   netListener ( evt ) \n   if   not   evt . isError   then \n     print ( evt . response ) \n   end  end  skytable . delete ( \"profile.color\" ,   netListener )",
+            "text": "Delete a value in a SkyTable.  :delete([data_path,] listener[, options])  Parameters     Name  Description  Type  Required      data_path  Path to the item data. (See  Data Paths )  String  N    listener  A listener function. (See  Listeners )  Function  Y    options  Additional options.  Table  N     Options Properties     Name  Description  Type  Required      tag  A descriptive name for the event. (See  Tags )  String  N     Example  profile : delete ( \"color\" ,   onResult )    Tip  See  Delete  in the  Client Guide  for detailed usage information.",
             "title": "delete"
         },
         {
             "location": "/api/#keys",
-            "text": "Returns the skytable keys  local   function   netListener ( evt ) \n   if   not   evt . isError   then \n     print ( evt . response ) \n   end  end  skytable . keys ( \"profile\" ,   netListener )",
+            "text": "Returns the SkyTable keys.  :keys([data_path,] listener[, options])  Parameters     Name  Description  Type  Required      data_path  Path to the item data. (See  Data Paths )  String  N    listener  A listener function. (See  Listeners )  Function  Y    options  Additional options.  Table  N     Options Properties     Name  Description  Type  Required      tag  A descriptive name for the event. (See  Tags )  String  N     Example  profile : keys ( onResult )",
             "title": "keys"
         },
         {
-            "location": "/api/#length",
-            "text": "Returns the object key count  local   function   netListener ( evt ) \n   if   not   evt . isError   then \n     print ( evt . response ) \n   end  end  skytable . length ( \"profile\" ,   netListener )",
-            "title": "length"
+            "location": "/guide/",
+            "text": "Overview\n\n\n\n\nData Paths\n\n\n\n\nListeners\n\n\n\n\nTags\n\n\n\n\nFlags\n\n\n\n\nExpiry\n\n\n\n\nSet\n\n\n\n\nGet\n\n\n\n\nDelete",
+            "title": "Client Guide"
         },
         {
-            "location": "/api/#string",
+            "location": "/guide/#overview",
             "text": "",
-            "title": "String"
+            "title": "Overview"
         },
         {
-            "location": "/api/#strappend",
-            "text": "Append a string value to a skytable string value  local   function   netListener ( evt ) \n   if   not   evt . isError   then \n     print ( evt . response ) \n   end  end  skytable . str . append ( \"profile.name\" ,   \"somestring\" ,   netListener )",
-            "title": "str.append"
-        },
-        {
-            "location": "/api/#strlength",
-            "text": "Return the current string length a path  local   function   netListener ( evt ) \n   if   not   evt . isError   then \n     print ( evt . response ) \n   end  end  skytable . str . length ( \"profile.name\" ,   netListener )",
-            "title": "str.length"
-        },
-        {
-            "location": "/api/#array",
+            "location": "/guide/#data-paths",
             "text": "",
-            "title": "Array"
+            "title": "Data Paths"
         },
         {
-            "location": "/api/#arrpush",
-            "text": "Insert value at end.  local   function   netListener ( evt ) \n   if   not   evt . isError   then \n     print ( evt . response ) \n   end  end  skytable . arr . push ( \"colors\" ,   \"Green\" ,   netListener )",
-            "title": "arr.push"
-        },
-        {
-            "location": "/api/#arrpop",
-            "text": "Remove value at end  local   function   netListener ( evt ) \n   if   not   evt . isError   then \n     print ( evt . response ) \n   end  end  skytable . arr . pop ( \"colors\" ,   netListener )",
-            "title": "arr.pop"
-        },
-        {
-            "location": "/api/#arrshift",
-            "text": "Insert value at start  local   function   netListener ( evt ) \n   if   not   evt . isError   then \n     print ( evt . response ) \n   end  end  skytable . shift ( \"colors\" ,   \"Red\" ,   netListener )",
-            "title": "arr.shift"
-        },
-        {
-            "location": "/api/#arrunshift",
-            "text": "Remove value at start  local   function   netListener ( evt ) \n   if   not   evt . isError   then \n     print ( evt . response ) \n   end  end  skytable . arr . unshift ( \"colors\" ,   netListener )",
-            "title": "arr.unshift"
-        },
-        {
-            "location": "/api/#arrinsert",
-            "text": "Insert value into an array  local   function   netListener ( evt ) \n   if   not   evt . isError   then \n     print ( evt . response ) \n   end  end  skytable . arr . insert ( \"colors\" ,   2 ,   \"Yellow\" ,   netListener )",
-            "title": "arr.insert"
-        },
-        {
-            "location": "/api/#arrremove",
-            "text": "Remove a value from an array index  local   function   netListener ( evt ) \n   if   not   evt . isError   then \n     print ( evt . response ) \n   end  end  skytable . arr . remove ( \"colors\" ,   1 ,   netListener )",
-            "title": "arr.remove"
-        },
-        {
-            "location": "/api/#arrtrim",
-            "text": "Remove all but subset of array  local   function   netListener ( evt ) \n   if   not   evt . isError   then \n     print ( evt . response ) \n   end  end  skytable . arr . trim ( \"colors\" ,   1 ,   3 ,   netListener )",
-            "title": "arr.trim"
-        },
-        {
-            "location": "/api/#arrindexof",
-            "text": "Find the first index position of scalar type (string, number)  local   function   netListener ( evt ) \n   if   not   evt . isError   then \n     print ( evt . response ) \n   end  end  skytable . arr . indexOf ( \"colors\" ,   \"Green\" ,   netListener )",
-            "title": "arr.indexOf"
-        },
-        {
-            "location": "/api/#arrlength",
-            "text": "Get the array length  local   function   netListener ( evt ) \n   if   not   evt . isError   then \n     print ( evt . response ) \n   end  end  skytable . arr . length ( \"colors\" ,   netListener )",
-            "title": "arr.length"
-        },
-        {
-            "location": "/api/#number",
+            "location": "/guide/#listeners",
             "text": "",
-            "title": "Number"
+            "title": "Listeners"
         },
         {
-            "location": "/api/#numinc",
-            "text": "Increments a number value  local   function   netListener ( evt ) \n   if   not   evt . isError   then \n     print ( evt . response ) \n   end  end  skytable . num . inc ( \"profile.score\" ,   10 ,   netListener )",
-            "title": "num.inc"
-        },
-        {
-            "location": "/api/#numdec",
-            "text": "Decrements a number value  local   function   netListener ( evt ) \n   if   not   evt . isError   then \n     print ( evt . response ) \n   end  end  skytable . num . dec ( \"profile.score\" ,   1 ,   netListener )",
-            "title": "num.dec"
-        },
-        {
-            "location": "/api/#nummult",
-            "text": "Multiply a number value  local   function   netListener ( evt ) \n   if   not   evt . isError   then \n     print ( evt . response ) \n   end  end  skytable . num . mult ( \"profile.score\" ,   2 ,   netListener )",
-            "title": "num.mult"
-        },
-        {
-            "location": "/api/#user",
+            "location": "/guide/#tags",
             "text": "",
-            "title": "User"
+            "title": "Tags"
         },
         {
-            "location": "/api/#usercreate",
-            "text": "Create a new skytable user scope  local   function   netListener ( evt ) \n   if   not   evt . isError   then \n     print ( evt . response ) \n   end  end  skytable . user . create ( \"user@email.com\" ,   \"password\" ,   netListener )",
-            "title": "user.create"
-        },
-        {
-            "location": "/api/#userupdate",
-            "text": "Update a skytable user scope  local   function   netListener ( evt ) \n   if   not   evt . isError   then \n     print ( evt . response ) \n   end  end  skytable . user . update ( user_email ,   user_password ,   new_email ,   new_password ,   netListener )",
-            "title": "user.update"
-        },
-        {
-            "location": "/api/#userdelete",
-            "text": "Delete the skytable user scope  local   function   netListener ( evt ) \n   if   not   evt . isError   then \n     print ( evt . response ) \n   end  end  skytable . user . delete ( user_email ,   user_password ,   netListener )",
-            "title": "user.delete"
-        },
-        {
-            "location": "/server/",
-            "text": "System Services\n\n\nWhen your \nCoronium SkyTable\n instance starts, its monitored by a utility called \nMonit\n, which makes sure that your instance keeps running. In the event that the server runs into an issue or crashes, it will be restarted shortly.\n\n\nIn the rare case where you need to manually stop or start the instance services, log in using the \nskytable\n user.\n\n\nssh skytable@<your-instance-ip>\n\n\nredis\n\n\n\n\n\n\n\n\nAction\n\n\nCommand\n\n\n\n\n\n\n\n\n\n\nstop\n\n\nsudo monit stop redis\n\n\n\n\n\n\nstart\n\n\nsudo monit start redis\n\n\n\n\n\n\nrestart\n\n\nsudo monit restart redis\n\n\n\n\n\n\n\n\nnginx\n\n\n\n\n\n\n\n\nAction\n\n\nCommand\n\n\n\n\n\n\n\n\n\n\nstop\n\n\nsudo monit stop nginx\n\n\n\n\n\n\nstart\n\n\nsudo monit start nginx\n\n\n\n\n\n\nrestart\n\n\nsudo monit restart nginx\n\n\n\n\n\n\n\n\nYou will be prompted for your password. The default is \ncoroniumadmin\n.\n\n\n\n\nCaution\n\n\nYou should rarely need to manually control the instance services.\n\n\n\n\n\n\nConfiguration\n\n\nServer Key\n\n\n\n\nViewing Logs\n\n\nWhen developing your application, there may be times when you'd like to see what's happening on the server side. You can view the log file to acheive this.\n\n\nFirst, log into your instance using the \nskytable\n user:\n\n\nssh skytable@<your-instance-ip>\n\n\nTo follow the \nredis\n log file, run the following on the command line:\n\n\ntail -f /home/skytable/logs/redis.log\n\n\nTo follow the \nnginx\n log file, run the following on the command line:\n\n\ntail -f /home/skytable/logs/nginx.log\n\n\n\n\nNote\n\n\nThe log files are managed automatically, and will be \"rotated\" once they exceed a certain size limit.",
-            "title": "Server Guide"
-        },
-        {
-            "location": "/server/#system-services",
-            "text": "When your  Coronium SkyTable  instance starts, its monitored by a utility called  Monit , which makes sure that your instance keeps running. In the event that the server runs into an issue or crashes, it will be restarted shortly.  In the rare case where you need to manually stop or start the instance services, log in using the  skytable  user.  ssh skytable@<your-instance-ip>  redis     Action  Command      stop  sudo monit stop redis    start  sudo monit start redis    restart  sudo monit restart redis     nginx     Action  Command      stop  sudo monit stop nginx    start  sudo monit start nginx    restart  sudo monit restart nginx     You will be prompted for your password. The default is  coroniumadmin .   Caution  You should rarely need to manually control the instance services.",
-            "title": "System Services"
-        },
-        {
-            "location": "/server/#configuration",
+            "location": "/guide/#flags",
             "text": "",
-            "title": "Configuration"
+            "title": "Flags"
         },
         {
-            "location": "/server/#server-key",
+            "location": "/guide/#expiry",
             "text": "",
-            "title": "Server Key"
+            "title": "Expiry"
         },
         {
-            "location": "/server/#viewing-logs",
-            "text": "When developing your application, there may be times when you'd like to see what's happening on the server side. You can view the log file to acheive this.  First, log into your instance using the  skytable  user:  ssh skytable@<your-instance-ip>  To follow the  redis  log file, run the following on the command line:  tail -f /home/skytable/logs/redis.log  To follow the  nginx  log file, run the following on the command line:  tail -f /home/skytable/logs/nginx.log   Note  The log files are managed automatically, and will be \"rotated\" once they exceed a certain size limit.",
-            "title": "Viewing Logs"
-        },
-        {
-            "location": "/development/",
-            "text": "Development",
-            "title": "Development Tips"
-        },
-        {
-            "location": "/development/#development",
+            "location": "/guide/#set",
             "text": "",
-            "title": "Development"
+            "title": "Set"
+        },
+        {
+            "location": "/guide/#get",
+            "text": "",
+            "title": "Get"
+        },
+        {
+            "location": "/guide/#delete",
+            "text": "",
+            "title": "Delete"
         },
         {
             "location": "/example/",
-            "text": "main.lua\n\n\nlocal\n \nskytable\n \n=\n \nrequire\n(\n'skytable.client'\n)",
-            "title": "Example Setup"
+            "text": "Basic Get\n\n\nlocal\n \nskytable\n \n=\n \nrequire\n(\n\"skytable.client\"\n)\n\n\n\nlocal\n \nprofile\n \n=\n \nskytable\n:\nopen\n(\n\"profile\"\n)\n\n\n\nlocal\n \nfunction\n \nonResult\n(\nevt\n)\n\n  \nif\n \nevt\n.\nisError\n \nthen\n\n    \nprint\n(\nevt\n.\nerror\n)\n\n  \nelse\n\n    \nlocal\n \ntbl\n \n=\n \nevt\n.\ndata\n \n--data table\n\n  \nend\n\n\nend\n\n\n\nprofile\n:\nget\n(\nonResult\n)\n\n\n\n\n\n\n\n\nGet with Path\n\n\nlocal\n \nskytable\n \n=\n \nrequire\n(\n\"skytable.client\"\n)\n\n\n\nlocal\n \nprofile\n \n=\n \nskytable\n:\nopen\n(\n\"profile\"\n)\n\n\n\nlocal\n \nfunction\n \nonResult\n(\nevt\n)\n\n  \nif\n \nevt\n.\nisError\n \nthen\n\n    \nprint\n(\nevt\n.\nerror\n)\n\n  \nelse\n\n    \nprint\n(\nevt\n.\ndata\n.\nname\n)\n\n  \nend\n\n\nend\n\n\n\nprofile\n:\nget\n(\n\"name\"\n,\n \nonResult\n)\n\n\n\n\n\n\n\n\nGet with Tags\n\n\nlocal\n \nskytable\n \n=\n \nrequire\n(\n\"skytable.client\"\n)\n\n\n\nlocal\n \nprofile\n \n=\n \nskytable\n:\nopen\n(\n\"profile\"\n)\n\n\nlocal\n \nlocation\n \n=\n \nskytable\n:\nopen\n(\n\"location\"\n)\n\n\n\nlocal\n \nfunction\n \nonResult\n(\nevt\n)\n\n  \nif\n \nevt\n.\nisError\n \nthen\n\n    \nprint\n(\nevt\n.\nerror\n)\n\n  \nelse\n\n    \nif\n \nevt\n.\ntag\n \n==\n \n\"get-name\"\n \nthen\n\n      \nprint\n(\nevt\n.\ndata\n.\nname\n)\n\n    \nelseif\n \nevt\n.\ntag\n \n==\n \n\"get-street\"\n \nthen\n\n      \nprint\n(\nevt\n.\ndata\n.\nstreet\n)\n\n    \nend\n\n  \nend\n\n\nend\n\n\n\nprofile\n:\nget\n(\n\"name\"\n,\n \nonResult\n,\n \n{\ntag\n=\n\"get-name\"\n})\n\n\nlocation\n:\nget\n(\n\"address.street\"\n,\n \nonResult\n,\n \n{\ntag\n=\n\"get-street\"\n})\n\n\n\n\n\n\n\n\nBasic Set\n\n\nlocal\n \nskytable\n \n=\n \nrequire\n(\n\"skytable.client\"\n)\n\n\n\nlocal\n \nlocation\n \n=\n \nskytable\n:\nopen\n(\n\"location\"\n)\n\n\n\nlocal\n \nfunction\n \nonSetResult\n(\nevt\n)\n\n  \nif\n \nevt\n.\nisError\n \nthen\n\n    \nprint\n(\nevt\n.\nerror\n)\n\n  \nelse\n\n    \nprint\n(\nevt\n.\nsuccess\n)\n\n  \nend\n\n\nend\n\n\n\nlocal\n \nlocationData\n \n=\n \n\n{\n\n  \naddress\n \n=\n \n  \n{\n\n    \nstreet\n \n=\n \n\"123 Main St.\"\n,\n\n    \ncity\n \n=\n \n\"San City\"\n,\n\n    \nstate\n \n=\n \n\"Anywhere\"\n\n  \n}\n\n\n}\n\n\n\nlocation\n:\nset\n(\nlocationData\n,\n \nonSetResult\n)\n\n\n\n\n\n\n\n\nSet with Path\n\n\nlocal\n \nskytable\n \n=\n \nrequire\n(\n\"skytable.client\"\n)\n\n\n\nlocal\n \nlocation\n \n=\n \nskytable\n:\nopen\n(\n\"location\"\n)\n\n\n\nlocal\n \nfunction\n \nonSetResult\n(\nevt\n)\n\n  \nif\n \nevt\n.\nisError\n \nthen\n\n    \nprint\n(\nevt\n.\nerror\n)\n\n  \nelse\n\n    \nprint\n(\nevt\n.\nsuccess\n)\n\n  \nend\n\n\nend\n\n\n\nlocation\n:\nset\n(\n\"address.state\"\n,\n \n\"Someplace\"\n,\n \nonSetResult\n)\n\n\n\n\n\n\n\n\nSet with Tags\n\n\nlocal\n \nskytable\n \n=\n \nrequire\n(\n\"skytable.client\"\n)\n\n\n\nlocal\n \nlocation\n \n=\n \nskytable\n:\nopen\n(\n\"location\"\n)\n\n\nlocal\n \nprofile\n \n=\n \nskytable\n:\nopen\n(\n\"profile\"\n)\n\n\n\nlocal\n \nfunction\n \nonSetResult\n(\nevt\n)\n\n  \nif\n \nevt\n.\nisError\n \nthen\n\n    \nprint\n(\nevt\n.\nerror\n)\n\n  \nelse\n\n    \nif\n \nevt\n.\ntag\n \n==\n \n\"set-location\"\n \nthen\n\n      \nprint\n(\n\"Set location\"\n,\n \nevt\n.\nsuccess\n)\n\n    \nelseif\n \nevt\n.\ntag\n \n==\n \n\"set-profile-name\"\n \nthen\n\n      \nprint\n(\n\"Set profile\"\n,\n \nevt\n.\nsuccess\n)\n\n    \nend\n\n  \nend\n\n\nend\n\n\n\nlocal\n \nlocationData\n \n=\n \n\n{\n\n  \naddress\n \n=\n \n  \n{\n\n    \nstreet\n \n=\n \n\"123 Main St.\"\n,\n\n    \ncity\n \n=\n \n\"San City\"\n,\n\n    \nstate\n \n=\n \n\"Anywhere\"\n\n  \n}\n\n\n}\n\n\n\nlocation\n:\nset\n(\nlocationData\n,\n \nonSetResult\n,\n \n{\ntag\n=\n\"set-location\"\n})\n\n\nprofile\n:\nset\n(\n\"name\"\n,\n \n\"Steve\"\n,\n \nonSetResult\n,\n \n{\ntag\n=\n\"set-profile-name\"\n})\n\n\n\n\n\n\n\n\nSet with Options\n\n\nlocal\n \nskytable\n \n=\n \nrequire\n(\n\"skytable.client\"\n)\n\n\n\nlocal\n \nlocation\n \n=\n \nskytable\n:\nopen\n(\n\"location\"\n)\n\n\n\nlocal\n \nfunction\n \nonSetResult\n(\nevt\n)\n\n  \nif\n \nevt\n.\nisError\n \nthen\n\n    \nprint\n(\nevt\n.\nerror\n)\n\n  \nelse\n\n    \nprint\n(\nevt\n.\nsuccess\n)\n\n  \nend\n\n\nend\n\n\n\nlocal\n \nlocationData\n \n=\n \n\n{\n\n  \naddress\n \n=\n \n  \n{\n\n    \nstreet\n \n=\n \n\"555 1st Ave.\"\n,\n\n    \ncity\n \n=\n \n\"Citopia\"\n,\n\n    \nstate\n \n=\n \n\"Bliss\"\n\n  \n}\n\n\n}\n\n\n\nlocation\n:\nset\n(\nlocationData\n,\n \nonSetResult\n,\n \n{\nflag\n \n=\n \n\"XX\"\n})\n\n\n\n\n\n\nSet with Expiry\n\n\nlocal\n \nskytable\n \n=\n \nrequire\n(\n\"skytable.client\"\n)\n\n\n\nlocal\n \nlocation\n \n=\n \nskytable\n:\nopen\n(\n\"location\"\n)\n\n\n\nlocal\n \nfunction\n \nonSetResult\n(\nevt\n)\n\n  \nif\n \nevt\n.\nisError\n \nthen\n\n    \nprint\n(\nevt\n.\nerror\n)\n\n  \nelse\n\n    \nprint\n(\nevt\n.\nsuccess\n,\n \nevt\n.\nexpiry\n)\n\n  \nend\n\n\nend\n\n\n\nlocal\n \nlocationData\n \n=\n \n\n{\n\n  \naddress\n \n=\n \n  \n{\n\n    \nstreet\n \n=\n \n\"555 1st Ave.\"\n,\n\n    \ncity\n \n=\n \n\"Citopia\"\n,\n\n    \nstate\n \n=\n \n\"Bliss\"\n\n  \n}\n\n\n}\n\n\n\nlocation\n:\nset\n(\nlocationData\n,\n \nonSetResult\n,\n \n{\nexpiry\n \n=\n \n60\n})",
+            "title": "Examples"
         },
         {
-            "location": "/example/#mainlua",
-            "text": "local   skytable   =   require ( 'skytable.client' )",
-            "title": "main.lua"
+            "location": "/example/#basic-get",
+            "text": "local   skytable   =   require ( \"skytable.client\" )  local   profile   =   skytable : open ( \"profile\" )  local   function   onResult ( evt ) \n   if   evt . isError   then \n     print ( evt . error ) \n   else \n     local   tbl   =   evt . data   --data table \n   end  end  profile : get ( onResult )",
+            "title": "Basic Get"
+        },
+        {
+            "location": "/example/#get-with-path",
+            "text": "local   skytable   =   require ( \"skytable.client\" )  local   profile   =   skytable : open ( \"profile\" )  local   function   onResult ( evt ) \n   if   evt . isError   then \n     print ( evt . error ) \n   else \n     print ( evt . data . name ) \n   end  end  profile : get ( \"name\" ,   onResult )",
+            "title": "Get with Path"
+        },
+        {
+            "location": "/example/#get-with-tags",
+            "text": "local   skytable   =   require ( \"skytable.client\" )  local   profile   =   skytable : open ( \"profile\" )  local   location   =   skytable : open ( \"location\" )  local   function   onResult ( evt ) \n   if   evt . isError   then \n     print ( evt . error ) \n   else \n     if   evt . tag   ==   \"get-name\"   then \n       print ( evt . data . name ) \n     elseif   evt . tag   ==   \"get-street\"   then \n       print ( evt . data . street ) \n     end \n   end  end  profile : get ( \"name\" ,   onResult ,   { tag = \"get-name\" })  location : get ( \"address.street\" ,   onResult ,   { tag = \"get-street\" })",
+            "title": "Get with Tags"
+        },
+        {
+            "location": "/example/#basic-set",
+            "text": "local   skytable   =   require ( \"skytable.client\" )  local   location   =   skytable : open ( \"location\" )  local   function   onSetResult ( evt ) \n   if   evt . isError   then \n     print ( evt . error ) \n   else \n     print ( evt . success ) \n   end  end  local   locationData   =   { \n   address   =  \n   { \n     street   =   \"123 Main St.\" , \n     city   =   \"San City\" , \n     state   =   \"Anywhere\" \n   }  }  location : set ( locationData ,   onSetResult )",
+            "title": "Basic Set"
+        },
+        {
+            "location": "/example/#set-with-path",
+            "text": "local   skytable   =   require ( \"skytable.client\" )  local   location   =   skytable : open ( \"location\" )  local   function   onSetResult ( evt ) \n   if   evt . isError   then \n     print ( evt . error ) \n   else \n     print ( evt . success ) \n   end  end  location : set ( \"address.state\" ,   \"Someplace\" ,   onSetResult )",
+            "title": "Set with Path"
+        },
+        {
+            "location": "/example/#set-with-tags",
+            "text": "local   skytable   =   require ( \"skytable.client\" )  local   location   =   skytable : open ( \"location\" )  local   profile   =   skytable : open ( \"profile\" )  local   function   onSetResult ( evt ) \n   if   evt . isError   then \n     print ( evt . error ) \n   else \n     if   evt . tag   ==   \"set-location\"   then \n       print ( \"Set location\" ,   evt . success ) \n     elseif   evt . tag   ==   \"set-profile-name\"   then \n       print ( \"Set profile\" ,   evt . success ) \n     end \n   end  end  local   locationData   =   { \n   address   =  \n   { \n     street   =   \"123 Main St.\" , \n     city   =   \"San City\" , \n     state   =   \"Anywhere\" \n   }  }  location : set ( locationData ,   onSetResult ,   { tag = \"set-location\" })  profile : set ( \"name\" ,   \"Steve\" ,   onSetResult ,   { tag = \"set-profile-name\" })",
+            "title": "Set with Tags"
+        },
+        {
+            "location": "/example/#set-with-options",
+            "text": "local   skytable   =   require ( \"skytable.client\" )  local   location   =   skytable : open ( \"location\" )  local   function   onSetResult ( evt ) \n   if   evt . isError   then \n     print ( evt . error ) \n   else \n     print ( evt . success ) \n   end  end  local   locationData   =   { \n   address   =  \n   { \n     street   =   \"555 1st Ave.\" , \n     city   =   \"Citopia\" , \n     state   =   \"Bliss\" \n   }  }  location : set ( locationData ,   onSetResult ,   { flag   =   \"XX\" })",
+            "title": "Set with Options"
+        },
+        {
+            "location": "/example/#set-with-expiry",
+            "text": "local   skytable   =   require ( \"skytable.client\" )  local   location   =   skytable : open ( \"location\" )  local   function   onSetResult ( evt ) \n   if   evt . isError   then \n     print ( evt . error ) \n   else \n     print ( evt . success ,   evt . expiry ) \n   end  end  local   locationData   =   { \n   address   =  \n   { \n     street   =   \"555 1st Ave.\" , \n     city   =   \"Citopia\" , \n     state   =   \"Bliss\" \n   }  }  location : set ( locationData ,   onSetResult ,   { expiry   =   60 })",
+            "title": "Set with Expiry"
         },
         {
             "location": "/about/",
-            "text": "Repo\n\n\nYou can find, and contribute to \nCoronium SkyTable\n at the \nrepo",
+            "text": "Code and documentation \u00a92017 C. Byerley (\ndevelephant\n).\n\n\nLicensed under the \nApache 2.0\n license.",
             "title": "About"
-        },
-        {
-            "location": "/about/#repo",
-            "text": "You can find, and contribute to  Coronium SkyTable  at the  repo",
-            "title": "Repo"
         }
     ]
 }

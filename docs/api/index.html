@@ -54,20 +54,6 @@
 <li>
           
             <li>
-    <li class="toctree-l1 ">
-        <a class="" href="../guide/">Client Guide</a>
-        
-    </li>
-<li>
-          
-            <li>
-    <li class="toctree-l1 ">
-        <a class="" href="../events/">Client Events</a>
-        
-    </li>
-<li>
-          
-            <li>
     <li class="toctree-l1 current">
         <a class="current" href="./">Client API</a>
         
@@ -75,14 +61,9 @@
             
                 <li class="toctree-l3"><a href="#skytable">SkyTable</a></li>
                 
-                    <li><a class="toctree-l4" href="#new">new</a></li>
+                    <li><a class="toctree-l4" href="#init">init</a></li>
                 
-                    <li><a class="toctree-l4" href="#replace">replace</a></li>
-                
-                    <li><a class="toctree-l4" href="#clear">clear</a></li>
-                
-            
-                <li class="toctree-l3"><a href="#data">Data</a></li>
+                    <li><a class="toctree-l4" href="#open">open</a></li>
                 
                     <li><a class="toctree-l4" href="#set">set</a></li>
                 
@@ -92,54 +73,6 @@
                 
                     <li><a class="toctree-l4" href="#keys">keys</a></li>
                 
-                    <li><a class="toctree-l4" href="#length">length</a></li>
-                
-            
-                <li class="toctree-l3"><a href="#string">String</a></li>
-                
-                    <li><a class="toctree-l4" href="#strappend">str.append</a></li>
-                
-                    <li><a class="toctree-l4" href="#strlength">str.length</a></li>
-                
-            
-                <li class="toctree-l3"><a href="#array">Array</a></li>
-                
-                    <li><a class="toctree-l4" href="#arrpush">arr.push</a></li>
-                
-                    <li><a class="toctree-l4" href="#arrpop">arr.pop</a></li>
-                
-                    <li><a class="toctree-l4" href="#arrshift">arr.shift</a></li>
-                
-                    <li><a class="toctree-l4" href="#arrunshift">arr.unshift</a></li>
-                
-                    <li><a class="toctree-l4" href="#arrinsert">arr.insert</a></li>
-                
-                    <li><a class="toctree-l4" href="#arrremove">arr.remove</a></li>
-                
-                    <li><a class="toctree-l4" href="#arrtrim">arr.trim</a></li>
-                
-                    <li><a class="toctree-l4" href="#arrindexof">arr.indexOf</a></li>
-                
-                    <li><a class="toctree-l4" href="#arrlength">arr.length</a></li>
-                
-            
-                <li class="toctree-l3"><a href="#number">Number</a></li>
-                
-                    <li><a class="toctree-l4" href="#numinc">num.inc</a></li>
-                
-                    <li><a class="toctree-l4" href="#numdec">num.dec</a></li>
-                
-                    <li><a class="toctree-l4" href="#nummult">num.mult</a></li>
-                
-            
-                <li class="toctree-l3"><a href="#user">User</a></li>
-                
-                    <li><a class="toctree-l4" href="#usercreate">user.create</a></li>
-                
-                    <li><a class="toctree-l4" href="#userupdate">user.update</a></li>
-                
-                    <li><a class="toctree-l4" href="#userdelete">user.delete</a></li>
-                
             
             </ul>
         
@@ -148,21 +81,14 @@
           
             <li>
     <li class="toctree-l1 ">
-        <a class="" href="../server/">Server Guide</a>
+        <a class="" href="../guide/">Client Guide</a>
         
     </li>
 <li>
           
             <li>
     <li class="toctree-l1 ">
-        <a class="" href="../development/">Development Tips</a>
-        
-    </li>
-<li>
-          
-            <li>
-    <li class="toctree-l1 ">
-        <a class="" href="../example/">Example Setup</a>
+        <a class="" href="../example/">Examples</a>
         
     </li>
 <li>
@@ -207,312 +133,398 @@
             <div class="section">
               
                 <h1 id="skytable">SkyTable</h1>
-<h2 id="new">new</h2>
-<p>Create a new skytable key entry</p>
-<div class="codehilite"><pre><span></span><span class="kd">local</span> <span class="kr">function</span> <span class="nf">netListener</span><span class="p">(</span><span class="n">evt</span><span class="p">)</span>
-  <span class="kr">if</span> <span class="ow">not</span> <span class="n">evt</span><span class="p">.</span><span class="n">isError</span> <span class="kr">then</span>
-    <span class="nb">print</span><span class="p">(</span><span class="n">evt</span><span class="p">.</span><span class="n">response</span><span class="p">)</span>
-  <span class="kr">end</span>
-<span class="kr">end</span>
-
-<span class="n">skytable</span><span class="p">.</span><span class="n">new</span><span class="p">(</span><span class="s2">&quot;profile&quot;</span><span class="p">,</span> <span class="p">{</span><span class="n">age</span><span class="o">=</span><span class="mi">20</span><span class="p">},</span> <span class="n">netListener</span><span class="p">)</span>
+<h2 id="init">init</h2>
+<p>Initialize the SkyTable module.</p>
+<div class="codehilite"><pre><span></span><span class="p">:</span><span class="n">init</span><span class="p">(</span><span class="n">config</span><span class="p">)</span>
 </pre></div>
 
 
-<h2 id="replace">replace</h2>
-<p>Update a skytable key entry</p>
-<div class="codehilite"><pre><span></span><span class="kd">local</span> <span class="kr">function</span> <span class="nf">netListener</span><span class="p">(</span><span class="n">evt</span><span class="p">)</span>
-  <span class="kr">if</span> <span class="ow">not</span> <span class="n">evt</span><span class="p">.</span><span class="n">isError</span> <span class="kr">then</span>
-    <span class="nb">print</span><span class="p">(</span><span class="n">evt</span><span class="p">.</span><span class="n">response</span><span class="p">)</span>
-  <span class="kr">end</span>
-<span class="kr">end</span>
-
-<span class="n">skytable</span><span class="p">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">&quot;profile&quot;</span><span class="p">,</span> <span class="p">{</span><span class="n">color</span><span class="o">=</span><span class="s2">&quot;Blue&quot;</span><span class="p">},</span> <span class="n">netListener</span><span class="p">)</span>
+<p><strong>Parameters</strong></p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Description</th>
+<th>Type</th>
+<th>Required</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>config</td>
+<td>The SkyTable configuration.</td>
+<td>Table</td>
+<td><strong>Y</strong></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Config Properties</strong></p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Description</th>
+<th>Type</th>
+<th>Required</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>user</td>
+<td>The SkyTable user.</td>
+<td>String</td>
+<td><strong>Y</strong></td>
+</tr>
+<tr>
+<td>password</td>
+<td>The user password.</td>
+<td>String</td>
+<td><strong>Y</strong></td>
+</tr>
+<tr>
+<td>base</td>
+<td>The SkyTable base.</td>
+<td>String</td>
+<td><strong>Y</strong></td>
+</tr>
+<tr>
+<td>host</td>
+<td>The SkyTable server host.</td>
+<td>String</td>
+<td><strong>Y</strong></td>
+</tr>
+<tr>
+<td>key</td>
+<td>The SkyTable server key</td>
+<td>String</td>
+<td><strong>Y</strong></td>
+</tr>
+<tr>
+<td>debug</td>
+<td>Output response data.</td>
+<td>Boolean</td>
+<td>N</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Example</strong></p>
+<div class="codehilite"><pre><span></span><span class="n">skytable</span><span class="p">:</span><span class="n">init</span><span class="p">({</span>
+  <span class="n">user</span> <span class="o">=</span> <span class="s2">&quot;&lt;user-email&gt;&quot;</span><span class="p">,</span>
+  <span class="n">password</span> <span class="o">=</span> <span class="s2">&quot;&lt;user-password&gt;&quot;</span><span class="p">,</span>
+  <span class="n">base</span> <span class="o">=</span> <span class="s2">&quot;app1&quot;</span><span class="p">,</span>
+  <span class="n">host</span> <span class="o">=</span> <span class="s2">&quot;http://skytable-host&quot;</span><span class="p">,</span>
+  <span class="n">key</span> <span class="o">=</span> <span class="s2">&quot;&lt;server-key&gt;&quot;</span><span class="p">,</span>
+  <span class="n">debug</span> <span class="o">=</span> <span class="kc">true</span>
+<span class="p">})</span>
 </pre></div>
 
 
-<h2 id="clear">clear</h2>
-<p>Remove a skytable key entry</p>
-<div class="codehilite"><pre><span></span><span class="kd">local</span> <span class="kr">function</span> <span class="nf">netListener</span><span class="p">(</span><span class="n">evt</span><span class="p">)</span>
-  <span class="kr">if</span> <span class="ow">not</span> <span class="n">evt</span><span class="p">.</span><span class="n">isError</span> <span class="kr">then</span>
-    <span class="nb">print</span><span class="p">(</span><span class="n">evt</span><span class="p">.</span><span class="n">response</span><span class="p">)</span>
-  <span class="kr">end</span>
-<span class="kr">end</span>
-
-<span class="n">skytable</span><span class="p">.</span><span class="n">clear</span><span class="p">(</span><span class="s2">&quot;profile&quot;</span><span class="p">,</span> <span class="n">netListener</span><span class="p">)</span>
+<hr />
+<h2 id="open">open</h2>
+<p>Open a SkyTable for usage.</p>
+<div class="codehilite"><pre><span></span><span class="p">:</span><span class="n">open</span><span class="p">(</span><span class="n">table_name</span><span class="p">)</span>
 </pre></div>
 
 
-<h1 id="data">Data</h1>
+<p><strong>Parameters</strong></p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Description</th>
+<th>Type</th>
+<th>Required</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>table_name</td>
+<td>The name of the SkyTable to use.</td>
+<td>String</td>
+<td><strong>Y</strong></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Example</strong></p>
+<div class="codehilite"><pre><span></span><span class="kd">local</span> <span class="n">profile</span> <span class="o">=</span> <span class="n">skytable</span><span class="p">:</span><span class="n">open</span><span class="p">(</span><span class="s2">&quot;profile&quot;</span><span class="p">)</span>
+</pre></div>
+
+
+<hr />
 <h2 id="set">set</h2>
-<p>Set a value in a skytable</p>
-<div class="codehilite"><pre><span></span><span class="kd">local</span> <span class="kr">function</span> <span class="nf">netListener</span><span class="p">(</span><span class="n">evt</span><span class="p">)</span>
-  <span class="kr">if</span> <span class="ow">not</span> <span class="n">evt</span><span class="p">.</span><span class="n">isError</span> <span class="kr">then</span>
-    <span class="nb">print</span><span class="p">(</span><span class="n">evt</span><span class="p">.</span><span class="n">response</span><span class="p">)</span>
-  <span class="kr">end</span>
-<span class="kr">end</span>
-
-<span class="n">skytable</span><span class="p">.</span><span class="n">set</span><span class="p">(</span><span class="s2">&quot;profile.age&quot;</span><span class="p">,</span> <span class="mi">23</span><span class="p">,</span> <span class="n">netListener</span><span class="p">)</span>
+<p>Set a value in a SkyTable.</p>
+<div class="codehilite"><pre><span></span>:set([data_path,] data, listener[, options])
 </pre></div>
 
 
+<p><strong>Parameters</strong></p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Description</th>
+<th>Type</th>
+<th>Required</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>data_path</td>
+<td>Path to the item data. (See <a href="../guide/#data-paths">Data Paths</a>)</td>
+<td>String</td>
+<td>N</td>
+</tr>
+<tr>
+<td>data</td>
+<td>The data to set the item to.</td>
+<td>String</td>
+<td><strong>Y</strong></td>
+</tr>
+<tr>
+<td>listener</td>
+<td>A listener function. (See <a href="../guide/#listeners">Listeners</a>)</td>
+<td>Function</td>
+<td><strong>Y</strong></td>
+</tr>
+<tr>
+<td>options</td>
+<td>Additional options.</td>
+<td>Table</td>
+<td>N</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Options Properties</strong></p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Description</th>
+<th>Type</th>
+<th>Required</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>tag</td>
+<td>A descriptive name for the event. (See <a href="../guide/#tags">Tags</a>)</td>
+<td>String</td>
+<td>N</td>
+</tr>
+<tr>
+<td>flag</td>
+<td><strong>NX</strong> or <strong>XX</strong>. (See <a href="../guide/#flags">Flags</a>)</td>
+<td>String</td>
+<td>N</td>
+</tr>
+<tr>
+<td>expiry</td>
+<td>Table expiration in seconds. (See <a href="../guide/#expiry">Expiry</a>)</td>
+<td>Number</td>
+<td>N</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Example</strong></p>
+<div class="codehilite"><pre><span></span><span class="n">profile</span><span class="p">:</span><span class="n">set</span><span class="p">(</span><span class="s2">&quot;age&quot;</span><span class="p">,</span> <span class="mi">23</span><span class="p">,</span> <span class="n">onSetResult</span><span class="p">)</span>
+</pre></div>
+
+
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>See <strong><a href="../guide/#set">Set</a></strong> in the <em>Client Guide</em> for detailed usage information.</p>
+</div>
+<hr />
 <h2 id="get">get</h2>
-<p>Get a value from a skytable</p>
-<div class="codehilite"><pre><span></span><span class="kd">local</span> <span class="kr">function</span> <span class="nf">netListener</span><span class="p">(</span><span class="n">evt</span><span class="p">)</span>
-  <span class="kr">if</span> <span class="ow">not</span> <span class="n">evt</span><span class="p">.</span><span class="n">isError</span> <span class="kr">then</span>
-    <span class="nb">print</span><span class="p">(</span><span class="n">evt</span><span class="p">.</span><span class="n">response</span><span class="p">)</span>
-  <span class="kr">end</span>
-<span class="kr">end</span>
-
-<span class="n">skytable</span><span class="p">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;profile.age&quot;</span><span class="p">,</span> <span class="n">netListener</span><span class="p">)</span>
+<p>Get a value from a SkyTable.</p>
+<div class="codehilite"><pre><span></span>:get([data_path,] listener[, options])
 </pre></div>
 
 
+<p><strong>Parameters</strong></p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Description</th>
+<th>Type</th>
+<th>Required</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>data_path</td>
+<td>Path to the item data. (See <a href="../guide/#data-paths">Data Paths</a>)</td>
+<td>String</td>
+<td>N</td>
+</tr>
+<tr>
+<td>listener</td>
+<td>A listener function. (See <a href="../guide/#listeners">Listeners</a>)</td>
+<td>Function</td>
+<td><strong>Y</strong></td>
+</tr>
+<tr>
+<td>options</td>
+<td>Additional options.</td>
+<td>Table</td>
+<td>N</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Options Properties</strong></p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Description</th>
+<th>Type</th>
+<th>Required</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>tag</td>
+<td>A descriptive name for the event. (See <a href="../guide/#tags">Tags</a>)</td>
+<td>String</td>
+<td>N</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Example</strong></p>
+<div class="codehilite"><pre><span></span><span class="n">profile</span><span class="p">:</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;age&quot;</span><span class="p">,</span> <span class="n">onResult</span><span class="p">)</span>
+</pre></div>
+
+
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>See <strong><a href="../guide/#get">Get</a></strong> in the <em>Client Guide</em> for detailed usage information.</p>
+</div>
+<hr />
 <h2 id="delete">delete</h2>
-<p>Delete a value in a skytable</p>
-<div class="codehilite"><pre><span></span><span class="kd">local</span> <span class="kr">function</span> <span class="nf">netListener</span><span class="p">(</span><span class="n">evt</span><span class="p">)</span>
-  <span class="kr">if</span> <span class="ow">not</span> <span class="n">evt</span><span class="p">.</span><span class="n">isError</span> <span class="kr">then</span>
-    <span class="nb">print</span><span class="p">(</span><span class="n">evt</span><span class="p">.</span><span class="n">response</span><span class="p">)</span>
-  <span class="kr">end</span>
-<span class="kr">end</span>
-
-<span class="n">skytable</span><span class="p">.</span><span class="n">delete</span><span class="p">(</span><span class="s2">&quot;profile.color&quot;</span><span class="p">,</span> <span class="n">netListener</span><span class="p">)</span>
+<p>Delete a value in a SkyTable.</p>
+<div class="codehilite"><pre><span></span>:delete([data_path,] listener[, options])
 </pre></div>
 
 
+<p><strong>Parameters</strong></p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Description</th>
+<th>Type</th>
+<th>Required</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>data_path</td>
+<td>Path to the item data. (See <a href="../guide/#data-paths">Data Paths</a>)</td>
+<td>String</td>
+<td>N</td>
+</tr>
+<tr>
+<td>listener</td>
+<td>A listener function. (See <a href="../guide/#listeners">Listeners</a>)</td>
+<td>Function</td>
+<td><strong>Y</strong></td>
+</tr>
+<tr>
+<td>options</td>
+<td>Additional options.</td>
+<td>Table</td>
+<td>N</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Options Properties</strong></p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Description</th>
+<th>Type</th>
+<th>Required</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>tag</td>
+<td>A descriptive name for the event. (See <a href="../guide/#tags">Tags</a>)</td>
+<td>String</td>
+<td>N</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Example</strong></p>
+<div class="codehilite"><pre><span></span><span class="n">profile</span><span class="p">:</span><span class="n">delete</span><span class="p">(</span><span class="s2">&quot;color&quot;</span><span class="p">,</span> <span class="n">onResult</span><span class="p">)</span>
+</pre></div>
+
+
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>See <strong><a href="../guide/#delete">Delete</a></strong> in the <em>Client Guide</em> for detailed usage information.</p>
+</div>
+<hr />
 <h2 id="keys">keys</h2>
-<p>Returns the skytable keys</p>
-<div class="codehilite"><pre><span></span><span class="kd">local</span> <span class="kr">function</span> <span class="nf">netListener</span><span class="p">(</span><span class="n">evt</span><span class="p">)</span>
-  <span class="kr">if</span> <span class="ow">not</span> <span class="n">evt</span><span class="p">.</span><span class="n">isError</span> <span class="kr">then</span>
-    <span class="nb">print</span><span class="p">(</span><span class="n">evt</span><span class="p">.</span><span class="n">response</span><span class="p">)</span>
-  <span class="kr">end</span>
-<span class="kr">end</span>
-
-<span class="n">skytable</span><span class="p">.</span><span class="n">keys</span><span class="p">(</span><span class="s2">&quot;profile&quot;</span><span class="p">,</span> <span class="n">netListener</span><span class="p">)</span>
+<p>Returns the SkyTable keys.</p>
+<div class="codehilite"><pre><span></span>:keys([data_path,] listener[, options])
 </pre></div>
 
 
-<h2 id="length">length</h2>
-<p>Returns the object key count</p>
-<div class="codehilite"><pre><span></span><span class="kd">local</span> <span class="kr">function</span> <span class="nf">netListener</span><span class="p">(</span><span class="n">evt</span><span class="p">)</span>
-  <span class="kr">if</span> <span class="ow">not</span> <span class="n">evt</span><span class="p">.</span><span class="n">isError</span> <span class="kr">then</span>
-    <span class="nb">print</span><span class="p">(</span><span class="n">evt</span><span class="p">.</span><span class="n">response</span><span class="p">)</span>
-  <span class="kr">end</span>
-<span class="kr">end</span>
-
-<span class="n">skytable</span><span class="p">.</span><span class="n">length</span><span class="p">(</span><span class="s2">&quot;profile&quot;</span><span class="p">,</span> <span class="n">netListener</span><span class="p">)</span>
-</pre></div>
-
-
-<hr />
-<h1 id="string">String</h1>
-<h2 id="strappend">str.append</h2>
-<p>Append a string value to a skytable string value</p>
-<div class="codehilite"><pre><span></span><span class="kd">local</span> <span class="kr">function</span> <span class="nf">netListener</span><span class="p">(</span><span class="n">evt</span><span class="p">)</span>
-  <span class="kr">if</span> <span class="ow">not</span> <span class="n">evt</span><span class="p">.</span><span class="n">isError</span> <span class="kr">then</span>
-    <span class="nb">print</span><span class="p">(</span><span class="n">evt</span><span class="p">.</span><span class="n">response</span><span class="p">)</span>
-  <span class="kr">end</span>
-<span class="kr">end</span>
-
-<span class="n">skytable</span><span class="p">.</span><span class="n">str</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="s2">&quot;profile.name&quot;</span><span class="p">,</span> <span class="s2">&quot;somestring&quot;</span><span class="p">,</span> <span class="n">netListener</span><span class="p">)</span>
-</pre></div>
-
-
-<h2 id="strlength">str.length</h2>
-<p>Return the current string length a path</p>
-<div class="codehilite"><pre><span></span><span class="kd">local</span> <span class="kr">function</span> <span class="nf">netListener</span><span class="p">(</span><span class="n">evt</span><span class="p">)</span>
-  <span class="kr">if</span> <span class="ow">not</span> <span class="n">evt</span><span class="p">.</span><span class="n">isError</span> <span class="kr">then</span>
-    <span class="nb">print</span><span class="p">(</span><span class="n">evt</span><span class="p">.</span><span class="n">response</span><span class="p">)</span>
-  <span class="kr">end</span>
-<span class="kr">end</span>
-
-<span class="n">skytable</span><span class="p">.</span><span class="n">str</span><span class="p">.</span><span class="n">length</span><span class="p">(</span><span class="s2">&quot;profile.name&quot;</span><span class="p">,</span> <span class="n">netListener</span><span class="p">)</span>
-</pre></div>
-
-
-<hr />
-<h1 id="array">Array</h1>
-<h2 id="arrpush">arr.push</h2>
-<p>Insert value at end.</p>
-<div class="codehilite"><pre><span></span><span class="kd">local</span> <span class="kr">function</span> <span class="nf">netListener</span><span class="p">(</span><span class="n">evt</span><span class="p">)</span>
-  <span class="kr">if</span> <span class="ow">not</span> <span class="n">evt</span><span class="p">.</span><span class="n">isError</span> <span class="kr">then</span>
-    <span class="nb">print</span><span class="p">(</span><span class="n">evt</span><span class="p">.</span><span class="n">response</span><span class="p">)</span>
-  <span class="kr">end</span>
-<span class="kr">end</span>
-
-<span class="n">skytable</span><span class="p">.</span><span class="n">arr</span><span class="p">.</span><span class="n">push</span><span class="p">(</span><span class="s2">&quot;colors&quot;</span><span class="p">,</span> <span class="s2">&quot;Green&quot;</span><span class="p">,</span> <span class="n">netListener</span><span class="p">)</span>
-</pre></div>
-
-
-<h2 id="arrpop">arr.pop</h2>
-<p>Remove value at end</p>
-<div class="codehilite"><pre><span></span><span class="kd">local</span> <span class="kr">function</span> <span class="nf">netListener</span><span class="p">(</span><span class="n">evt</span><span class="p">)</span>
-  <span class="kr">if</span> <span class="ow">not</span> <span class="n">evt</span><span class="p">.</span><span class="n">isError</span> <span class="kr">then</span>
-    <span class="nb">print</span><span class="p">(</span><span class="n">evt</span><span class="p">.</span><span class="n">response</span><span class="p">)</span>
-  <span class="kr">end</span>
-<span class="kr">end</span>
-
-<span class="n">skytable</span><span class="p">.</span><span class="n">arr</span><span class="p">.</span><span class="n">pop</span><span class="p">(</span><span class="s2">&quot;colors&quot;</span><span class="p">,</span> <span class="n">netListener</span><span class="p">)</span>
-</pre></div>
-
-
-<h2 id="arrshift">arr.shift</h2>
-<p>Insert value at start</p>
-<div class="codehilite"><pre><span></span><span class="kd">local</span> <span class="kr">function</span> <span class="nf">netListener</span><span class="p">(</span><span class="n">evt</span><span class="p">)</span>
-  <span class="kr">if</span> <span class="ow">not</span> <span class="n">evt</span><span class="p">.</span><span class="n">isError</span> <span class="kr">then</span>
-    <span class="nb">print</span><span class="p">(</span><span class="n">evt</span><span class="p">.</span><span class="n">response</span><span class="p">)</span>
-  <span class="kr">end</span>
-<span class="kr">end</span>
-
-<span class="n">skytable</span><span class="p">.</span><span class="n">shift</span><span class="p">(</span><span class="s2">&quot;colors&quot;</span><span class="p">,</span> <span class="s2">&quot;Red&quot;</span><span class="p">,</span> <span class="n">netListener</span><span class="p">)</span>
-</pre></div>
-
-
-<h2 id="arrunshift">arr.unshift</h2>
-<p>Remove value at start</p>
-<div class="codehilite"><pre><span></span><span class="kd">local</span> <span class="kr">function</span> <span class="nf">netListener</span><span class="p">(</span><span class="n">evt</span><span class="p">)</span>
-  <span class="kr">if</span> <span class="ow">not</span> <span class="n">evt</span><span class="p">.</span><span class="n">isError</span> <span class="kr">then</span>
-    <span class="nb">print</span><span class="p">(</span><span class="n">evt</span><span class="p">.</span><span class="n">response</span><span class="p">)</span>
-  <span class="kr">end</span>
-<span class="kr">end</span>
-
-<span class="n">skytable</span><span class="p">.</span><span class="n">arr</span><span class="p">.</span><span class="n">unshift</span><span class="p">(</span><span class="s2">&quot;colors&quot;</span><span class="p">,</span> <span class="n">netListener</span><span class="p">)</span>
-</pre></div>
-
-
-<h2 id="arrinsert">arr.insert</h2>
-<p>Insert value into an array</p>
-<div class="codehilite"><pre><span></span><span class="kd">local</span> <span class="kr">function</span> <span class="nf">netListener</span><span class="p">(</span><span class="n">evt</span><span class="p">)</span>
-  <span class="kr">if</span> <span class="ow">not</span> <span class="n">evt</span><span class="p">.</span><span class="n">isError</span> <span class="kr">then</span>
-    <span class="nb">print</span><span class="p">(</span><span class="n">evt</span><span class="p">.</span><span class="n">response</span><span class="p">)</span>
-  <span class="kr">end</span>
-<span class="kr">end</span>
-
-<span class="n">skytable</span><span class="p">.</span><span class="n">arr</span><span class="p">.</span><span class="n">insert</span><span class="p">(</span><span class="s2">&quot;colors&quot;</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="s2">&quot;Yellow&quot;</span><span class="p">,</span> <span class="n">netListener</span><span class="p">)</span>
-</pre></div>
-
-
-<h2 id="arrremove">arr.remove</h2>
-<p>Remove a value from an array index</p>
-<div class="codehilite"><pre><span></span><span class="kd">local</span> <span class="kr">function</span> <span class="nf">netListener</span><span class="p">(</span><span class="n">evt</span><span class="p">)</span>
-  <span class="kr">if</span> <span class="ow">not</span> <span class="n">evt</span><span class="p">.</span><span class="n">isError</span> <span class="kr">then</span>
-    <span class="nb">print</span><span class="p">(</span><span class="n">evt</span><span class="p">.</span><span class="n">response</span><span class="p">)</span>
-  <span class="kr">end</span>
-<span class="kr">end</span>
-
-<span class="n">skytable</span><span class="p">.</span><span class="n">arr</span><span class="p">.</span><span class="n">remove</span><span class="p">(</span><span class="s2">&quot;colors&quot;</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">netListener</span><span class="p">)</span>
-</pre></div>
-
-
-<h2 id="arrtrim">arr.trim</h2>
-<p>Remove all but subset of array</p>
-<div class="codehilite"><pre><span></span><span class="kd">local</span> <span class="kr">function</span> <span class="nf">netListener</span><span class="p">(</span><span class="n">evt</span><span class="p">)</span>
-  <span class="kr">if</span> <span class="ow">not</span> <span class="n">evt</span><span class="p">.</span><span class="n">isError</span> <span class="kr">then</span>
-    <span class="nb">print</span><span class="p">(</span><span class="n">evt</span><span class="p">.</span><span class="n">response</span><span class="p">)</span>
-  <span class="kr">end</span>
-<span class="kr">end</span>
-
-<span class="n">skytable</span><span class="p">.</span><span class="n">arr</span><span class="p">.</span><span class="n">trim</span><span class="p">(</span><span class="s2">&quot;colors&quot;</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="n">netListener</span><span class="p">)</span>
-</pre></div>
-
-
-<h2 id="arrindexof">arr.indexOf</h2>
-<p>Find the first index position of scalar type (string, number)</p>
-<div class="codehilite"><pre><span></span><span class="kd">local</span> <span class="kr">function</span> <span class="nf">netListener</span><span class="p">(</span><span class="n">evt</span><span class="p">)</span>
-  <span class="kr">if</span> <span class="ow">not</span> <span class="n">evt</span><span class="p">.</span><span class="n">isError</span> <span class="kr">then</span>
-    <span class="nb">print</span><span class="p">(</span><span class="n">evt</span><span class="p">.</span><span class="n">response</span><span class="p">)</span>
-  <span class="kr">end</span>
-<span class="kr">end</span>
-
-<span class="n">skytable</span><span class="p">.</span><span class="n">arr</span><span class="p">.</span><span class="n">indexOf</span><span class="p">(</span><span class="s2">&quot;colors&quot;</span><span class="p">,</span> <span class="s2">&quot;Green&quot;</span><span class="p">,</span> <span class="n">netListener</span><span class="p">)</span>
-</pre></div>
-
-
-<h2 id="arrlength">arr.length</h2>
-<p>Get the array length</p>
-<div class="codehilite"><pre><span></span><span class="kd">local</span> <span class="kr">function</span> <span class="nf">netListener</span><span class="p">(</span><span class="n">evt</span><span class="p">)</span>
-  <span class="kr">if</span> <span class="ow">not</span> <span class="n">evt</span><span class="p">.</span><span class="n">isError</span> <span class="kr">then</span>
-    <span class="nb">print</span><span class="p">(</span><span class="n">evt</span><span class="p">.</span><span class="n">response</span><span class="p">)</span>
-  <span class="kr">end</span>
-<span class="kr">end</span>
-
-<span class="n">skytable</span><span class="p">.</span><span class="n">arr</span><span class="p">.</span><span class="n">length</span><span class="p">(</span><span class="s2">&quot;colors&quot;</span><span class="p">,</span> <span class="n">netListener</span><span class="p">)</span>
-</pre></div>
-
-
-<hr />
-<h1 id="number">Number</h1>
-<h2 id="numinc">num.inc</h2>
-<p>Increments a number value</p>
-<div class="codehilite"><pre><span></span><span class="kd">local</span> <span class="kr">function</span> <span class="nf">netListener</span><span class="p">(</span><span class="n">evt</span><span class="p">)</span>
-  <span class="kr">if</span> <span class="ow">not</span> <span class="n">evt</span><span class="p">.</span><span class="n">isError</span> <span class="kr">then</span>
-    <span class="nb">print</span><span class="p">(</span><span class="n">evt</span><span class="p">.</span><span class="n">response</span><span class="p">)</span>
-  <span class="kr">end</span>
-<span class="kr">end</span>
-
-<span class="n">skytable</span><span class="p">.</span><span class="n">num</span><span class="p">.</span><span class="n">inc</span><span class="p">(</span><span class="s2">&quot;profile.score&quot;</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="n">netListener</span><span class="p">)</span>
-</pre></div>
-
-
-<h2 id="numdec">num.dec</h2>
-<p>Decrements a number value</p>
-<div class="codehilite"><pre><span></span><span class="kd">local</span> <span class="kr">function</span> <span class="nf">netListener</span><span class="p">(</span><span class="n">evt</span><span class="p">)</span>
-  <span class="kr">if</span> <span class="ow">not</span> <span class="n">evt</span><span class="p">.</span><span class="n">isError</span> <span class="kr">then</span>
-    <span class="nb">print</span><span class="p">(</span><span class="n">evt</span><span class="p">.</span><span class="n">response</span><span class="p">)</span>
-  <span class="kr">end</span>
-<span class="kr">end</span>
-
-<span class="n">skytable</span><span class="p">.</span><span class="n">num</span><span class="p">.</span><span class="n">dec</span><span class="p">(</span><span class="s2">&quot;profile.score&quot;</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">netListener</span><span class="p">)</span>
-</pre></div>
-
-
-<h2 id="nummult">num.mult</h2>
-<p>Multiply a number value</p>
-<div class="codehilite"><pre><span></span><span class="kd">local</span> <span class="kr">function</span> <span class="nf">netListener</span><span class="p">(</span><span class="n">evt</span><span class="p">)</span>
-  <span class="kr">if</span> <span class="ow">not</span> <span class="n">evt</span><span class="p">.</span><span class="n">isError</span> <span class="kr">then</span>
-    <span class="nb">print</span><span class="p">(</span><span class="n">evt</span><span class="p">.</span><span class="n">response</span><span class="p">)</span>
-  <span class="kr">end</span>
-<span class="kr">end</span>
-
-<span class="n">skytable</span><span class="p">.</span><span class="n">num</span><span class="p">.</span><span class="n">mult</span><span class="p">(</span><span class="s2">&quot;profile.score&quot;</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="n">netListener</span><span class="p">)</span>
-</pre></div>
-
-
-<hr />
-<h1 id="user">User</h1>
-<h2 id="usercreate">user.create</h2>
-<p>Create a new skytable user scope</p>
-<div class="codehilite"><pre><span></span><span class="kd">local</span> <span class="kr">function</span> <span class="nf">netListener</span><span class="p">(</span><span class="n">evt</span><span class="p">)</span>
-  <span class="kr">if</span> <span class="ow">not</span> <span class="n">evt</span><span class="p">.</span><span class="n">isError</span> <span class="kr">then</span>
-    <span class="nb">print</span><span class="p">(</span><span class="n">evt</span><span class="p">.</span><span class="n">response</span><span class="p">)</span>
-  <span class="kr">end</span>
-<span class="kr">end</span>
-
-<span class="n">skytable</span><span class="p">.</span><span class="n">user</span><span class="p">.</span><span class="n">create</span><span class="p">(</span><span class="s2">&quot;user@email.com&quot;</span><span class="p">,</span> <span class="s2">&quot;password&quot;</span><span class="p">,</span> <span class="n">netListener</span><span class="p">)</span>
-</pre></div>
-
-
-<h2 id="userupdate">user.update</h2>
-<p>Update a skytable user scope</p>
-<div class="codehilite"><pre><span></span><span class="kd">local</span> <span class="kr">function</span> <span class="nf">netListener</span><span class="p">(</span><span class="n">evt</span><span class="p">)</span>
-  <span class="kr">if</span> <span class="ow">not</span> <span class="n">evt</span><span class="p">.</span><span class="n">isError</span> <span class="kr">then</span>
-    <span class="nb">print</span><span class="p">(</span><span class="n">evt</span><span class="p">.</span><span class="n">response</span><span class="p">)</span>
-  <span class="kr">end</span>
-<span class="kr">end</span>
-
-<span class="n">skytable</span><span class="p">.</span><span class="n">user</span><span class="p">.</span><span class="n">update</span><span class="p">(</span><span class="n">user_email</span><span class="p">,</span> <span class="n">user_password</span><span class="p">,</span> <span class="n">new_email</span><span class="p">,</span> <span class="n">new_password</span><span class="p">,</span> <span class="n">netListener</span><span class="p">)</span>
-</pre></div>
-
-
-<h2 id="userdelete">user.delete</h2>
-<p>Delete the skytable user scope</p>
-<div class="codehilite"><pre><span></span><span class="kd">local</span> <span class="kr">function</span> <span class="nf">netListener</span><span class="p">(</span><span class="n">evt</span><span class="p">)</span>
-  <span class="kr">if</span> <span class="ow">not</span> <span class="n">evt</span><span class="p">.</span><span class="n">isError</span> <span class="kr">then</span>
-    <span class="nb">print</span><span class="p">(</span><span class="n">evt</span><span class="p">.</span><span class="n">response</span><span class="p">)</span>
-  <span class="kr">end</span>
-<span class="kr">end</span>
-
-<span class="n">skytable</span><span class="p">.</span><span class="n">user</span><span class="p">.</span><span class="n">delete</span><span class="p">(</span><span class="n">user_email</span><span class="p">,</span> <span class="n">user_password</span><span class="p">,</span> <span class="n">netListener</span><span class="p">)</span>
+<p><strong>Parameters</strong></p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Description</th>
+<th>Type</th>
+<th>Required</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>data_path</td>
+<td>Path to the item data. (See <a href="../guide/#data-paths">Data Paths</a>)</td>
+<td>String</td>
+<td>N</td>
+</tr>
+<tr>
+<td>listener</td>
+<td>A listener function. (See <a href="../guide/#listeners">Listeners</a>)</td>
+<td>Function</td>
+<td><strong>Y</strong></td>
+</tr>
+<tr>
+<td>options</td>
+<td>Additional options.</td>
+<td>Table</td>
+<td>N</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Options Properties</strong></p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Description</th>
+<th>Type</th>
+<th>Required</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>tag</td>
+<td>A descriptive name for the event. (See <a href="../guide/#tags">Tags</a>)</td>
+<td>String</td>
+<td>N</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Example</strong></p>
+<div class="codehilite"><pre><span></span><span class="n">profile</span><span class="p">:</span><span class="n">keys</span><span class="p">(</span><span class="n">onResult</span><span class="p">)</span>
 </pre></div>
               
             </div>
@@ -521,10 +533,10 @@
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="../server/" class="btn btn-neutral float-right" title="Server Guide">Next <span class="icon icon-circle-arrow-right"></span></a>
+        <a href="../guide/" class="btn btn-neutral float-right" title="Client Guide">Next <span class="icon icon-circle-arrow-right"></span></a>
       
       
-        <a href="../events/" class="btn btn-neutral" title="Client Events"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href=".." class="btn btn-neutral" title="Introduction"><span class="icon icon-circle-arrow-left"></span> Previous</a>
       
     </div>
   
@@ -552,10 +564,10 @@
     <span class="rst-current-version" data-toggle="rst-current-version">
       
       
-        <span><a href="../events/" style="color: #fcfcfc;">&laquo; Previous</a></span>
+        <span><a href=".." style="color: #fcfcfc;">&laquo; Previous</a></span>
       
       
-        <span style="margin-left: 15px"><a href="../server/" style="color: #fcfcfc">Next &raquo;</a></span>
+        <span style="margin-left: 15px"><a href="../guide/" style="color: #fcfcfc">Next &raquo;</a></span>
       
     </span>
 </div>
