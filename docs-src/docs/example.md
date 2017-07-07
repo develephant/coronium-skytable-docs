@@ -153,7 +153,7 @@ profile:set("name", "Steve", onSetResult, {tag="set-profile-name"})
 
 ---
 
-# Set with Options
+# Set with Flags
 
 ```lua
 local skytable = require("skytable.client")

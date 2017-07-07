@@ -95,7 +95,7 @@ profile:set("age", 23, onSetResult)
 ```
 
 !!! tip
-    See __[Set](guide/#set)__ in the _Client Guide_ for detailed usage information.
+    See __[Listeners](guide/#listeners)__ and __[Data Paths](guide/#data-paths)__ in the _Client Guide_ for detailed usage information.
 
 ---
 
@@ -128,7 +128,7 @@ profile:get("age", onResult)
 ```
 
 !!! tip
-    See __[Get](guide/#get)__ in the _Client Guide_ for detailed usage information.
+    See __[Listeners](guide/#listeners)__ and __[Data Paths](guide/#data-paths)__ in the _Client Guide_ for detailed usage information.
 
 ---
 

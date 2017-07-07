@@ -45,46 +45,52 @@
 
       <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
 	<ul class="current">
-	  
           
-            <li class="toctree-l1 current">
-		
-    <a class="current" href=".">Introduction</a>
-    <ul class="subnav">
+            <li>
+    <li class="toctree-l1 current">
+        <a class="current" href=".">Introduction</a>
+        
+            <ul>
             
-    <li class="toctree-l2"><a href="#coronium-skytable">Coronium SkyTable</a></li>
-    
-        <ul>
+                <li class="toctree-l3"><a href="#coronium-skytable">Coronium SkyTable</a></li>
+                
+                    <li><a class="toctree-l4" href="#get-the-client">Get The Client</a></li>
+                
+                    <li><a class="toctree-l4" href="#adding-the-client">Adding The Client</a></li>
+                
+            
+            </ul>
         
-            <li><a class="toctree-l3" href="#get-the-client">Get The Client</a></li>
+    </li>
+<li>
+          
+            <li>
+    <li class="toctree-l1 ">
+        <a class="" href="api/">Client API</a>
         
-            <li><a class="toctree-l3" href="#adding-the-client">Adding The Client</a></li>
+    </li>
+<li>
+          
+            <li>
+    <li class="toctree-l1 ">
+        <a class="" href="guide/">Client Guide</a>
         
-        </ul>
-    
-
-    </ul>
-	    </li>
+    </li>
+<li>
           
-            <li class="toctree-l1">
-		
-    <a class="" href="api/">Client API</a>
-	    </li>
+            <li>
+    <li class="toctree-l1 ">
+        <a class="" href="example/">Examples</a>
+        
+    </li>
+<li>
           
-            <li class="toctree-l1">
-		
-    <a class="" href="guide/">Client Guide</a>
-	    </li>
-          
-            <li class="toctree-l1">
-		
-    <a class="" href="example/">Examples</a>
-	    </li>
-          
-            <li class="toctree-l1">
-		
-    <a class="" href="about/">About</a>
-	    </li>
+            <li>
+    <li class="toctree-l1 ">
+        <a class="" href="about/">About</a>
+        
+    </li>
+<li>
           
         </ul>
       </div>
@@ -120,26 +126,30 @@
               
                 <p><img alt="logo" src="./imgs/logo256.png" /></p>
 <h1 id="coronium-skytable">Coronium SkyTable</h1>
-<p><strong>A performant user scoped data table store and client for use with <a href="https://coronalabs.com">Corona</a>.</strong></p>
+<p><strong><em>A performant and secure user scoped table datastore and client for use with <a href="https://coronalabs.com">Corona</a>.</em></strong></p>
 <hr />
 <h2 id="get-the-client">Get The Client</h2>
 <p>First point your browser to the <strong><a href="https://github.com/develephant/coronium-skytable-client">Coronium SkyTable Client GitHub repo</a></strong>.</p>
-<p>Next, click the "Clone or Download" button and select "Download ZIP" to a location on your computer.</p>
+<p>Next, click the <strong>Clone or Download</strong> button and select <strong>Download ZIP</strong>, then select a location on your computer.</p>
 <p><img alt="step09" src="./imgs/step09.png" /></p>
-<p>Expand the <code>coronium-skytable-master.zip</code> file and navigate to <code>coronium-skytable-master/skytable</code> directory.</p>
+<p>Expand the <strong>coronium-skytable-client-master.zip</strong> file and navigate to the <strong>coronium-skytable-client-master</strong> directory.</p>
 <p><img alt="step10" src="./imgs/step10.png" /></p>
-<p>Copy the <code>skytable</code> directory to the root of your Corona SDK project.</p>
+<p>Copy the <strong>skytable</strong> directory to the root of your Corona project. The project tree should look similar to:</p>
+<div class="codehilite"><pre><span></span>CoronaProject/
+  skytable
+  main.lua
+  ...
+</pre></div>
+
+
 <hr />
 <h2 id="adding-the-client">Adding The Client</h2>
-<p>Once you have the <code>skytable</code> directory in your project, do the following to incorporate it.</p>
-<p>Open your <code>main.lua</code> file and add the following:</p>
-<pre class="codehilite"><code class="language-lua">local skytable = require('skytable.client')</code></pre>
+<p>Once you have the <strong>skytable</strong> directory in your project, open your <strong>main.lua</strong> file and add the following:</p>
+<div class="codehilite"><pre><span></span><span class="kd">local</span> <span class="n">skytable</span> <span class="o">=</span> <span class="nb">require</span><span class="p">(</span><span class="s1">&#39;skytable.client&#39;</span><span class="p">)</span>
+</pre></div>
 
 
-<div class="admonition tip">
-<p class="admonition-title">Tip</p>
-<p>See <a href="./client-api">Client API</a> to start using the API.</p>
-</div>
+<p>Now you're ready to get started. See the <strong><a href="./client-api">Client API</a></strong> and <strong><a href="./client-guide">Client Guide</a></strong> to start using Coronium SkyTable.</p>
               
             </div>
           </div>
@@ -187,6 +197,6 @@
 </html>
 
 <!--
-MkDocs version : 0.16.3
-Build Date UTC : 2017-07-07 05:25:25
+MkDocs version : 0.16.1
+Build Date UTC : 2017-07-07 07:15:01
 -->

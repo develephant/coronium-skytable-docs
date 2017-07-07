@@ -45,54 +45,60 @@
 
       <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
 	<ul class="current">
-	  
           
-            <li class="toctree-l1">
-		
-    <a class="" href="..">Introduction</a>
-	    </li>
+            <li>
+    <li class="toctree-l1 ">
+        <a class="" href="..">Introduction</a>
+        
+    </li>
+<li>
           
-            <li class="toctree-l1 current">
-		
-    <a class="current" href="./">Client API</a>
-    <ul class="subnav">
+            <li>
+    <li class="toctree-l1 current">
+        <a class="current" href="./">Client API</a>
+        
+            <ul>
             
-    <li class="toctree-l2"><a href="#skytable">SkyTable</a></li>
-    
-        <ul>
+                <li class="toctree-l3"><a href="#skytable">SkyTable</a></li>
+                
+                    <li><a class="toctree-l4" href="#init">init</a></li>
+                
+                    <li><a class="toctree-l4" href="#open">open</a></li>
+                
+                    <li><a class="toctree-l4" href="#set">set</a></li>
+                
+                    <li><a class="toctree-l4" href="#get">get</a></li>
+                
+                    <li><a class="toctree-l4" href="#delete">delete</a></li>
+                
+                    <li><a class="toctree-l4" href="#keys">keys</a></li>
+                
+            
+            </ul>
         
-            <li><a class="toctree-l3" href="#init">init</a></li>
-        
-            <li><a class="toctree-l3" href="#open">open</a></li>
-        
-            <li><a class="toctree-l3" href="#set">set</a></li>
-        
-            <li><a class="toctree-l3" href="#get">get</a></li>
-        
-            <li><a class="toctree-l3" href="#delete">delete</a></li>
-        
-            <li><a class="toctree-l3" href="#keys">keys</a></li>
-        
-        </ul>
-    
-
-    </ul>
-	    </li>
+    </li>
+<li>
           
-            <li class="toctree-l1">
-		
-    <a class="" href="../guide/">Client Guide</a>
-	    </li>
+            <li>
+    <li class="toctree-l1 ">
+        <a class="" href="../guide/">Client Guide</a>
+        
+    </li>
+<li>
           
-            <li class="toctree-l1">
-		
-    <a class="" href="../example/">Examples</a>
-	    </li>
+            <li>
+    <li class="toctree-l1 ">
+        <a class="" href="../example/">Examples</a>
+        
+    </li>
+<li>
           
-            <li class="toctree-l1">
-		
-    <a class="" href="../about/">About</a>
-	    </li>
+            <li>
+    <li class="toctree-l1 ">
+        <a class="" href="../about/">About</a>
+        
+    </li>
+<li>
           
         </ul>
       </div>
@@ -129,7 +135,8 @@
                 <h1 id="skytable">SkyTable</h1>
 <h2 id="init">init</h2>
 <p>Initialize the SkyTable module.</p>
-<pre class="codehilite"><code class="language-lua">:init(config)</code></pre>
+<div class="codehilite"><pre><span></span><span class="p">:</span><span class="n">init</span><span class="p">(</span><span class="n">config</span><span class="p">)</span>
+</pre></div>
 
 
 <p><strong>Parameters</strong></p>
@@ -201,20 +208,22 @@
 </tbody>
 </table>
 <p><strong>Example</strong></p>
-<pre class="codehilite"><code class="language-lua">skytable:init({
-  user = &quot;&lt;user-email&gt;&quot;,
-  password = &quot;&lt;user-password&gt;&quot;,
-  base = &quot;app1&quot;,
-  host = &quot;http://skytable-host&quot;,
-  key = &quot;&lt;server-key&gt;&quot;,
-  debug = true
-})</code></pre>
+<div class="codehilite"><pre><span></span><span class="n">skytable</span><span class="p">:</span><span class="n">init</span><span class="p">({</span>
+  <span class="n">user</span> <span class="o">=</span> <span class="s2">&quot;&lt;user-email&gt;&quot;</span><span class="p">,</span>
+  <span class="n">password</span> <span class="o">=</span> <span class="s2">&quot;&lt;user-password&gt;&quot;</span><span class="p">,</span>
+  <span class="n">base</span> <span class="o">=</span> <span class="s2">&quot;app1&quot;</span><span class="p">,</span>
+  <span class="n">host</span> <span class="o">=</span> <span class="s2">&quot;http://skytable-host&quot;</span><span class="p">,</span>
+  <span class="n">key</span> <span class="o">=</span> <span class="s2">&quot;&lt;server-key&gt;&quot;</span><span class="p">,</span>
+  <span class="n">debug</span> <span class="o">=</span> <span class="kc">true</span>
+<span class="p">})</span>
+</pre></div>
 
 
 <hr />
 <h2 id="open">open</h2>
 <p>Open a SkyTable for usage.</p>
-<pre class="codehilite"><code class="language-lua">:open(table_name)</code></pre>
+<div class="codehilite"><pre><span></span><span class="p">:</span><span class="n">open</span><span class="p">(</span><span class="n">table_name</span><span class="p">)</span>
+</pre></div>
 
 
 <p><strong>Parameters</strong></p>
@@ -237,13 +246,15 @@
 </tbody>
 </table>
 <p><strong>Example</strong></p>
-<pre class="codehilite"><code class="language-lua">local profile = skytable:open(&quot;profile&quot;)</code></pre>
+<div class="codehilite"><pre><span></span><span class="kd">local</span> <span class="n">profile</span> <span class="o">=</span> <span class="n">skytable</span><span class="p">:</span><span class="n">open</span><span class="p">(</span><span class="s2">&quot;profile&quot;</span><span class="p">)</span>
+</pre></div>
 
 
 <hr />
 <h2 id="set">set</h2>
 <p>Set a value in a SkyTable.</p>
-<pre class="codehilite"><code>:set([data_path,] data, listener[, options])</code></pre>
+<div class="codehilite"><pre><span></span>:set([data_path,] data, listener[, options])
+</pre></div>
 
 
 <p><strong>Parameters</strong></p>
@@ -315,17 +326,19 @@
 </tbody>
 </table>
 <p><strong>Example</strong></p>
-<pre class="codehilite"><code class="language-lua">profile:set(&quot;age&quot;, 23, onSetResult)</code></pre>
+<div class="codehilite"><pre><span></span><span class="n">profile</span><span class="p">:</span><span class="n">set</span><span class="p">(</span><span class="s2">&quot;age&quot;</span><span class="p">,</span> <span class="mi">23</span><span class="p">,</span> <span class="n">onSetResult</span><span class="p">)</span>
+</pre></div>
 
 
 <div class="admonition tip">
 <p class="admonition-title">Tip</p>
-<p>See <strong><a href="../guide/#set">Set</a></strong> in the <em>Client Guide</em> for detailed usage information.</p>
+<p>See <strong><a href="../guide/#listeners">Listeners</a></strong> and <strong><a href="../guide/#data-paths">Data Paths</a></strong> in the <em>Client Guide</em> for detailed usage information.</p>
 </div>
 <hr />
 <h2 id="get">get</h2>
 <p>Get a value from a SkyTable.</p>
-<pre class="codehilite"><code>:get([data_path,] listener[, options])</code></pre>
+<div class="codehilite"><pre><span></span>:get([data_path,] listener[, options])
+</pre></div>
 
 
 <p><strong>Parameters</strong></p>
@@ -379,17 +392,19 @@
 </tbody>
 </table>
 <p><strong>Example</strong></p>
-<pre class="codehilite"><code class="language-lua">profile:get(&quot;age&quot;, onResult)</code></pre>
+<div class="codehilite"><pre><span></span><span class="n">profile</span><span class="p">:</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;age&quot;</span><span class="p">,</span> <span class="n">onResult</span><span class="p">)</span>
+</pre></div>
 
 
 <div class="admonition tip">
 <p class="admonition-title">Tip</p>
-<p>See <strong><a href="../guide/#get">Get</a></strong> in the <em>Client Guide</em> for detailed usage information.</p>
+<p>See <strong><a href="../guide/#listeners">Listeners</a></strong> and <strong><a href="../guide/#data-paths">Data Paths</a></strong> in the <em>Client Guide</em> for detailed usage information.</p>
 </div>
 <hr />
 <h2 id="delete">delete</h2>
 <p>Delete a value in a SkyTable.</p>
-<pre class="codehilite"><code>:delete([data_path,] listener[, options])</code></pre>
+<div class="codehilite"><pre><span></span>:delete([data_path,] listener[, options])
+</pre></div>
 
 
 <p><strong>Parameters</strong></p>
@@ -443,7 +458,8 @@
 </tbody>
 </table>
 <p><strong>Example</strong></p>
-<pre class="codehilite"><code class="language-lua">profile:delete(&quot;color&quot;, onResult)</code></pre>
+<div class="codehilite"><pre><span></span><span class="n">profile</span><span class="p">:</span><span class="n">delete</span><span class="p">(</span><span class="s2">&quot;color&quot;</span><span class="p">,</span> <span class="n">onResult</span><span class="p">)</span>
+</pre></div>
 
 
 <div class="admonition tip">
@@ -453,7 +469,8 @@
 <hr />
 <h2 id="keys">keys</h2>
 <p>Returns the SkyTable keys.</p>
-<pre class="codehilite"><code>:keys([data_path,] listener[, options])</code></pre>
+<div class="codehilite"><pre><span></span>:keys([data_path,] listener[, options])
+</pre></div>
 
 
 <p><strong>Parameters</strong></p>
@@ -507,7 +524,8 @@
 </tbody>
 </table>
 <p><strong>Example</strong></p>
-<pre class="codehilite"><code class="language-lua">profile:keys(onResult)</code></pre>
+<div class="codehilite"><pre><span></span><span class="n">profile</span><span class="p">:</span><span class="n">keys</span><span class="p">(</span><span class="n">onResult</span><span class="p">)</span>
+</pre></div>
               
             </div>
           </div>

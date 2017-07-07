@@ -45,59 +45,78 @@
 
       <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
 	<ul class="current">
-	  
           
-            <li class="toctree-l1">
-		
-    <a class="" href="..">Introduction</a>
-	    </li>
+            <li>
+    <li class="toctree-l1 ">
+        <a class="" href="..">Introduction</a>
+        
+    </li>
+<li>
           
-            <li class="toctree-l1">
-		
-    <a class="" href="../api/">Client API</a>
-	    </li>
+            <li>
+    <li class="toctree-l1 ">
+        <a class="" href="../api/">Client API</a>
+        
+    </li>
+<li>
           
-            <li class="toctree-l1 current">
-		
-    <a class="current" href="./">Client Guide</a>
-    <ul class="subnav">
+            <li>
+    <li class="toctree-l1 current">
+        <a class="current" href="./">Client Guide</a>
+        
+            <ul>
             
-    <li class="toctree-l2"><a href="#overview">Overview</a></li>
-    
-
-    <li class="toctree-l2"><a href="#data-paths">Data Paths</a></li>
-    
-
-    <li class="toctree-l2"><a href="#listeners">Listeners</a></li>
-    
-
-    <li class="toctree-l2"><a href="#tags">Tags</a></li>
-    
-
-    <li class="toctree-l2"><a href="#flags">Flags</a></li>
-    
-
-    <li class="toctree-l2"><a href="#expiry">Expiry</a></li>
-    
-
-    <li class="toctree-l2"><a href="#delete">Delete</a></li>
-    
-
-    <li class="toctree-l2"><a href="#keys">Keys</a></li>
-    
-
-    </ul>
-	    </li>
+                <li class="toctree-l3"><a href="#overview">Overview</a></li>
+                
+            
+                <li class="toctree-l3"><a href="#user-scope">User Scope</a></li>
+                
+            
+                <li class="toctree-l3"><a href="#base-scope">Base Scope</a></li>
+                
+            
+                <li class="toctree-l3"><a href="#listeners">Listeners</a></li>
+                
+            
+                <li class="toctree-l3"><a href="#data-paths">Data Paths</a></li>
+                
+            
+                <li class="toctree-l3"><a href="#tags">Tags</a></li>
+                
+            
+                <li class="toctree-l3"><a href="#flags">Flags</a></li>
+                
+            
+                <li class="toctree-l3"><a href="#expiry">Expiry</a></li>
+                
+            
+                <li class="toctree-l3"><a href="#delete">Delete</a></li>
+                
+            
+                <li class="toctree-l3"><a href="#keys">Keys</a></li>
+                
+            
+                <li class="toctree-l3"><a href="#syncing-data">Syncing Data</a></li>
+                
+            
+            </ul>
+        
+    </li>
+<li>
           
-            <li class="toctree-l1">
-		
-    <a class="" href="../example/">Examples</a>
-	    </li>
+            <li>
+    <li class="toctree-l1 ">
+        <a class="" href="../example/">Examples</a>
+        
+    </li>
+<li>
           
-            <li class="toctree-l1">
-		
-    <a class="" href="../about/">About</a>
-	    </li>
+            <li>
+    <li class="toctree-l1 ">
+        <a class="" href="../about/">About</a>
+        
+    </li>
+<li>
           
         </ul>
       </div>
@@ -132,194 +151,123 @@
             <div class="section">
               
                 <h1 id="overview">Overview</h1>
-<hr />
-<h1 id="data-paths">Data Paths</h1>
-<p>Data paths allow you to "path" to a value in the SkyTable, both to set and get the underlying value. Data paths can be used in all of the value based API calls. This includes <strong>get</strong>, <strong>set</strong>, <strong>delete</strong>, and <strong>keys</strong>.</p>
-<p>When calling any of the value methods <em>without</em> a data path, a "root" path is implied. For example, let's assume the following data exists in a "profile" SkyTable:</p>
-<pre class="codehilite"><code class="language-lua">{
-  name = &quot;Jim&quot;,
-  age = 34,
-  active = true,
-  address = {
-    street = &quot;123 Main St.&quot;,
-    city = &quot;San Diego&quot;,
-    state = &quot;CA&quot;,
-    zip = &quot;92037&quot;
-  },
-  colors = {&quot;red&quot;, &quot;green&quot;, &quot;blue&quot;}
-}</code></pre>
-
-
-<p><strong>Pathing with Get</strong></p>
-<p>Then following call brings back the entire SkyTable (its "root" path):</p>
-<pre class="codehilite"><code class="language-lua">local profile = skytable:open(&quot;profile&quot;)
-
-local function onResult(evt)
-  local data = evt.data --the entire data table
-  print(data.name) -- Jim
-end
-
-profile:get(onResult)</code></pre>
-
-
-<p>To gain access to an individual value in the SkyTable, we can supply a path:</p>
-<pre class="codehilite"><code class="language-lua">local profile = skytable:open(&quot;profile&quot;)
-
-local function onResult(evt)
-  local data = evt.data --holds &quot;name&quot; value
-  print(data) -- Jim
-end
-
-profile:get(&quot;name&quot;, onResult)</code></pre>
-
-
-<p>To dive even deeper into the SkyTable, just path to the key, using a "dot" separator:</p>
-<pre class="codehilite"><code class="language-lua">local profile = skytable:open(&quot;profile&quot;)
-
-local function onResult(evt)
-  local data = evt.data --holds &quot;city&quot; value
-  print(data) -- San Diego
-end
-
-profile:get(&quot;address.city&quot;, onResult)</code></pre>
-
-
-<p>If we wanted the entire "address" table:</p>
-<pre class="codehilite"><code class="language-lua">local profile = skytable:open(&quot;profile&quot;)
-
-local function onResult(evt)
-  local data = evt.data --entire address table
-  print(address.state) -- CA
-end
-
-profile:get(&quot;address&quot;, onResult)</code></pre>
-
-
-<p>Or the "colors" table array:</p>
-<pre class="codehilite"><code class="language-lua">local profile = skytable:open(&quot;profile&quot;)
-
-local function onResult(evt)
-  local data = evt.data --entire colors array
-  for i=1, #data.colors  do
-    print(data.colors[i]) --red, green, blue
-  end
-end
-
-profile:get(&quot;colors&quot;, onResult)</code></pre>
-
-
-<p>You can path as far as you need:</p>
-<pre class="codehilite"><code class="language-lua">gear:get(&quot;set1.arms.def&quot;, onResult)</code></pre>
-
-
-<p><strong>Pathing with Set</strong></p>
-<p>When using paths with the <strong>set</strong> API call, the usage outlined above stays the same, with some implementation differences when setting a "root" path.</p>
-<p>When first populating a SkyTable, you <em>must</em> pass it a data table to start with. This can be as little as one property, or a whole predefined table. To create the inital SkyTable we do like so:</p>
-<pre class="codehilite"><code class="language-lua">local profile = skytable:open(&quot;profile&quot;)
-
-local function onSetResult(evt)
-  if evt.success then
-    print('saved')
-  end
-end
-
-local data_tbl = 
-{
-  name = &quot;Jim&quot;
-}
-
-profile:set(data_tbl, onSetResult)</code></pre>
-
-
-<p>Once we have a data table saved to a SkyTable, we can set values on it at a later time by using a path:</p>
-<pre class="codehilite"><code class="language-lua">local profile = skytable:open(&quot;profile&quot;)
-
-local function onSetResult(evt)
-  if evt.success then
-    print('saved')
-  end
-end
-
-profile:set(&quot;name&quot;, &quot;Sally&quot;, onSetResult)</code></pre>
-
-
-<p>To add an "address" data table to our SkyTable, we can do:</p>
-<pre class="codehilite"><code class="language-lua">local profile = skytable:open(&quot;profile&quot;)
-
-local address = {
-  street = &quot;123 Main St.&quot;,
-  city = &quot;San Diego&quot;,
-  state = &quot;CA&quot;,
-  zip = &quot;92037&quot;
-}
-
-local function onSetResult(evt)
-  if evt.success then
-    print('saved')
-  end
-end
-
-profile:set(&quot;address&quot;, address, onSetResult)</code></pre>
-
-
-<p>And to change a value in the "address" data table:</p>
-<pre class="codehilite"><code class="language-lua">local profile = skytable:open(&quot;profile&quot;)
-
-local function onSetResult(evt)
-  if evt.success then
-    print('saved')
-  end
-end
-
-profile:set(&quot;address.city&quot;, &quot;San Francisco&quot;, onSetResult)</code></pre>
-
-
-<p>Or adding an array table:</p>
-<pre class="codehilite"><code class="language-lua">local profile = skytable:open(&quot;profile&quot;)
-
-local function onSetResult(evt)
-  if evt.success then
-    print('saved')
-  end
-end
-
-profile:set(&quot;colors&quot;, {&quot;red&quot;,&quot;green&quot;,&quot;blue&quot;}, onSetResult)</code></pre>
-
-
+<p>A SkyTable is a <em>user scoped</em> data table. This means the data is tied to a <strong><em>single</em></strong> user. It is less of a database, and more of a secure per user table datastore.</p>
 <div class="admonition important">
 <p class="admonition-title">Important</p>
-<p>Once the "root" data table has been set for a SkyTable, you cannot overwrite it without specifying a flag.</p>
+<p>Make sure you understand how Coronium SkyTable works before commiting to using it in your project. <strong><em>You cannot access any other data than the user provided credentials allow.</em></strong></p>
 </div>
-<p>To <em>overwrite</em> a "root" data table in a SkyTable, you must pass a special flag. This is not required when creating the initial data.</p>
-<pre class="codehilite"><code class="language-lua">profile:set(newDataTable, onSetResult, {flag=&quot;XX&quot;})</code></pre>
+<p>While a SkyTable is tied to a specific user, you can create as many specific, per user, SkyTables as you need for a given application. You do this with the <strong><a href="../api/#open">open</a></strong> Api method:</p>
+<div class="codehilite"><pre><span></span><span class="kd">local</span> <span class="n">skytable</span> <span class="o">=</span> <span class="nb">require</span><span class="p">(</span><span class="s2">&quot;skytable.client&quot;</span><span class="p">)</span>
+
+<span class="c1">--###########################################</span>
+<span class="c1">--# Initialization (init) method goes here...</span>
+<span class="c1">--###########################################</span>
+
+<span class="c1">--open a &quot;profile&quot; table</span>
+<span class="kd">local</span> <span class="n">profile</span> <span class="o">=</span> <span class="n">skytable</span><span class="p">:</span><span class="n">open</span><span class="p">(</span><span class="s2">&quot;profile&quot;</span><span class="p">)</span>
+
+<span class="c1">--open an &quot;inventory&quot; table</span>
+<span class="kd">local</span> <span class="n">inventory</span> <span class="o">=</span> <span class="n">skytable</span><span class="p">:</span><span class="n">open</span><span class="p">(</span><span class="s2">&quot;inventory&quot;</span><span class="p">)</span>
+
+<span class="c1">--###########################################</span>
+<span class="c1">--# Response listener functions go here...</span>
+<span class="c1">--###########################################</span>
+
+<span class="c1">--set profile name</span>
+<span class="n">profile</span><span class="p">:</span><span class="n">set</span><span class="p">(</span><span class="s2">&quot;name&quot;</span><span class="p">,</span> <span class="s2">&quot;Sara&quot;</span><span class="p">,</span> <span class="o">&lt;</span><span class="n">listener</span><span class="o">&gt;</span><span class="p">)</span>
+
+<span class="c1">--get an inventory item</span>
+<span class="n">inventory</span><span class="p">:</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;gear.arms.def&quot;</span><span class="p">,</span> <span class="o">&lt;</span><span class="n">listener</span><span class="o">&gt;</span><span class="p">)</span>
+</pre></div>
 
 
-<p>This helps prevent overwriting your "root" data table by accident. Flags can also be used with data paths, but the pathed value will be overwritten on any <strong>set</strong> call.</p>
-<p>See <strong><a href="#flags">Flags</a></strong> for more details.</p>
+<hr />
+<h1 id="user-scope">User Scope</h1>
+<p>A SkyTable, and its data, is scoped per user. When first initalizing the SkyTable client, you must provide a <em>username</em> (usually an email address), and a <em>password</em>. These values are the responsibility of the developer to gather.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The <em>username</em> and <em>password</em> is never stored on the SkyTable server. Instead a unique key is generated to identify the user.</p>
+</div>
+<p>The <em>username</em> and <em>password</em> are passed to the <strong>init</strong> API method:</p>
+<div class="codehilite"><pre><span></span><span class="kd">local</span> <span class="n">skytable</span> <span class="o">=</span> <span class="nb">require</span><span class="p">(</span><span class="s2">&quot;skytable.client&quot;</span><span class="p">)</span>
+
+<span class="n">skytable</span><span class="p">:</span><span class="n">init</span><span class="p">({</span>
+  <span class="n">user</span> <span class="o">=</span> <span class="s2">&quot;user@email.com&quot;</span><span class="p">,</span>
+  <span class="n">password</span> <span class="o">=</span> <span class="s2">&quot;&lt;user-password&gt;&quot;</span><span class="p">,</span>
+  <span class="p">...</span>
+<span class="p">})</span>
+</pre></div>
+
+
+<p>This feature allows your user to run your application on different devices, and have their data "synced" between sessions.</p>
+<p>See the <strong><a href="../api/#init">init</a></strong> API method for more details.</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>If a <em>username</em> and/or <em>password</em> are changed, it is the responsibilty of the developer to <strong><a href="../api/#delete">delete</a></strong> the old data, and initalize the new tables using the updated <em>username</em> and <em>password</em>.</p>
+</div>
+<hr />
+<h1 id="base-scope">Base Scope</h1>
+<p>You can also assign a <em>base scope</em> to the SkyTable. This allows the saving of different data tables, per user, for multiple applications. A user can use the same <em>username</em> and <em>password</em> across all of your different applications.</p>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>Even if you don't think you will have the same users on different applications, it is a best practice to assign a <em>base scope</em> anyway. This future-proofs the SkyTable data.</p>
+</div>
+<p>The <em>base scope</em> is assigned in the <strong><a href="../api/#init">init</a></strong> Api method:</p>
+<div class="codehilite"><pre><span></span><span class="kd">local</span> <span class="n">skytable</span> <span class="o">=</span> <span class="nb">require</span><span class="p">(</span><span class="s2">&quot;skytable.client&quot;</span><span class="p">)</span>
+
+<span class="n">skytable</span><span class="p">:</span><span class="n">init</span><span class="p">({</span>
+  <span class="n">user</span> <span class="o">=</span> <span class="s2">&quot;user@email.com&quot;</span><span class="p">,</span>
+  <span class="n">password</span> <span class="o">=</span> <span class="s2">&quot;&lt;user-password&gt;&quot;</span><span class="p">,</span>
+  <span class="n">base</span> <span class="o">=</span> <span class="s2">&quot;app1&quot;</span><span class="p">,</span>
+  <span class="p">...</span>
+<span class="p">})</span>
+</pre></div>
+
+
+<p>Now when we want to access data from a different app (in this case "app2"), for the same user, we can do:</p>
+<div class="codehilite"><pre><span></span><span class="kd">local</span> <span class="n">skytable</span> <span class="o">=</span> <span class="nb">require</span><span class="p">(</span><span class="s2">&quot;skytable.client&quot;</span><span class="p">)</span>
+
+<span class="n">skytable</span><span class="p">:</span><span class="n">init</span><span class="p">({</span>
+  <span class="n">user</span> <span class="o">=</span> <span class="s2">&quot;user@email.com&quot;</span><span class="p">,</span>
+  <span class="n">password</span> <span class="o">=</span> <span class="s2">&quot;&lt;user-password&gt;&quot;</span><span class="p">,</span>
+  <span class="n">base</span> <span class="o">=</span> <span class="s2">&quot;app2&quot;</span><span class="p">,</span> <span class="c1">--different base scope</span>
+  <span class="p">...</span>
+<span class="p">})</span>
+</pre></div>
+
+
+<p>See the <strong><a href="../api/#init">init</a></strong> API method for more details.</p>
 <hr />
 <h1 id="listeners">Listeners</h1>
-<p>Because network requests are not synchronus actions, listeners must be supplied to all SkyTable API calls. The listener is where you will recieve the response from the SkyTable server.</p>
+<p>Because network requests are asynchronus actions, listeners must be supplied to all SkyTable API calls. The listener is where you will recieve the response from the SkyTable server.</p>
 <p>There are two different event types returned from a SkyTable server. One shaped for the <strong>set</strong> call, and another for the remaining value based API calls; <strong>get</strong>, <strong>delete</strong>, and <strong>keys</strong>.</p>
 <p>While you can use one listener for all the API calls, in general its easier to create two different listeners:</p>
-<pre class="codehilite"><code class="language-lua">local profile = skytable:open(&quot;profile&quot;)
+<div class="codehilite"><pre><span></span><span class="kd">local</span> <span class="n">profile</span> <span class="o">=</span> <span class="n">skytable</span><span class="p">:</span><span class="n">open</span><span class="p">(</span><span class="s2">&quot;profile&quot;</span><span class="p">)</span>
 
---Set
-local function onSetResult(evt)
-  if evt.isError then
-    print(evt.error)
-  else
-    print(evt.success)
-  end
-end
+<span class="c1">--Set</span>
+<span class="kd">local</span> <span class="kr">function</span> <span class="nf">onSetResult</span><span class="p">(</span><span class="n">evt</span><span class="p">)</span>
+  <span class="kr">if</span> <span class="n">evt</span><span class="p">.</span><span class="n">isError</span> <span class="kr">then</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">evt</span><span class="p">.</span><span class="n">error</span><span class="p">)</span>
+  <span class="kr">else</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">evt</span><span class="p">.</span><span class="n">success</span><span class="p">)</span>
+  <span class="kr">end</span>
+<span class="kr">end</span>
 
---Get, Delete, Keys
-local function onResult(evt)
-  if evt.isError then
-    print(evt.error)
-  else
-    local data = evt.data --String, Number, Boolean, Table, or nil
-  end
-end</code></pre>
+<span class="c1">--Get, Delete, Keys</span>
+<span class="kd">local</span> <span class="kr">function</span> <span class="nf">onResult</span><span class="p">(</span><span class="n">evt</span><span class="p">)</span>
+  <span class="kr">if</span> <span class="n">evt</span><span class="p">.</span><span class="n">isError</span> <span class="kr">then</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">evt</span><span class="p">.</span><span class="n">error</span><span class="p">)</span>
+  <span class="kr">else</span>
+    <span class="kd">local</span> <span class="n">data</span> <span class="o">=</span> <span class="n">evt</span><span class="p">.</span><span class="n">data</span> <span class="c1">--String, Number, Boolean, Table, or nil</span>
+  <span class="kr">end</span>
+<span class="kr">end</span>
+
+<span class="c1">--Set something</span>
+<span class="n">profile</span><span class="p">:</span><span class="n">set</span><span class="p">(</span><span class="s2">&quot;name&quot;</span><span class="p">,</span> <span class="s2">&quot;Marco&quot;</span><span class="p">,</span> <span class="n">onSetResult</span><span class="p">)</span>
+
+<span class="c1">--Get something</span>
+<span class="n">profile</span><span class="p">:</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;address.street&quot;</span><span class="p">,</span> <span class="n">onResult</span><span class="p">)</span>
+</pre></div>
 
 
 <p>The main difference between the events are the properties available.</p>
@@ -397,68 +345,248 @@ end</code></pre>
 </div>
 <p><strong>Best practices</strong></p>
 <p>While you can set up general listeners, it's best to assign a specific listener per action:</p>
-<pre class="codehilite"><code class="language-lua">local profile = skytable:open(&quot;profile&quot;)
+<div class="codehilite"><pre><span></span><span class="kd">local</span> <span class="n">profile</span> <span class="o">=</span> <span class="n">skytable</span><span class="p">:</span><span class="n">open</span><span class="p">(</span><span class="s2">&quot;profile&quot;</span><span class="p">)</span>
 
-local onSetName(evt)
-  if evt.success then
-    print('name saved')
-  end
-end
+<span class="kd">local</span> <span class="n">onSetName</span><span class="p">(</span><span class="n">evt</span><span class="p">)</span>
+  <span class="kr">if</span> <span class="n">evt</span><span class="p">.</span><span class="n">success</span> <span class="kr">then</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;name saved&#39;</span><span class="p">)</span>
+  <span class="kr">end</span>
+<span class="kr">end</span>
 
-local onSetColors(evt)
-  if evt.success then
-    print('colors saved')
-  end
-end
+<span class="kd">local</span> <span class="n">onSetColors</span><span class="p">(</span><span class="n">evt</span><span class="p">)</span>
+  <span class="kr">if</span> <span class="n">evt</span><span class="p">.</span><span class="n">success</span> <span class="kr">then</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;colors saved&#39;</span><span class="p">)</span>
+  <span class="kr">end</span>
+<span class="kr">end</span>
 
-profile:set(&quot;name&quot;, &quot;Dave&quot;, onSetName)
-profile:set(&quot;colors&quot;, {&quot;red&quot;,&quot;green&quot;,&quot;blue&quot;}, onSetColors)</code></pre>
+<span class="n">profile</span><span class="p">:</span><span class="n">set</span><span class="p">(</span><span class="s2">&quot;name&quot;</span><span class="p">,</span> <span class="s2">&quot;Dave&quot;</span><span class="p">,</span> <span class="n">onSetName</span><span class="p">)</span>
+<span class="n">profile</span><span class="p">:</span><span class="n">set</span><span class="p">(</span><span class="s2">&quot;colors&quot;</span><span class="p">,</span> <span class="p">{</span><span class="s2">&quot;red&quot;</span><span class="p">,</span><span class="s2">&quot;green&quot;</span><span class="p">,</span><span class="s2">&quot;blue&quot;</span><span class="p">},</span> <span class="n">onSetColors</span><span class="p">)</span>
+</pre></div>
 
 
 <p>This is the recommended approach for the other value based API calls; <strong>get</strong>, <strong>delete</strong>, and <strong>keys</strong>.</p>
 <p>Another option is using <strong><a href="#tags">Tags</a></strong>.</p>
 <hr />
+<h1 id="data-paths">Data Paths</h1>
+<p>Data paths allow you to "path" to a value in the SkyTable, both to <strong>set</strong> and <strong>get</strong> the underlying value. Data paths can be used in all of the value based API calls. This includes <strong>get</strong>, <strong>set</strong>, <strong>delete</strong>, and <strong>keys</strong>.</p>
+<p>When calling any of the value methods <em>without</em> a data path, a "root" path is implied. For example, let's assume the following data exists in a "profile" SkyTable:</p>
+<div class="codehilite"><pre><span></span><span class="p">{</span>
+  <span class="n">name</span> <span class="o">=</span> <span class="s2">&quot;Jim&quot;</span><span class="p">,</span>
+  <span class="n">age</span> <span class="o">=</span> <span class="mi">34</span><span class="p">,</span>
+  <span class="n">active</span> <span class="o">=</span> <span class="kc">true</span><span class="p">,</span>
+  <span class="n">address</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="n">street</span> <span class="o">=</span> <span class="s2">&quot;123 Main St.&quot;</span><span class="p">,</span>
+    <span class="n">city</span> <span class="o">=</span> <span class="s2">&quot;San Diego&quot;</span><span class="p">,</span>
+    <span class="n">state</span> <span class="o">=</span> <span class="s2">&quot;CA&quot;</span><span class="p">,</span>
+    <span class="n">zip</span> <span class="o">=</span> <span class="s2">&quot;92037&quot;</span>
+  <span class="p">},</span>
+  <span class="n">colors</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;red&quot;</span><span class="p">,</span> <span class="s2">&quot;green&quot;</span><span class="p">,</span> <span class="s2">&quot;blue&quot;</span><span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+
+
+<p><strong>Pathing with Get</strong></p>
+<p>Then following call brings back the entire SkyTable (its "root" path):</p>
+<div class="codehilite"><pre><span></span><span class="kd">local</span> <span class="n">profile</span> <span class="o">=</span> <span class="n">skytable</span><span class="p">:</span><span class="n">open</span><span class="p">(</span><span class="s2">&quot;profile&quot;</span><span class="p">)</span>
+
+<span class="kd">local</span> <span class="kr">function</span> <span class="nf">onResult</span><span class="p">(</span><span class="n">evt</span><span class="p">)</span>
+  <span class="kd">local</span> <span class="n">data</span> <span class="o">=</span> <span class="n">evt</span><span class="p">.</span><span class="n">data</span> <span class="c1">--the entire data table</span>
+  <span class="nb">print</span><span class="p">(</span><span class="n">data</span><span class="p">.</span><span class="n">name</span><span class="p">)</span> <span class="c1">-- Jim</span>
+<span class="kr">end</span>
+
+<span class="n">profile</span><span class="p">:</span><span class="n">get</span><span class="p">(</span><span class="n">onResult</span><span class="p">)</span>
+</pre></div>
+
+
+<p>To gain access to an individual value in the SkyTable, we can supply a path:</p>
+<div class="codehilite"><pre><span></span><span class="kd">local</span> <span class="n">profile</span> <span class="o">=</span> <span class="n">skytable</span><span class="p">:</span><span class="n">open</span><span class="p">(</span><span class="s2">&quot;profile&quot;</span><span class="p">)</span>
+
+<span class="kd">local</span> <span class="kr">function</span> <span class="nf">onResult</span><span class="p">(</span><span class="n">evt</span><span class="p">)</span>
+  <span class="kd">local</span> <span class="n">data</span> <span class="o">=</span> <span class="n">evt</span><span class="p">.</span><span class="n">data</span> <span class="c1">--holds &quot;name&quot; value</span>
+  <span class="nb">print</span><span class="p">(</span><span class="n">data</span><span class="p">)</span> <span class="c1">-- Jim</span>
+<span class="kr">end</span>
+
+<span class="n">profile</span><span class="p">:</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;name&quot;</span><span class="p">,</span> <span class="n">onResult</span><span class="p">)</span>
+</pre></div>
+
+
+<p>To dive even deeper into the SkyTable, just path to the key, using a "dot" separator:</p>
+<div class="codehilite"><pre><span></span><span class="kd">local</span> <span class="n">profile</span> <span class="o">=</span> <span class="n">skytable</span><span class="p">:</span><span class="n">open</span><span class="p">(</span><span class="s2">&quot;profile&quot;</span><span class="p">)</span>
+
+<span class="kd">local</span> <span class="kr">function</span> <span class="nf">onResult</span><span class="p">(</span><span class="n">evt</span><span class="p">)</span>
+  <span class="kd">local</span> <span class="n">data</span> <span class="o">=</span> <span class="n">evt</span><span class="p">.</span><span class="n">data</span> <span class="c1">--holds &quot;city&quot; value</span>
+  <span class="nb">print</span><span class="p">(</span><span class="n">data</span><span class="p">)</span> <span class="c1">-- San Diego</span>
+<span class="kr">end</span>
+
+<span class="n">profile</span><span class="p">:</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;address.city&quot;</span><span class="p">,</span> <span class="n">onResult</span><span class="p">)</span>
+</pre></div>
+
+
+<p>If we wanted the entire "address" table:</p>
+<div class="codehilite"><pre><span></span><span class="kd">local</span> <span class="n">profile</span> <span class="o">=</span> <span class="n">skytable</span><span class="p">:</span><span class="n">open</span><span class="p">(</span><span class="s2">&quot;profile&quot;</span><span class="p">)</span>
+
+<span class="kd">local</span> <span class="kr">function</span> <span class="nf">onResult</span><span class="p">(</span><span class="n">evt</span><span class="p">)</span>
+  <span class="kd">local</span> <span class="n">data</span> <span class="o">=</span> <span class="n">evt</span><span class="p">.</span><span class="n">data</span> <span class="c1">--entire address table</span>
+  <span class="nb">print</span><span class="p">(</span><span class="n">address</span><span class="p">.</span><span class="n">state</span><span class="p">)</span> <span class="c1">-- CA</span>
+<span class="kr">end</span>
+
+<span class="n">profile</span><span class="p">:</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;address&quot;</span><span class="p">,</span> <span class="n">onResult</span><span class="p">)</span>
+</pre></div>
+
+
+<p>Or the "colors" table array:</p>
+<div class="codehilite"><pre><span></span><span class="kd">local</span> <span class="n">profile</span> <span class="o">=</span> <span class="n">skytable</span><span class="p">:</span><span class="n">open</span><span class="p">(</span><span class="s2">&quot;profile&quot;</span><span class="p">)</span>
+
+<span class="kd">local</span> <span class="kr">function</span> <span class="nf">onResult</span><span class="p">(</span><span class="n">evt</span><span class="p">)</span>
+  <span class="kd">local</span> <span class="n">data</span> <span class="o">=</span> <span class="n">evt</span><span class="p">.</span><span class="n">data</span> <span class="c1">--entire colors array</span>
+  <span class="kr">for</span> <span class="n">i</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="o">#</span><span class="n">data</span><span class="p">.</span><span class="n">colors</span>  <span class="kr">do</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">data</span><span class="p">.</span><span class="n">colors</span><span class="p">[</span><span class="n">i</span><span class="p">])</span> <span class="c1">--red, green, blue</span>
+  <span class="kr">end</span>
+<span class="kr">end</span>
+
+<span class="n">profile</span><span class="p">:</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;colors&quot;</span><span class="p">,</span> <span class="n">onResult</span><span class="p">)</span>
+</pre></div>
+
+
+<p>You can path as far as you need:</p>
+<div class="codehilite"><pre><span></span><span class="n">gear</span><span class="p">:</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;set1.arms.def&quot;</span><span class="p">,</span> <span class="n">onResult</span><span class="p">)</span>
+</pre></div>
+
+
+<p><strong>Pathing with Set</strong></p>
+<p>When using paths with the <strong>set</strong> API call, the usage outlined above stays the same, with some implementation differences when setting a "root" path.</p>
+<p>When first populating a SkyTable, you <em>must</em> pass it a data table to start with. This can be as little as one property, or a whole predefined table. To create the inital SkyTable we do like so:</p>
+<div class="codehilite"><pre><span></span><span class="kd">local</span> <span class="n">profile</span> <span class="o">=</span> <span class="n">skytable</span><span class="p">:</span><span class="n">open</span><span class="p">(</span><span class="s2">&quot;profile&quot;</span><span class="p">)</span>
+
+<span class="kd">local</span> <span class="kr">function</span> <span class="nf">onSetResult</span><span class="p">(</span><span class="n">evt</span><span class="p">)</span>
+  <span class="kr">if</span> <span class="n">evt</span><span class="p">.</span><span class="n">success</span> <span class="kr">then</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;saved&#39;</span><span class="p">)</span>
+  <span class="kr">end</span>
+<span class="kr">end</span>
+
+<span class="kd">local</span> <span class="n">data_tbl</span> <span class="o">=</span> 
+<span class="p">{</span>
+  <span class="n">name</span> <span class="o">=</span> <span class="s2">&quot;Jim&quot;</span>
+<span class="p">}</span>
+
+<span class="n">profile</span><span class="p">:</span><span class="n">set</span><span class="p">(</span><span class="n">data_tbl</span><span class="p">,</span> <span class="n">onSetResult</span><span class="p">)</span>
+</pre></div>
+
+
+<p>Once we have a data table saved to a SkyTable, we can set values on it at a later time by using a path:</p>
+<div class="codehilite"><pre><span></span><span class="kd">local</span> <span class="n">profile</span> <span class="o">=</span> <span class="n">skytable</span><span class="p">:</span><span class="n">open</span><span class="p">(</span><span class="s2">&quot;profile&quot;</span><span class="p">)</span>
+
+<span class="kd">local</span> <span class="kr">function</span> <span class="nf">onSetResult</span><span class="p">(</span><span class="n">evt</span><span class="p">)</span>
+  <span class="kr">if</span> <span class="n">evt</span><span class="p">.</span><span class="n">success</span> <span class="kr">then</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;saved&#39;</span><span class="p">)</span>
+  <span class="kr">end</span>
+<span class="kr">end</span>
+
+<span class="n">profile</span><span class="p">:</span><span class="n">set</span><span class="p">(</span><span class="s2">&quot;name&quot;</span><span class="p">,</span> <span class="s2">&quot;Sally&quot;</span><span class="p">,</span> <span class="n">onSetResult</span><span class="p">)</span>
+</pre></div>
+
+
+<p>To add an "address" data table to our SkyTable, we can do:</p>
+<div class="codehilite"><pre><span></span><span class="kd">local</span> <span class="n">profile</span> <span class="o">=</span> <span class="n">skytable</span><span class="p">:</span><span class="n">open</span><span class="p">(</span><span class="s2">&quot;profile&quot;</span><span class="p">)</span>
+
+<span class="kd">local</span> <span class="n">address</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="n">street</span> <span class="o">=</span> <span class="s2">&quot;123 Main St.&quot;</span><span class="p">,</span>
+  <span class="n">city</span> <span class="o">=</span> <span class="s2">&quot;San Diego&quot;</span><span class="p">,</span>
+  <span class="n">state</span> <span class="o">=</span> <span class="s2">&quot;CA&quot;</span><span class="p">,</span>
+  <span class="n">zip</span> <span class="o">=</span> <span class="s2">&quot;92037&quot;</span>
+<span class="p">}</span>
+
+<span class="kd">local</span> <span class="kr">function</span> <span class="nf">onSetResult</span><span class="p">(</span><span class="n">evt</span><span class="p">)</span>
+  <span class="kr">if</span> <span class="n">evt</span><span class="p">.</span><span class="n">success</span> <span class="kr">then</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;saved&#39;</span><span class="p">)</span>
+  <span class="kr">end</span>
+<span class="kr">end</span>
+
+<span class="n">profile</span><span class="p">:</span><span class="n">set</span><span class="p">(</span><span class="s2">&quot;address&quot;</span><span class="p">,</span> <span class="n">address</span><span class="p">,</span> <span class="n">onSetResult</span><span class="p">)</span>
+</pre></div>
+
+
+<p>And to change a value in the "address" data table:</p>
+<div class="codehilite"><pre><span></span><span class="kd">local</span> <span class="n">profile</span> <span class="o">=</span> <span class="n">skytable</span><span class="p">:</span><span class="n">open</span><span class="p">(</span><span class="s2">&quot;profile&quot;</span><span class="p">)</span>
+
+<span class="kd">local</span> <span class="kr">function</span> <span class="nf">onSetResult</span><span class="p">(</span><span class="n">evt</span><span class="p">)</span>
+  <span class="kr">if</span> <span class="n">evt</span><span class="p">.</span><span class="n">success</span> <span class="kr">then</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;saved&#39;</span><span class="p">)</span>
+  <span class="kr">end</span>
+<span class="kr">end</span>
+
+<span class="n">profile</span><span class="p">:</span><span class="n">set</span><span class="p">(</span><span class="s2">&quot;address.city&quot;</span><span class="p">,</span> <span class="s2">&quot;San Francisco&quot;</span><span class="p">,</span> <span class="n">onSetResult</span><span class="p">)</span>
+</pre></div>
+
+
+<p>Or adding an array table:</p>
+<div class="codehilite"><pre><span></span><span class="kd">local</span> <span class="n">profile</span> <span class="o">=</span> <span class="n">skytable</span><span class="p">:</span><span class="n">open</span><span class="p">(</span><span class="s2">&quot;profile&quot;</span><span class="p">)</span>
+
+<span class="kd">local</span> <span class="kr">function</span> <span class="nf">onSetResult</span><span class="p">(</span><span class="n">evt</span><span class="p">)</span>
+  <span class="kr">if</span> <span class="n">evt</span><span class="p">.</span><span class="n">success</span> <span class="kr">then</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;saved&#39;</span><span class="p">)</span>
+  <span class="kr">end</span>
+<span class="kr">end</span>
+
+<span class="n">profile</span><span class="p">:</span><span class="n">set</span><span class="p">(</span><span class="s2">&quot;colors&quot;</span><span class="p">,</span> <span class="p">{</span><span class="s2">&quot;red&quot;</span><span class="p">,</span><span class="s2">&quot;green&quot;</span><span class="p">,</span><span class="s2">&quot;blue&quot;</span><span class="p">},</span> <span class="n">onSetResult</span><span class="p">)</span>
+</pre></div>
+
+
+<div class="admonition important">
+<p class="admonition-title">Important</p>
+<p>Once the "root" data table has been set for a SkyTable, you cannot overwrite it without specifying a flag.</p>
+</div>
+<p>To <em>overwrite</em> a "root" data table in a SkyTable, you must pass a special flag. This is not required when creating the initial data.</p>
+<div class="codehilite"><pre><span></span><span class="n">profile</span><span class="p">:</span><span class="n">set</span><span class="p">(</span><span class="n">newDataTable</span><span class="p">,</span> <span class="n">onSetResult</span><span class="p">,</span> <span class="p">{</span><span class="n">flag</span><span class="o">=</span><span class="s2">&quot;XX&quot;</span><span class="p">})</span>
+</pre></div>
+
+
+<p>This helps prevent overwriting your "root" data table by accident. Flags can also be used with data paths, but the pathed value will be overwritten on any <strong>set</strong> call.</p>
+<p>See <strong><a href="#flags">Flags</a></strong> for more details.</p>
+<hr />
 <h1 id="tags">Tags</h1>
 <p>When using a general listener (see <strong><a href="#listeners">Listeners</a></strong>), you can mark an API call with a <em>tag</em> to filter the response.</p>
 <p>A <em>tag</em> is added to a call using the <strong>options</strong> parameter, which takes a table:</p>
-<pre class="codehilite"><code class="language-lua">local profile = skytable:open(&quot;profile&quot;)
+<div class="codehilite"><pre><span></span><span class="kd">local</span> <span class="n">profile</span> <span class="o">=</span> <span class="n">skytable</span><span class="p">:</span><span class="n">open</span><span class="p">(</span><span class="s2">&quot;profile&quot;</span><span class="p">)</span>
 
-local function onResult(evt)
-  if not evt.isError then
-    print(evt.error)
-  else
-    local data = evt.data
-    if evt.tag == &quot;get-name&quot; then
-      print(data) -- name string
-    elseif evt.tag == &quot;get-colors&quot; then
-      print(data[1]) -- colors table array
-    end
-  end
-end
+<span class="kd">local</span> <span class="kr">function</span> <span class="nf">onResult</span><span class="p">(</span><span class="n">evt</span><span class="p">)</span>
+  <span class="kr">if</span> <span class="ow">not</span> <span class="n">evt</span><span class="p">.</span><span class="n">isError</span> <span class="kr">then</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">evt</span><span class="p">.</span><span class="n">error</span><span class="p">)</span>
+  <span class="kr">else</span>
+    <span class="kd">local</span> <span class="n">data</span> <span class="o">=</span> <span class="n">evt</span><span class="p">.</span><span class="n">data</span>
+    <span class="kr">if</span> <span class="n">evt</span><span class="p">.</span><span class="n">tag</span> <span class="o">==</span> <span class="s2">&quot;get-name&quot;</span> <span class="kr">then</span>
+      <span class="nb">print</span><span class="p">(</span><span class="n">data</span><span class="p">)</span> <span class="c1">-- name string</span>
+    <span class="kr">elseif</span> <span class="n">evt</span><span class="p">.</span><span class="n">tag</span> <span class="o">==</span> <span class="s2">&quot;get-colors&quot;</span> <span class="kr">then</span>
+      <span class="nb">print</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span> <span class="c1">-- colors table array</span>
+    <span class="kr">end</span>
+  <span class="kr">end</span>
+<span class="kr">end</span>
 
-profile:get(&quot;name&quot;, onResult, {tag=&quot;get-name&quot;})
-profile:get(&quot;colors&quot;, onResult, {tag=&quot;get-colors&quot;})</code></pre>
+<span class="n">profile</span><span class="p">:</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;name&quot;</span><span class="p">,</span> <span class="n">onResult</span><span class="p">,</span> <span class="p">{</span><span class="n">tag</span><span class="o">=</span><span class="s2">&quot;get-name&quot;</span><span class="p">})</span>
+<span class="n">profile</span><span class="p">:</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;colors&quot;</span><span class="p">,</span> <span class="n">onResult</span><span class="p">,</span> <span class="p">{</span><span class="n">tag</span><span class="o">=</span><span class="s2">&quot;get-colors&quot;</span><span class="p">})</span>
+</pre></div>
 
 
 <p>You can also use this method to create one main generalized response listener for both the <strong>set</strong> call, as well as <strong>get</strong>, <strong>delete</strong>, and <strong>keys</strong>:</p>
-<pre class="codehilite"><code class="language-lua">local profile = skytable:open(&quot;profile&quot;)
+<div class="codehilite"><pre><span></span><span class="kd">local</span> <span class="n">profile</span> <span class="o">=</span> <span class="n">skytable</span><span class="p">:</span><span class="n">open</span><span class="p">(</span><span class="s2">&quot;profile&quot;</span><span class="p">)</span>
 
-local function onResult(evt)
-  if not evt.isError then
-    print(evt.error)
-  else
-    if evt.tag == &quot;set-name&quot; then
-      if evt.success then
-        print('name saved')
-      end
-    elseif evt.tag == &quot;get-colors&quot; then
-      print(evt.data[1]) -- colors table array
-    end
-  end
-end
+<span class="kd">local</span> <span class="kr">function</span> <span class="nf">onResult</span><span class="p">(</span><span class="n">evt</span><span class="p">)</span>
+  <span class="kr">if</span> <span class="ow">not</span> <span class="n">evt</span><span class="p">.</span><span class="n">isError</span> <span class="kr">then</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">evt</span><span class="p">.</span><span class="n">error</span><span class="p">)</span>
+  <span class="kr">else</span>
+    <span class="kr">if</span> <span class="n">evt</span><span class="p">.</span><span class="n">tag</span> <span class="o">==</span> <span class="s2">&quot;set-name&quot;</span> <span class="kr">then</span>
+      <span class="kr">if</span> <span class="n">evt</span><span class="p">.</span><span class="n">success</span> <span class="kr">then</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;name saved&#39;</span><span class="p">)</span>
+      <span class="kr">end</span>
+    <span class="kr">elseif</span> <span class="n">evt</span><span class="p">.</span><span class="n">tag</span> <span class="o">==</span> <span class="s2">&quot;get-colors&quot;</span> <span class="kr">then</span>
+      <span class="nb">print</span><span class="p">(</span><span class="n">evt</span><span class="p">.</span><span class="n">data</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span> <span class="c1">-- colors table array</span>
+    <span class="kr">end</span>
+  <span class="kr">end</span>
+<span class="kr">end</span>
 
-profile:set(&quot;name&quot;, &quot;Sam&quot;, onResult, {tag=&quot;set-name&quot;})
-profile:get(&quot;colors&quot;, onResult, {tag=&quot;get-colors&quot;})</code></pre>
+<span class="n">profile</span><span class="p">:</span><span class="n">set</span><span class="p">(</span><span class="s2">&quot;name&quot;</span><span class="p">,</span> <span class="s2">&quot;Sam&quot;</span><span class="p">,</span> <span class="n">onResult</span><span class="p">,</span> <span class="p">{</span><span class="n">tag</span><span class="o">=</span><span class="s2">&quot;set-name&quot;</span><span class="p">})</span>
+<span class="n">profile</span><span class="p">:</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;colors&quot;</span><span class="p">,</span> <span class="n">onResult</span><span class="p">,</span> <span class="p">{</span><span class="n">tag</span><span class="o">=</span><span class="s2">&quot;get-colors&quot;</span><span class="p">})</span>
+</pre></div>
 
 
 <hr />
@@ -486,16 +614,17 @@ profile:get(&quot;colors&quot;, onResult, {tag=&quot;get-colors&quot;})</code></
 </tr>
 </tbody>
 </table>
-<pre class="codehilite"><code class="language-lua">local profile = skytable:open(&quot;profile&quot;)
+<div class="codehilite"><pre><span></span><span class="kd">local</span> <span class="n">profile</span> <span class="o">=</span> <span class="n">skytable</span><span class="p">:</span><span class="n">open</span><span class="p">(</span><span class="s2">&quot;profile&quot;</span><span class="p">)</span>
 
-local function onSetResult(evt)
-  if evt.success then
-    print('saved')
-  end
-end
+<span class="kd">local</span> <span class="kr">function</span> <span class="nf">onSetResult</span><span class="p">(</span><span class="n">evt</span><span class="p">)</span>
+  <span class="kr">if</span> <span class="n">evt</span><span class="p">.</span><span class="n">success</span> <span class="kr">then</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;saved&#39;</span><span class="p">)</span>
+  <span class="kr">end</span>
+<span class="kr">end</span>
 
---set the name only if the path exists.
-profile:set(&quot;name&quot;, onSetResult, {flag=&quot;XX&quot;})</code></pre>
+<span class="c1">--set the name only if the path exists.</span>
+<span class="n">profile</span><span class="p">:</span><span class="n">set</span><span class="p">(</span><span class="s2">&quot;name&quot;</span><span class="p">,</span> <span class="n">onSetResult</span><span class="p">,</span> <span class="p">{</span><span class="n">flag</span><span class="o">=</span><span class="s2">&quot;XX&quot;</span><span class="p">})</span>
+</pre></div>
 
 
 <div class="admonition note">
@@ -526,16 +655,17 @@ profile:set(&quot;name&quot;, onSetResult, {flag=&quot;XX&quot;})</code></pre>
 </tr>
 </tbody>
 </table>
-<pre class="codehilite"><code class="language-lua">local profile = skytable:open(&quot;profile&quot;)
+<div class="codehilite"><pre><span></span><span class="kd">local</span> <span class="n">profile</span> <span class="o">=</span> <span class="n">skytable</span><span class="p">:</span><span class="n">open</span><span class="p">(</span><span class="s2">&quot;profile&quot;</span><span class="p">)</span>
 
-local onSetResult(evt)
-  if evt.success then
-    print('saved', 'expiry:', tostring(evt.expiry))
-  end
-end
+<span class="kd">local</span> <span class="n">onSetResult</span><span class="p">(</span><span class="n">evt</span><span class="p">)</span>
+  <span class="kr">if</span> <span class="n">evt</span><span class="p">.</span><span class="n">success</span> <span class="kr">then</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;saved&#39;</span><span class="p">,</span> <span class="s1">&#39;expiry:&#39;</span><span class="p">,</span> <span class="nb">tostring</span><span class="p">(</span><span class="n">evt</span><span class="p">.</span><span class="n">expiry</span><span class="p">))</span>
+  <span class="kr">end</span>
+<span class="kr">end</span>
 
---remove the SkyTable in 5 minutes
-profile:set(data_tbl, onSetResult, {expiry=300})</code></pre>
+<span class="c1">--remove the SkyTable in 5 minutes</span>
+<span class="n">profile</span><span class="p">:</span><span class="n">set</span><span class="p">(</span><span class="n">data_tbl</span><span class="p">,</span> <span class="n">onSetResult</span><span class="p">,</span> <span class="p">{</span><span class="n">expiry</span><span class="o">=</span><span class="mi">300</span><span class="p">})</span>
+</pre></div>
 
 
 <div class="admonition note">
@@ -551,10 +681,112 @@ profile:set(data_tbl, onSetResult, {expiry=300})</code></pre>
 <p>The <strong>delete</strong> API call will remove a value at the given path.</p>
 <div class="admonition warning">
 <p class="admonition-title">Warning</p>
-<p>This method should be used with caution. When operating on the "root" path, the entire data table will be cleared, and the path will no longer exist. Unlike the <strong>set</strong> method flag protection, a <strong>delete</strong> method will do its job as long as the path exists.</p>
+<p>This method should be used with caution. <strong><em>When operating on the "root" path, the entire data table will be cleared</em></strong>, and the path will no longer exist. Unlike <strong>set</strong>, with its <a href="#flags">flag protection</a>, a <strong>delete</strong> method will do its job as long as the path exists.</p>
+</div>
+<p>To delete a value at the specified path:</p>
+<div class="codehilite"><pre><span></span><span class="kd">local</span> <span class="n">profile</span> <span class="o">=</span> <span class="n">skytable</span><span class="p">:</span><span class="n">open</span><span class="p">(</span><span class="s2">&quot;profile&quot;</span><span class="p">)</span>
+
+<span class="kd">local</span> <span class="kr">function</span> <span class="nf">onResult</span><span class="p">(</span><span class="n">evt</span><span class="p">)</span>
+  <span class="kr">if</span> <span class="ow">not</span> <span class="n">evt</span><span class="p">.</span><span class="n">isError</span> <span class="kr">then</span>
+    <span class="kr">if</span> <span class="n">evt</span><span class="p">.</span><span class="n">data</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="kr">then</span>
+      <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;name deleted from profile&#39;</span><span class="p">)</span>
+    <span class="kr">end</span>
+  <span class="kr">end</span>
+<span class="kr">end</span>
+
+<span class="n">profile</span><span class="p">:</span><span class="n">delete</span><span class="p">(</span><span class="s2">&quot;name&quot;</span><span class="p">,</span> <span class="n">onResult</span><span class="p">)</span>
+</pre></div>
+
+
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>A <strong>delete</strong> event will contain a <em>data</em> property with a number noting the value paths removed. Most often this will be a one (1). In the case of a failed attempt, or invalid path, the <em>data</em> will contain the number zero (0).</p>
 </div>
 <hr />
 <h1 id="keys">Keys</h1>
+<p>The <strong>keys</strong> API call will return a tables keys in the SkyTable at the given path. Using our "profile" example, we can return all the keys at the "root" path like so:</p>
+<div class="codehilite"><pre><span></span><span class="kd">local</span> <span class="n">profile</span> <span class="o">=</span> <span class="n">skytable</span><span class="p">:</span><span class="n">open</span><span class="p">(</span><span class="s2">&quot;profile&quot;</span><span class="p">)</span>
+
+<span class="kd">local</span> <span class="kr">function</span> <span class="nf">onResult</span><span class="p">(</span><span class="n">evt</span><span class="p">)</span>
+  <span class="kr">if</span> <span class="ow">not</span> <span class="n">evt</span><span class="p">.</span><span class="n">isError</span> <span class="kr">then</span>
+    <span class="kd">local</span> <span class="n">keys</span> <span class="o">=</span> <span class="n">evt</span><span class="p">.</span><span class="n">data</span>
+    <span class="c1">--keys = {&quot;name&quot;,&quot;age&quot;,&quot;active&quot;,&quot;address&quot;,&quot;colors&quot;}</span>
+  <span class="kr">end</span>
+<span class="kr">end</span>
+
+<span class="n">profile</span><span class="p">:</span><span class="n">keys</span><span class="p">(</span><span class="n">onResult</span><span class="p">)</span>
+</pre></div>
+
+
+<p>Using a path to a nested table:</p>
+<div class="codehilite"><pre><span></span><span class="kd">local</span> <span class="n">profile</span> <span class="o">=</span> <span class="n">skytable</span><span class="p">:</span><span class="n">open</span><span class="p">(</span><span class="s2">&quot;profile&quot;</span><span class="p">)</span>
+
+<span class="kd">local</span> <span class="kr">function</span> <span class="nf">onResult</span><span class="p">(</span><span class="n">evt</span><span class="p">)</span>
+  <span class="kr">if</span> <span class="ow">not</span> <span class="n">evt</span><span class="p">.</span><span class="n">isError</span> <span class="kr">then</span>
+    <span class="kd">local</span> <span class="n">keys</span> <span class="o">=</span> <span class="n">evt</span><span class="p">.</span><span class="n">data</span>
+    <span class="c1">--keys = {&quot;street&quot;,&quot;city&quot;,&quot;state&quot;,&quot;zip&quot;}</span>
+  <span class="kr">end</span>
+<span class="kr">end</span>
+
+<span class="n">profile</span><span class="p">:</span><span class="n">keys</span><span class="p">(</span><span class="s2">&quot;address&quot;</span><span class="p">,</span> <span class="n">onResult</span><span class="p">)</span>
+</pre></div>
+
+
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>You can only access keys from data tables.</p>
+</div>
+<hr />
+<h1 id="syncing-data">Syncing Data</h1>
+<p>With the use of data paths (see <strong><a href="#data-paths">Data Paths</a></strong>), you can <strong>get</strong> and <strong>set</strong> values from different levels of the SkyTable.</p>
+<p>As a best practice, and to keep your data synced between client and server, it is best to create or cache a local data table first, make changes to that table, and then push it to the server. This helps keep your data in sync easier.</p>
+<div class="codehilite"><pre><span></span><span class="kd">local</span> <span class="n">profile_data</span> <span class="o">=</span> <span class="p">{}</span>
+<span class="kd">local</span> <span class="n">profile</span> <span class="o">=</span> <span class="n">skytable</span><span class="p">:</span><span class="n">open</span><span class="p">(</span><span class="s2">&quot;profile&quot;</span><span class="p">)</span>
+
+<span class="kd">local</span> <span class="kr">function</span> <span class="nf">onSetProfile</span><span class="p">(</span><span class="n">evt</span><span class="p">)</span>
+  <span class="kr">if</span> <span class="n">evt</span><span class="p">.</span><span class="n">isError</span> <span class="kr">then</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">evt</span><span class="p">.</span><span class="n">error</span><span class="p">)</span>
+  <span class="kr">else</span>
+    <span class="kr">if</span> <span class="n">evt</span><span class="p">.</span><span class="n">success</span> <span class="kr">then</span>
+      <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;profile saved&#39;</span><span class="p">)</span>
+    <span class="kr">end</span>
+  <span class="kr">end</span>
+<span class="kr">end</span>
+
+<span class="kd">local</span> <span class="kr">function</span> <span class="nf">onGetProfile</span><span class="p">(</span><span class="n">evt</span><span class="p">)</span>
+  <span class="kr">if</span> <span class="n">evt</span><span class="p">.</span><span class="n">isError</span> <span class="kr">then</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">evt</span><span class="p">.</span><span class="n">error</span><span class="p">)</span>
+  <span class="kr">else</span>
+    <span class="c1">--check if we have existing data</span>
+    <span class="kr">if</span> <span class="n">evt</span><span class="p">.</span><span class="n">data</span> <span class="o">~=</span> <span class="kc">nil</span> <span class="kr">then</span>
+      <span class="n">profile_data</span> <span class="o">=</span> <span class="n">evt</span><span class="p">.</span><span class="n">data</span>
+    <span class="kr">else</span>
+      <span class="c1">--there is no data table yet, create a default one</span>
+      <span class="n">profile_data</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="n">name</span> <span class="o">=</span> <span class="s2">&quot;Tammy&quot;</span><span class="p">,</span>
+        <span class="n">age</span> <span class="o">=</span> <span class="mi">45</span>
+      <span class="p">}</span>
+      <span class="n">profile</span><span class="p">:</span><span class="n">set</span><span class="p">(</span><span class="n">profile_data</span><span class="p">,</span> <span class="n">onSetProfile</span><span class="p">)</span>
+    <span class="kr">end</span>
+  <span class="kr">end</span>
+<span class="kr">end</span>
+
+<span class="n">profile</span><span class="p">:</span><span class="n">get</span><span class="p">(</span><span class="n">onGetProfile</span><span class="p">)</span>
+</pre></div>
+
+
+<p>Once you have the local data table, use it to manage the data, and push it back to the server after any changes:</p>
+<div class="codehilite"><pre><span></span><span class="n">profile_data</span><span class="p">.</span><span class="n">active</span> <span class="o">=</span> <span class="kc">true</span>
+<span class="n">profile_data</span><span class="p">.</span><span class="n">colors</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;red&quot;</span><span class="p">,</span><span class="s2">&quot;green&quot;</span><span class="p">,</span><span class="s2">&quot;blue&quot;</span><span class="p">}</span>
+
+<span class="n">profile</span><span class="p">:</span><span class="n">set</span><span class="p">(</span><span class="n">profile_data</span><span class="p">,</span> <span class="n">onSetProfile</span><span class="p">,</span> <span class="p">{</span><span class="n">flag</span><span class="o">=</span><span class="s2">&quot;XX&quot;</span><span class="p">})</span>
+</pre></div>
+
+
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>When <em>replacing</em> a "root" value (as above), you must specify the "XX" flag. See <strong><a href="#flags">Flags</a></strong>.</p>
+</div>
               
             </div>
           </div>
