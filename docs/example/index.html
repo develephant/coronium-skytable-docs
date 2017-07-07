@@ -45,69 +45,59 @@
 
       <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
 	<ul class="current">
+	  
           
-            <li>
-    <li class="toctree-l1 ">
-        <a class="" href="..">Introduction</a>
-        
-    </li>
-<li>
+            <li class="toctree-l1">
+		
+    <a class="" href="..">Introduction</a>
+	    </li>
           
-            <li>
-    <li class="toctree-l1 ">
-        <a class="" href="../api/">Client API</a>
-        
-    </li>
-<li>
+            <li class="toctree-l1">
+		
+    <a class="" href="../api/">Client API</a>
+	    </li>
           
-            <li>
-    <li class="toctree-l1 ">
-        <a class="" href="../guide/">Client Guide</a>
-        
-    </li>
-<li>
+            <li class="toctree-l1">
+		
+    <a class="" href="../guide/">Client Guide</a>
+	    </li>
           
-            <li>
-    <li class="toctree-l1 current">
-        <a class="current" href="./">Examples</a>
-        
-            <ul>
+            <li class="toctree-l1 current">
+		
+    <a class="current" href="./">Examples</a>
+    <ul class="subnav">
             
-                <li class="toctree-l3"><a href="#basic-get">Basic Get</a></li>
-                
-            
-                <li class="toctree-l3"><a href="#get-with-path">Get with Path</a></li>
-                
-            
-                <li class="toctree-l3"><a href="#get-with-tags">Get with Tags</a></li>
-                
-            
-                <li class="toctree-l3"><a href="#basic-set">Basic Set</a></li>
-                
-            
-                <li class="toctree-l3"><a href="#set-with-path">Set with Path</a></li>
-                
-            
-                <li class="toctree-l3"><a href="#set-with-tags">Set with Tags</a></li>
-                
-            
-                <li class="toctree-l3"><a href="#set-with-options">Set with Options</a></li>
-                
-            
-                <li class="toctree-l3"><a href="#set-with-expiry">Set with Expiry</a></li>
-                
-            
-            </ul>
-        
-    </li>
-<li>
+    <li class="toctree-l2"><a href="#basic-get">Basic Get</a></li>
+    
+
+    <li class="toctree-l2"><a href="#get-with-path">Get with Path</a></li>
+    
+
+    <li class="toctree-l2"><a href="#get-with-tags">Get with Tags</a></li>
+    
+
+    <li class="toctree-l2"><a href="#basic-set">Basic Set</a></li>
+    
+
+    <li class="toctree-l2"><a href="#set-with-path">Set with Path</a></li>
+    
+
+    <li class="toctree-l2"><a href="#set-with-tags">Set with Tags</a></li>
+    
+
+    <li class="toctree-l2"><a href="#set-with-options">Set with Options</a></li>
+    
+
+    <li class="toctree-l2"><a href="#set-with-expiry">Set with Expiry</a></li>
+    
+
+    </ul>
+	    </li>
           
-            <li>
-    <li class="toctree-l1 ">
-        <a class="" href="../about/">About</a>
-        
-    </li>
-<li>
+            <li class="toctree-l1">
+		
+    <a class="" href="../about/">About</a>
+	    </li>
           
         </ul>
       </div>
@@ -142,197 +132,189 @@
             <div class="section">
               
                 <h1 id="basic-get">Basic Get</h1>
-<div class="codehilite"><pre><span></span><span class="kd">local</span> <span class="n">skytable</span> <span class="o">=</span> <span class="nb">require</span><span class="p">(</span><span class="s2">&quot;skytable.client&quot;</span><span class="p">)</span>
+<pre class="codehilite"><code class="language-lua">local skytable = require(&quot;skytable.client&quot;)
 
-<span class="kd">local</span> <span class="n">profile</span> <span class="o">=</span> <span class="n">skytable</span><span class="p">:</span><span class="n">open</span><span class="p">(</span><span class="s2">&quot;profile&quot;</span><span class="p">)</span>
+local profile = skytable:open(&quot;profile&quot;)
 
-<span class="kd">local</span> <span class="kr">function</span> <span class="nf">onResult</span><span class="p">(</span><span class="n">evt</span><span class="p">)</span>
-  <span class="kr">if</span> <span class="n">evt</span><span class="p">.</span><span class="n">isError</span> <span class="kr">then</span>
-    <span class="nb">print</span><span class="p">(</span><span class="n">evt</span><span class="p">.</span><span class="n">error</span><span class="p">)</span>
-  <span class="kr">else</span>
-    <span class="kd">local</span> <span class="n">tbl</span> <span class="o">=</span> <span class="n">evt</span><span class="p">.</span><span class="n">data</span> <span class="c1">--data table</span>
-  <span class="kr">end</span>
-<span class="kr">end</span>
+local function onResult(evt)
+  if evt.isError then
+    print(evt.error)
+  else
+    local tbl = evt.data --data table
+  end
+end
 
-<span class="n">profile</span><span class="p">:</span><span class="n">get</span><span class="p">(</span><span class="n">onResult</span><span class="p">)</span>
-</pre></div>
+profile:get(onResult)</code></pre>
 
 
 <hr />
 <h1 id="get-with-path">Get with Path</h1>
-<div class="codehilite"><pre><span></span><span class="kd">local</span> <span class="n">skytable</span> <span class="o">=</span> <span class="nb">require</span><span class="p">(</span><span class="s2">&quot;skytable.client&quot;</span><span class="p">)</span>
+<pre class="codehilite"><code class="language-lua">local skytable = require(&quot;skytable.client&quot;)
 
-<span class="kd">local</span> <span class="n">profile</span> <span class="o">=</span> <span class="n">skytable</span><span class="p">:</span><span class="n">open</span><span class="p">(</span><span class="s2">&quot;profile&quot;</span><span class="p">)</span>
+local profile = skytable:open(&quot;profile&quot;)
 
-<span class="kd">local</span> <span class="kr">function</span> <span class="nf">onResult</span><span class="p">(</span><span class="n">evt</span><span class="p">)</span>
-  <span class="kr">if</span> <span class="n">evt</span><span class="p">.</span><span class="n">isError</span> <span class="kr">then</span>
-    <span class="nb">print</span><span class="p">(</span><span class="n">evt</span><span class="p">.</span><span class="n">error</span><span class="p">)</span>
-  <span class="kr">else</span>
-    <span class="nb">print</span><span class="p">(</span><span class="n">evt</span><span class="p">.</span><span class="n">data</span><span class="p">.</span><span class="n">name</span><span class="p">)</span>
-  <span class="kr">end</span>
-<span class="kr">end</span>
+local function onResult(evt)
+  if evt.isError then
+    print(evt.error)
+  else
+    print(evt.data.name)
+  end
+end
 
-<span class="n">profile</span><span class="p">:</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;name&quot;</span><span class="p">,</span> <span class="n">onResult</span><span class="p">)</span>
-</pre></div>
+profile:get(&quot;name&quot;, onResult)</code></pre>
 
 
 <hr />
 <h1 id="get-with-tags">Get with Tags</h1>
-<div class="codehilite"><pre><span></span><span class="kd">local</span> <span class="n">skytable</span> <span class="o">=</span> <span class="nb">require</span><span class="p">(</span><span class="s2">&quot;skytable.client&quot;</span><span class="p">)</span>
+<pre class="codehilite"><code class="language-lua">local skytable = require(&quot;skytable.client&quot;)
 
-<span class="kd">local</span> <span class="n">profile</span> <span class="o">=</span> <span class="n">skytable</span><span class="p">:</span><span class="n">open</span><span class="p">(</span><span class="s2">&quot;profile&quot;</span><span class="p">)</span>
-<span class="kd">local</span> <span class="n">location</span> <span class="o">=</span> <span class="n">skytable</span><span class="p">:</span><span class="n">open</span><span class="p">(</span><span class="s2">&quot;location&quot;</span><span class="p">)</span>
+local profile = skytable:open(&quot;profile&quot;)
+local location = skytable:open(&quot;location&quot;)
 
-<span class="kd">local</span> <span class="kr">function</span> <span class="nf">onResult</span><span class="p">(</span><span class="n">evt</span><span class="p">)</span>
-  <span class="kr">if</span> <span class="n">evt</span><span class="p">.</span><span class="n">isError</span> <span class="kr">then</span>
-    <span class="nb">print</span><span class="p">(</span><span class="n">evt</span><span class="p">.</span><span class="n">error</span><span class="p">)</span>
-  <span class="kr">else</span>
-    <span class="kr">if</span> <span class="n">evt</span><span class="p">.</span><span class="n">tag</span> <span class="o">==</span> <span class="s2">&quot;get-name&quot;</span> <span class="kr">then</span>
-      <span class="nb">print</span><span class="p">(</span><span class="n">evt</span><span class="p">.</span><span class="n">data</span><span class="p">.</span><span class="n">name</span><span class="p">)</span>
-    <span class="kr">elseif</span> <span class="n">evt</span><span class="p">.</span><span class="n">tag</span> <span class="o">==</span> <span class="s2">&quot;get-street&quot;</span> <span class="kr">then</span>
-      <span class="nb">print</span><span class="p">(</span><span class="n">evt</span><span class="p">.</span><span class="n">data</span><span class="p">.</span><span class="n">street</span><span class="p">)</span>
-    <span class="kr">end</span>
-  <span class="kr">end</span>
-<span class="kr">end</span>
+local function onResult(evt)
+  if evt.isError then
+    print(evt.error)
+  else
+    if evt.tag == &quot;get-name&quot; then
+      print(evt.data.name)
+    elseif evt.tag == &quot;get-street&quot; then
+      print(evt.data.street)
+    end
+  end
+end
 
-<span class="n">profile</span><span class="p">:</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;name&quot;</span><span class="p">,</span> <span class="n">onResult</span><span class="p">,</span> <span class="p">{</span><span class="n">tag</span><span class="o">=</span><span class="s2">&quot;get-name&quot;</span><span class="p">})</span>
-<span class="n">location</span><span class="p">:</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;address.street&quot;</span><span class="p">,</span> <span class="n">onResult</span><span class="p">,</span> <span class="p">{</span><span class="n">tag</span><span class="o">=</span><span class="s2">&quot;get-street&quot;</span><span class="p">})</span>
-</pre></div>
+profile:get(&quot;name&quot;, onResult, {tag=&quot;get-name&quot;})
+location:get(&quot;address.street&quot;, onResult, {tag=&quot;get-street&quot;})</code></pre>
 
 
 <hr />
 <h1 id="basic-set">Basic Set</h1>
-<div class="codehilite"><pre><span></span><span class="kd">local</span> <span class="n">skytable</span> <span class="o">=</span> <span class="nb">require</span><span class="p">(</span><span class="s2">&quot;skytable.client&quot;</span><span class="p">)</span>
+<pre class="codehilite"><code class="language-lua">local skytable = require(&quot;skytable.client&quot;)
 
-<span class="kd">local</span> <span class="n">location</span> <span class="o">=</span> <span class="n">skytable</span><span class="p">:</span><span class="n">open</span><span class="p">(</span><span class="s2">&quot;location&quot;</span><span class="p">)</span>
+local location = skytable:open(&quot;location&quot;)
 
-<span class="kd">local</span> <span class="kr">function</span> <span class="nf">onSetResult</span><span class="p">(</span><span class="n">evt</span><span class="p">)</span>
-  <span class="kr">if</span> <span class="n">evt</span><span class="p">.</span><span class="n">isError</span> <span class="kr">then</span>
-    <span class="nb">print</span><span class="p">(</span><span class="n">evt</span><span class="p">.</span><span class="n">error</span><span class="p">)</span>
-  <span class="kr">else</span>
-    <span class="nb">print</span><span class="p">(</span><span class="n">evt</span><span class="p">.</span><span class="n">success</span><span class="p">)</span>
-  <span class="kr">end</span>
-<span class="kr">end</span>
+local function onSetResult(evt)
+  if evt.isError then
+    print(evt.error)
+  else
+    print(evt.success)
+  end
+end
 
-<span class="kd">local</span> <span class="n">locationData</span> <span class="o">=</span> 
-<span class="p">{</span>
-  <span class="n">address</span> <span class="o">=</span> 
-  <span class="p">{</span>
-    <span class="n">street</span> <span class="o">=</span> <span class="s2">&quot;123 Main St.&quot;</span><span class="p">,</span>
-    <span class="n">city</span> <span class="o">=</span> <span class="s2">&quot;San City&quot;</span><span class="p">,</span>
-    <span class="n">state</span> <span class="o">=</span> <span class="s2">&quot;Anywhere&quot;</span>
-  <span class="p">}</span>
-<span class="p">}</span>
+local locationData = 
+{
+  address = 
+  {
+    street = &quot;123 Main St.&quot;,
+    city = &quot;San City&quot;,
+    state = &quot;Anywhere&quot;
+  }
+}
 
-<span class="n">location</span><span class="p">:</span><span class="n">set</span><span class="p">(</span><span class="n">locationData</span><span class="p">,</span> <span class="n">onSetResult</span><span class="p">)</span>
-</pre></div>
+location:set(locationData, onSetResult)</code></pre>
 
 
 <hr />
 <h1 id="set-with-path">Set with Path</h1>
-<div class="codehilite"><pre><span></span><span class="kd">local</span> <span class="n">skytable</span> <span class="o">=</span> <span class="nb">require</span><span class="p">(</span><span class="s2">&quot;skytable.client&quot;</span><span class="p">)</span>
+<pre class="codehilite"><code class="language-lua">local skytable = require(&quot;skytable.client&quot;)
 
-<span class="kd">local</span> <span class="n">location</span> <span class="o">=</span> <span class="n">skytable</span><span class="p">:</span><span class="n">open</span><span class="p">(</span><span class="s2">&quot;location&quot;</span><span class="p">)</span>
+local location = skytable:open(&quot;location&quot;)
 
-<span class="kd">local</span> <span class="kr">function</span> <span class="nf">onSetResult</span><span class="p">(</span><span class="n">evt</span><span class="p">)</span>
-  <span class="kr">if</span> <span class="n">evt</span><span class="p">.</span><span class="n">isError</span> <span class="kr">then</span>
-    <span class="nb">print</span><span class="p">(</span><span class="n">evt</span><span class="p">.</span><span class="n">error</span><span class="p">)</span>
-  <span class="kr">else</span>
-    <span class="nb">print</span><span class="p">(</span><span class="n">evt</span><span class="p">.</span><span class="n">success</span><span class="p">)</span>
-  <span class="kr">end</span>
-<span class="kr">end</span>
+local function onSetResult(evt)
+  if evt.isError then
+    print(evt.error)
+  else
+    print(evt.success)
+  end
+end
 
-<span class="n">location</span><span class="p">:</span><span class="n">set</span><span class="p">(</span><span class="s2">&quot;address.state&quot;</span><span class="p">,</span> <span class="s2">&quot;Someplace&quot;</span><span class="p">,</span> <span class="n">onSetResult</span><span class="p">)</span>
-</pre></div>
+location:set(&quot;address.state&quot;, &quot;Someplace&quot;, onSetResult)</code></pre>
 
 
 <hr />
 <h1 id="set-with-tags">Set with Tags</h1>
-<div class="codehilite"><pre><span></span><span class="kd">local</span> <span class="n">skytable</span> <span class="o">=</span> <span class="nb">require</span><span class="p">(</span><span class="s2">&quot;skytable.client&quot;</span><span class="p">)</span>
+<pre class="codehilite"><code class="language-lua">local skytable = require(&quot;skytable.client&quot;)
 
-<span class="kd">local</span> <span class="n">location</span> <span class="o">=</span> <span class="n">skytable</span><span class="p">:</span><span class="n">open</span><span class="p">(</span><span class="s2">&quot;location&quot;</span><span class="p">)</span>
-<span class="kd">local</span> <span class="n">profile</span> <span class="o">=</span> <span class="n">skytable</span><span class="p">:</span><span class="n">open</span><span class="p">(</span><span class="s2">&quot;profile&quot;</span><span class="p">)</span>
+local location = skytable:open(&quot;location&quot;)
+local profile = skytable:open(&quot;profile&quot;)
 
-<span class="kd">local</span> <span class="kr">function</span> <span class="nf">onSetResult</span><span class="p">(</span><span class="n">evt</span><span class="p">)</span>
-  <span class="kr">if</span> <span class="n">evt</span><span class="p">.</span><span class="n">isError</span> <span class="kr">then</span>
-    <span class="nb">print</span><span class="p">(</span><span class="n">evt</span><span class="p">.</span><span class="n">error</span><span class="p">)</span>
-  <span class="kr">else</span>
-    <span class="kr">if</span> <span class="n">evt</span><span class="p">.</span><span class="n">tag</span> <span class="o">==</span> <span class="s2">&quot;set-location&quot;</span> <span class="kr">then</span>
-      <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Set location&quot;</span><span class="p">,</span> <span class="n">evt</span><span class="p">.</span><span class="n">success</span><span class="p">)</span>
-    <span class="kr">elseif</span> <span class="n">evt</span><span class="p">.</span><span class="n">tag</span> <span class="o">==</span> <span class="s2">&quot;set-profile-name&quot;</span> <span class="kr">then</span>
-      <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Set profile&quot;</span><span class="p">,</span> <span class="n">evt</span><span class="p">.</span><span class="n">success</span><span class="p">)</span>
-    <span class="kr">end</span>
-  <span class="kr">end</span>
-<span class="kr">end</span>
+local function onSetResult(evt)
+  if evt.isError then
+    print(evt.error)
+  else
+    if evt.tag == &quot;set-location&quot; then
+      print(&quot;Set location&quot;, evt.success)
+    elseif evt.tag == &quot;set-profile-name&quot; then
+      print(&quot;Set profile&quot;, evt.success)
+    end
+  end
+end
 
-<span class="kd">local</span> <span class="n">locationData</span> <span class="o">=</span> 
-<span class="p">{</span>
-  <span class="n">address</span> <span class="o">=</span> 
-  <span class="p">{</span>
-    <span class="n">street</span> <span class="o">=</span> <span class="s2">&quot;123 Main St.&quot;</span><span class="p">,</span>
-    <span class="n">city</span> <span class="o">=</span> <span class="s2">&quot;San City&quot;</span><span class="p">,</span>
-    <span class="n">state</span> <span class="o">=</span> <span class="s2">&quot;Anywhere&quot;</span>
-  <span class="p">}</span>
-<span class="p">}</span>
+local locationData = 
+{
+  address = 
+  {
+    street = &quot;123 Main St.&quot;,
+    city = &quot;San City&quot;,
+    state = &quot;Anywhere&quot;
+  }
+}
 
-<span class="n">location</span><span class="p">:</span><span class="n">set</span><span class="p">(</span><span class="n">locationData</span><span class="p">,</span> <span class="n">onSetResult</span><span class="p">,</span> <span class="p">{</span><span class="n">tag</span><span class="o">=</span><span class="s2">&quot;set-location&quot;</span><span class="p">})</span>
-<span class="n">profile</span><span class="p">:</span><span class="n">set</span><span class="p">(</span><span class="s2">&quot;name&quot;</span><span class="p">,</span> <span class="s2">&quot;Steve&quot;</span><span class="p">,</span> <span class="n">onSetResult</span><span class="p">,</span> <span class="p">{</span><span class="n">tag</span><span class="o">=</span><span class="s2">&quot;set-profile-name&quot;</span><span class="p">})</span>
-</pre></div>
+location:set(locationData, onSetResult, {tag=&quot;set-location&quot;})
+profile:set(&quot;name&quot;, &quot;Steve&quot;, onSetResult, {tag=&quot;set-profile-name&quot;})</code></pre>
 
 
 <hr />
 <h1 id="set-with-options">Set with Options</h1>
-<div class="codehilite"><pre><span></span><span class="kd">local</span> <span class="n">skytable</span> <span class="o">=</span> <span class="nb">require</span><span class="p">(</span><span class="s2">&quot;skytable.client&quot;</span><span class="p">)</span>
+<pre class="codehilite"><code class="language-lua">local skytable = require(&quot;skytable.client&quot;)
 
-<span class="kd">local</span> <span class="n">location</span> <span class="o">=</span> <span class="n">skytable</span><span class="p">:</span><span class="n">open</span><span class="p">(</span><span class="s2">&quot;location&quot;</span><span class="p">)</span>
+local location = skytable:open(&quot;location&quot;)
 
-<span class="kd">local</span> <span class="kr">function</span> <span class="nf">onSetResult</span><span class="p">(</span><span class="n">evt</span><span class="p">)</span>
-  <span class="kr">if</span> <span class="n">evt</span><span class="p">.</span><span class="n">isError</span> <span class="kr">then</span>
-    <span class="nb">print</span><span class="p">(</span><span class="n">evt</span><span class="p">.</span><span class="n">error</span><span class="p">)</span>
-  <span class="kr">else</span>
-    <span class="nb">print</span><span class="p">(</span><span class="n">evt</span><span class="p">.</span><span class="n">success</span><span class="p">)</span>
-  <span class="kr">end</span>
-<span class="kr">end</span>
+local function onSetResult(evt)
+  if evt.isError then
+    print(evt.error)
+  else
+    print(evt.success)
+  end
+end
 
-<span class="kd">local</span> <span class="n">locationData</span> <span class="o">=</span> 
-<span class="p">{</span>
-  <span class="n">address</span> <span class="o">=</span> 
-  <span class="p">{</span>
-    <span class="n">street</span> <span class="o">=</span> <span class="s2">&quot;555 1st Ave.&quot;</span><span class="p">,</span>
-    <span class="n">city</span> <span class="o">=</span> <span class="s2">&quot;Citopia&quot;</span><span class="p">,</span>
-    <span class="n">state</span> <span class="o">=</span> <span class="s2">&quot;Bliss&quot;</span>
-  <span class="p">}</span>
-<span class="p">}</span>
+local locationData = 
+{
+  address = 
+  {
+    street = &quot;555 1st Ave.&quot;,
+    city = &quot;Citopia&quot;,
+    state = &quot;Bliss&quot;
+  }
+}
 
-<span class="n">location</span><span class="p">:</span><span class="n">set</span><span class="p">(</span><span class="n">locationData</span><span class="p">,</span> <span class="n">onSetResult</span><span class="p">,</span> <span class="p">{</span><span class="n">flag</span> <span class="o">=</span> <span class="s2">&quot;XX&quot;</span><span class="p">})</span>
-</pre></div>
+location:set(locationData, onSetResult, {flag = &quot;XX&quot;})</code></pre>
 
 
 <h1 id="set-with-expiry">Set with Expiry</h1>
-<div class="codehilite"><pre><span></span><span class="kd">local</span> <span class="n">skytable</span> <span class="o">=</span> <span class="nb">require</span><span class="p">(</span><span class="s2">&quot;skytable.client&quot;</span><span class="p">)</span>
+<pre class="codehilite"><code class="language-lua">local skytable = require(&quot;skytable.client&quot;)
 
-<span class="kd">local</span> <span class="n">location</span> <span class="o">=</span> <span class="n">skytable</span><span class="p">:</span><span class="n">open</span><span class="p">(</span><span class="s2">&quot;location&quot;</span><span class="p">)</span>
+local location = skytable:open(&quot;location&quot;)
 
-<span class="kd">local</span> <span class="kr">function</span> <span class="nf">onSetResult</span><span class="p">(</span><span class="n">evt</span><span class="p">)</span>
-  <span class="kr">if</span> <span class="n">evt</span><span class="p">.</span><span class="n">isError</span> <span class="kr">then</span>
-    <span class="nb">print</span><span class="p">(</span><span class="n">evt</span><span class="p">.</span><span class="n">error</span><span class="p">)</span>
-  <span class="kr">else</span>
-    <span class="nb">print</span><span class="p">(</span><span class="n">evt</span><span class="p">.</span><span class="n">success</span><span class="p">,</span> <span class="n">evt</span><span class="p">.</span><span class="n">expiry</span><span class="p">)</span>
-  <span class="kr">end</span>
-<span class="kr">end</span>
+local function onSetResult(evt)
+  if evt.isError then
+    print(evt.error)
+  else
+    print(evt.success, evt.expiry)
+  end
+end
 
-<span class="kd">local</span> <span class="n">locationData</span> <span class="o">=</span> 
-<span class="p">{</span>
-  <span class="n">address</span> <span class="o">=</span> 
-  <span class="p">{</span>
-    <span class="n">street</span> <span class="o">=</span> <span class="s2">&quot;555 1st Ave.&quot;</span><span class="p">,</span>
-    <span class="n">city</span> <span class="o">=</span> <span class="s2">&quot;Citopia&quot;</span><span class="p">,</span>
-    <span class="n">state</span> <span class="o">=</span> <span class="s2">&quot;Bliss&quot;</span>
-  <span class="p">}</span>
-<span class="p">}</span>
+local locationData = 
+{
+  address = 
+  {
+    street = &quot;555 1st Ave.&quot;,
+    city = &quot;Citopia&quot;,
+    state = &quot;Bliss&quot;
+  }
+}
 
-<span class="n">location</span><span class="p">:</span><span class="n">set</span><span class="p">(</span><span class="n">locationData</span><span class="p">,</span> <span class="n">onSetResult</span><span class="p">,</span> <span class="p">{</span><span class="n">expiry</span> <span class="o">=</span> <span class="mi">60</span><span class="p">})</span>
-</pre></div>
+location:set(locationData, onSetResult, {expiry = 60})</code></pre>
               
             </div>
           </div>

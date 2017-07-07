@@ -45,72 +45,59 @@
 
       <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
 	<ul class="current">
+	  
           
-            <li>
-    <li class="toctree-l1 ">
-        <a class="" href="..">Introduction</a>
-        
-    </li>
-<li>
+            <li class="toctree-l1">
+		
+    <a class="" href="..">Introduction</a>
+	    </li>
           
-            <li>
-    <li class="toctree-l1 ">
-        <a class="" href="../api/">Client API</a>
-        
-    </li>
-<li>
+            <li class="toctree-l1">
+		
+    <a class="" href="../api/">Client API</a>
+	    </li>
           
-            <li>
-    <li class="toctree-l1 current">
-        <a class="current" href="./">Client Guide</a>
-        
-            <ul>
+            <li class="toctree-l1 current">
+		
+    <a class="current" href="./">Client Guide</a>
+    <ul class="subnav">
             
-                <li class="toctree-l3"><a href="#overview">Overview</a></li>
-                
-            
-                <li class="toctree-l3"><a href="#data-paths">Data Paths</a></li>
-                
-            
-                <li class="toctree-l3"><a href="#listeners">Listeners</a></li>
-                
-            
-                <li class="toctree-l3"><a href="#tags">Tags</a></li>
-                
-            
-                <li class="toctree-l3"><a href="#flags">Flags</a></li>
-                
-            
-                <li class="toctree-l3"><a href="#expiry">Expiry</a></li>
-                
-            
-                <li class="toctree-l3"><a href="#set">Set</a></li>
-                
-            
-                <li class="toctree-l3"><a href="#get">Get</a></li>
-                
-            
-                <li class="toctree-l3"><a href="#delete">Delete</a></li>
-                
-            
-            </ul>
-        
-    </li>
-<li>
+    <li class="toctree-l2"><a href="#overview">Overview</a></li>
+    
+
+    <li class="toctree-l2"><a href="#data-paths">Data Paths</a></li>
+    
+
+    <li class="toctree-l2"><a href="#listeners">Listeners</a></li>
+    
+
+    <li class="toctree-l2"><a href="#tags">Tags</a></li>
+    
+
+    <li class="toctree-l2"><a href="#flags">Flags</a></li>
+    
+
+    <li class="toctree-l2"><a href="#expiry">Expiry</a></li>
+    
+
+    <li class="toctree-l2"><a href="#delete">Delete</a></li>
+    
+
+    <li class="toctree-l2"><a href="#keys">Keys</a></li>
+    
+
+    </ul>
+	    </li>
           
-            <li>
-    <li class="toctree-l1 ">
-        <a class="" href="../example/">Examples</a>
-        
-    </li>
-<li>
+            <li class="toctree-l1">
+		
+    <a class="" href="../example/">Examples</a>
+	    </li>
           
-            <li>
-    <li class="toctree-l1 ">
-        <a class="" href="../about/">About</a>
-        
-    </li>
-<li>
+            <li class="toctree-l1">
+		
+    <a class="" href="../about/">About</a>
+	    </li>
           
         </ul>
       </div>
@@ -147,20 +134,427 @@
                 <h1 id="overview">Overview</h1>
 <hr />
 <h1 id="data-paths">Data Paths</h1>
+<p>Data paths allow you to "path" to a value in the SkyTable, both to set and get the underlying value. Data paths can be used in all of the value based API calls. This includes <strong>get</strong>, <strong>set</strong>, <strong>delete</strong>, and <strong>keys</strong>.</p>
+<p>When calling any of the value methods <em>without</em> a data path, a "root" path is implied. For example, let's assume the following data exists in a "profile" SkyTable:</p>
+<pre class="codehilite"><code class="language-lua">{
+  name = &quot;Jim&quot;,
+  age = 34,
+  active = true,
+  address = {
+    street = &quot;123 Main St.&quot;,
+    city = &quot;San Diego&quot;,
+    state = &quot;CA&quot;,
+    zip = &quot;92037&quot;
+  },
+  colors = {&quot;red&quot;, &quot;green&quot;, &quot;blue&quot;}
+}</code></pre>
+
+
+<p><strong>Pathing with Get</strong></p>
+<p>Then following call brings back the entire SkyTable (its "root" path):</p>
+<pre class="codehilite"><code class="language-lua">local profile = skytable:open(&quot;profile&quot;)
+
+local function onResult(evt)
+  local data = evt.data --the entire data table
+  print(data.name) -- Jim
+end
+
+profile:get(onResult)</code></pre>
+
+
+<p>To gain access to an individual value in the SkyTable, we can supply a path:</p>
+<pre class="codehilite"><code class="language-lua">local profile = skytable:open(&quot;profile&quot;)
+
+local function onResult(evt)
+  local data = evt.data --holds &quot;name&quot; value
+  print(data) -- Jim
+end
+
+profile:get(&quot;name&quot;, onResult)</code></pre>
+
+
+<p>To dive even deeper into the SkyTable, just path to the key, using a "dot" separator:</p>
+<pre class="codehilite"><code class="language-lua">local profile = skytable:open(&quot;profile&quot;)
+
+local function onResult(evt)
+  local data = evt.data --holds &quot;city&quot; value
+  print(data) -- San Diego
+end
+
+profile:get(&quot;address.city&quot;, onResult)</code></pre>
+
+
+<p>If we wanted the entire "address" table:</p>
+<pre class="codehilite"><code class="language-lua">local profile = skytable:open(&quot;profile&quot;)
+
+local function onResult(evt)
+  local data = evt.data --entire address table
+  print(address.state) -- CA
+end
+
+profile:get(&quot;address&quot;, onResult)</code></pre>
+
+
+<p>Or the "colors" table array:</p>
+<pre class="codehilite"><code class="language-lua">local profile = skytable:open(&quot;profile&quot;)
+
+local function onResult(evt)
+  local data = evt.data --entire colors array
+  for i=1, #data.colors  do
+    print(data.colors[i]) --red, green, blue
+  end
+end
+
+profile:get(&quot;colors&quot;, onResult)</code></pre>
+
+
+<p>You can path as far as you need:</p>
+<pre class="codehilite"><code class="language-lua">gear:get(&quot;set1.arms.def&quot;, onResult)</code></pre>
+
+
+<p><strong>Pathing with Set</strong></p>
+<p>When using paths with the <strong>set</strong> API call, the usage outlined above stays the same, with some implementation differences when setting a "root" path.</p>
+<p>When first populating a SkyTable, you <em>must</em> pass it a data table to start with. This can be as little as one property, or a whole predefined table. To create the inital SkyTable we do like so:</p>
+<pre class="codehilite"><code class="language-lua">local profile = skytable:open(&quot;profile&quot;)
+
+local function onSetResult(evt)
+  if evt.success then
+    print('saved')
+  end
+end
+
+local data_tbl = 
+{
+  name = &quot;Jim&quot;
+}
+
+profile:set(data_tbl, onSetResult)</code></pre>
+
+
+<p>Once we have a data table saved to a SkyTable, we can set values on it at a later time by using a path:</p>
+<pre class="codehilite"><code class="language-lua">local profile = skytable:open(&quot;profile&quot;)
+
+local function onSetResult(evt)
+  if evt.success then
+    print('saved')
+  end
+end
+
+profile:set(&quot;name&quot;, &quot;Sally&quot;, onSetResult)</code></pre>
+
+
+<p>To add an "address" data table to our SkyTable, we can do:</p>
+<pre class="codehilite"><code class="language-lua">local profile = skytable:open(&quot;profile&quot;)
+
+local address = {
+  street = &quot;123 Main St.&quot;,
+  city = &quot;San Diego&quot;,
+  state = &quot;CA&quot;,
+  zip = &quot;92037&quot;
+}
+
+local function onSetResult(evt)
+  if evt.success then
+    print('saved')
+  end
+end
+
+profile:set(&quot;address&quot;, address, onSetResult)</code></pre>
+
+
+<p>And to change a value in the "address" data table:</p>
+<pre class="codehilite"><code class="language-lua">local profile = skytable:open(&quot;profile&quot;)
+
+local function onSetResult(evt)
+  if evt.success then
+    print('saved')
+  end
+end
+
+profile:set(&quot;address.city&quot;, &quot;San Francisco&quot;, onSetResult)</code></pre>
+
+
+<p>Or adding an array table:</p>
+<pre class="codehilite"><code class="language-lua">local profile = skytable:open(&quot;profile&quot;)
+
+local function onSetResult(evt)
+  if evt.success then
+    print('saved')
+  end
+end
+
+profile:set(&quot;colors&quot;, {&quot;red&quot;,&quot;green&quot;,&quot;blue&quot;}, onSetResult)</code></pre>
+
+
+<div class="admonition important">
+<p class="admonition-title">Important</p>
+<p>Once the "root" data table has been set for a SkyTable, you cannot overwrite it without specifying a flag.</p>
+</div>
+<p>To <em>overwrite</em> a "root" data table in a SkyTable, you must pass a special flag. This is not required when creating the initial data.</p>
+<pre class="codehilite"><code class="language-lua">profile:set(newDataTable, onSetResult, {flag=&quot;XX&quot;})</code></pre>
+
+
+<p>This helps prevent overwriting your "root" data table by accident. Flags can also be used with data paths, but the pathed value will be overwritten on any <strong>set</strong> call.</p>
+<p>See <strong><a href="#flags">Flags</a></strong> for more details.</p>
 <hr />
 <h1 id="listeners">Listeners</h1>
+<p>Because network requests are not synchronus actions, listeners must be supplied to all SkyTable API calls. The listener is where you will recieve the response from the SkyTable server.</p>
+<p>There are two different event types returned from a SkyTable server. One shaped for the <strong>set</strong> call, and another for the remaining value based API calls; <strong>get</strong>, <strong>delete</strong>, and <strong>keys</strong>.</p>
+<p>While you can use one listener for all the API calls, in general its easier to create two different listeners:</p>
+<pre class="codehilite"><code class="language-lua">local profile = skytable:open(&quot;profile&quot;)
+
+--Set
+local function onSetResult(evt)
+  if evt.isError then
+    print(evt.error)
+  else
+    print(evt.success)
+  end
+end
+
+--Get, Delete, Keys
+local function onResult(evt)
+  if evt.isError then
+    print(evt.error)
+  else
+    local data = evt.data --String, Number, Boolean, Table, or nil
+  end
+end</code></pre>
+
+
+<p>The main difference between the events are the properties available.</p>
+<p><strong>Set event properties:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Description</th>
+<th>Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>isError</td>
+<td>An error has occured.</td>
+<td>Boolean</td>
+</tr>
+<tr>
+<td>error</td>
+<td>A descriptive error string.</td>
+<td>String</td>
+</tr>
+<tr>
+<td>success</td>
+<td>A flag noting a successful <strong>set</strong> action.</td>
+<td>Boolean</td>
+</tr>
+<tr>
+<td>key</td>
+<td>The user key of the calling client.</td>
+<td>String</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>If set, the <strong>success</strong> flag will almost always be <em>true</em>. An unsuccessful call will usually be propagated to the <strong>error</strong> property.</p>
+</div>
+<p><strong>Get, Delete, Keys event properties:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Description</th>
+<th>Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>isError</td>
+<td>An error has occurred.</td>
+<td>Boolean</td>
+</tr>
+<tr>
+<td>error</td>
+<td>A descriptive error string.</td>
+<td>String</td>
+</tr>
+<tr>
+<td>data</td>
+<td>The returned data.</td>
+<td>String, Number, Boolean, or Table</td>
+</tr>
+<tr>
+<td>key</td>
+<td>The user key of the calling client.</td>
+<td>String</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The <strong>data</strong> property can potentially be <em>nil</em>.</p>
+</div>
+<p><strong>Best practices</strong></p>
+<p>While you can set up general listeners, it's best to assign a specific listener per action:</p>
+<pre class="codehilite"><code class="language-lua">local profile = skytable:open(&quot;profile&quot;)
+
+local onSetName(evt)
+  if evt.success then
+    print('name saved')
+  end
+end
+
+local onSetColors(evt)
+  if evt.success then
+    print('colors saved')
+  end
+end
+
+profile:set(&quot;name&quot;, &quot;Dave&quot;, onSetName)
+profile:set(&quot;colors&quot;, {&quot;red&quot;,&quot;green&quot;,&quot;blue&quot;}, onSetColors)</code></pre>
+
+
+<p>This is the recommended approach for the other value based API calls; <strong>get</strong>, <strong>delete</strong>, and <strong>keys</strong>.</p>
+<p>Another option is using <strong><a href="#tags">Tags</a></strong>.</p>
 <hr />
 <h1 id="tags">Tags</h1>
+<p>When using a general listener (see <strong><a href="#listeners">Listeners</a></strong>), you can mark an API call with a <em>tag</em> to filter the response.</p>
+<p>A <em>tag</em> is added to a call using the <strong>options</strong> parameter, which takes a table:</p>
+<pre class="codehilite"><code class="language-lua">local profile = skytable:open(&quot;profile&quot;)
+
+local function onResult(evt)
+  if not evt.isError then
+    print(evt.error)
+  else
+    local data = evt.data
+    if evt.tag == &quot;get-name&quot; then
+      print(data) -- name string
+    elseif evt.tag == &quot;get-colors&quot; then
+      print(data[1]) -- colors table array
+    end
+  end
+end
+
+profile:get(&quot;name&quot;, onResult, {tag=&quot;get-name&quot;})
+profile:get(&quot;colors&quot;, onResult, {tag=&quot;get-colors&quot;})</code></pre>
+
+
+<p>You can also use this method to create one main generalized response listener for both the <strong>set</strong> call, as well as <strong>get</strong>, <strong>delete</strong>, and <strong>keys</strong>:</p>
+<pre class="codehilite"><code class="language-lua">local profile = skytable:open(&quot;profile&quot;)
+
+local function onResult(evt)
+  if not evt.isError then
+    print(evt.error)
+  else
+    if evt.tag == &quot;set-name&quot; then
+      if evt.success then
+        print('name saved')
+      end
+    elseif evt.tag == &quot;get-colors&quot; then
+      print(evt.data[1]) -- colors table array
+    end
+  end
+end
+
+profile:set(&quot;name&quot;, &quot;Sam&quot;, onResult, {tag=&quot;set-name&quot;})
+profile:get(&quot;colors&quot;, onResult, {tag=&quot;get-colors&quot;})</code></pre>
+
+
 <hr />
 <h1 id="flags">Flags</h1>
+<p>When using the <strong>set</strong> API call, you can supply a <em>flag</em> to the <strong>options</strong> parameter, as a table. </p>
+<p><strong>Flag Types</strong></p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Description</th>
+<th>Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>NX</td>
+<td>Set the path value only if the path <strong><em>does not</em></strong> exist.</td>
+<td>String</td>
+</tr>
+<tr>
+<td>XX</td>
+<td>Set the path value only if the path <strong><em>does</em></strong> exist.</td>
+<td>String</td>
+</tr>
+</tbody>
+</table>
+<pre class="codehilite"><code class="language-lua">local profile = skytable:open(&quot;profile&quot;)
+
+local function onSetResult(evt)
+  if evt.success then
+    print('saved')
+  end
+end
+
+--set the name only if the path exists.
+profile:set(&quot;name&quot;, onSetResult, {flag=&quot;XX&quot;})</code></pre>
+
+
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>When calling a <strong>set</strong> without a flag, the value will be created if the path does not already exists, or replaced if it does.</p>
+</div>
 <hr />
 <h1 id="expiry">Expiry</h1>
-<hr />
-<h1 id="set">Set</h1>
-<hr />
-<h1 id="get">Get</h1>
+<p>When using the <strong>set</strong> API call, you can also supply an <em>expiry</em> to "expire" the SkyTable at a specified time. </p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>Once a SkyTable has been removed via an expiry, it is no longer accessible.</p>
+</div>
+<p><strong>Expiry Properties</strong></p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Description</th>
+<th>Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>seconds</td>
+<td>The seconds until the SkyTable will be removed.</td>
+<td>Number</td>
+</tr>
+</tbody>
+</table>
+<pre class="codehilite"><code class="language-lua">local profile = skytable:open(&quot;profile&quot;)
+
+local onSetResult(evt)
+  if evt.success then
+    print('saved', 'expiry:', tostring(evt.expiry))
+  end
+end
+
+--remove the SkyTable in 5 minutes
+profile:set(data_tbl, onSetResult, {expiry=300})</code></pre>
+
+
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>When a path is updated using the <strong>set</strong> API call, the expiry will be reset to its initial value. For example, if you set a value after 2 minutes on a 5 minute exipry, the expiry will be reset to 5 minutes.</p>
+</div>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>To automatically clean out inactive SkyTables, set a high expiry value.</p>
+</div>
 <hr />
 <h1 id="delete">Delete</h1>
+<p>The <strong>delete</strong> API call will remove a value at the given path.</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>This method should be used with caution. When operating on the "root" path, the entire data table will be cleared, and the path will no longer exist. Unlike the <strong>set</strong> method flag protection, a <strong>delete</strong> method will do its job as long as the path exists.</p>
+</div>
+<hr />
+<h1 id="keys">Keys</h1>
               
             </div>
           </div>

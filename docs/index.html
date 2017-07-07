@@ -45,52 +45,46 @@
 
       <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
 	<ul class="current">
+	  
           
-            <li>
-    <li class="toctree-l1 current">
-        <a class="current" href=".">Introduction</a>
-        
-            <ul>
+            <li class="toctree-l1 current">
+		
+    <a class="current" href=".">Introduction</a>
+    <ul class="subnav">
             
-                <li class="toctree-l3"><a href="#coronium-skytable">Coronium SkyTable</a></li>
-                
-                    <li><a class="toctree-l4" href="#get-the-client">Get The Client</a></li>
-                
-                    <li><a class="toctree-l4" href="#adding-the-client">Adding The Client</a></li>
-                
-            
-            </ul>
+    <li class="toctree-l2"><a href="#coronium-skytable">Coronium SkyTable</a></li>
+    
+        <ul>
         
-    </li>
-<li>
+            <li><a class="toctree-l3" href="#get-the-client">Get The Client</a></li>
+        
+            <li><a class="toctree-l3" href="#adding-the-client">Adding The Client</a></li>
+        
+        </ul>
+    
+
+    </ul>
+	    </li>
           
-            <li>
-    <li class="toctree-l1 ">
-        <a class="" href="api/">Client API</a>
-        
-    </li>
-<li>
+            <li class="toctree-l1">
+		
+    <a class="" href="api/">Client API</a>
+	    </li>
           
-            <li>
-    <li class="toctree-l1 ">
-        <a class="" href="guide/">Client Guide</a>
-        
-    </li>
-<li>
+            <li class="toctree-l1">
+		
+    <a class="" href="guide/">Client Guide</a>
+	    </li>
           
-            <li>
-    <li class="toctree-l1 ">
-        <a class="" href="example/">Examples</a>
-        
-    </li>
-<li>
+            <li class="toctree-l1">
+		
+    <a class="" href="example/">Examples</a>
+	    </li>
           
-            <li>
-    <li class="toctree-l1 ">
-        <a class="" href="about/">About</a>
-        
-    </li>
-<li>
+            <li class="toctree-l1">
+		
+    <a class="" href="about/">About</a>
+	    </li>
           
         </ul>
       </div>
@@ -139,8 +133,7 @@
 <h2 id="adding-the-client">Adding The Client</h2>
 <p>Once you have the <code>skytable</code> directory in your project, do the following to incorporate it.</p>
 <p>Open your <code>main.lua</code> file and add the following:</p>
-<div class="codehilite"><pre><span></span><span class="kd">local</span> <span class="n">skytable</span> <span class="o">=</span> <span class="nb">require</span><span class="p">(</span><span class="s1">&#39;skytable.client&#39;</span><span class="p">)</span>
-</pre></div>
+<pre class="codehilite"><code class="language-lua">local skytable = require('skytable.client')</code></pre>
 
 
 <div class="admonition tip">
@@ -194,6 +187,6 @@
 </html>
 
 <!--
-MkDocs version : 0.16.1
-Build Date UTC : 2017-07-06 21:04:35
+MkDocs version : 0.16.3
+Build Date UTC : 2017-07-07 05:25:25
 -->
