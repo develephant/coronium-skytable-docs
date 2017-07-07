@@ -16,9 +16,11 @@ Next, click the __Clone or Download__ button and select __Download ZIP__, then s
 
 Expand the __coronium-skytable-client-master.zip__ file and navigate to the __coronium-skytable-client-master__ directory.
 
+Copy the __skytable__ directory to the root of your Corona project.
+
 ![step10](imgs/step10.png)
 
-Copy the __skytable__ directory to the root of your Corona project. The project tree should look similar to:
+ The project tree should look similar to:
 
 ```
 CoronaProject/

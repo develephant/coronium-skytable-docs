@@ -2,7 +2,7 @@
     "docs": [
         {
             "location": "/",
-            "text": "Coronium SkyTable\n\n\nA performant and secure user scoped table datastore and client for use with \nCorona\n.\n\n\n\n\nGet The Client\n\n\nFirst point your browser to the \nCoronium SkyTable Client GitHub repo\n.\n\n\nNext, click the \nClone or Download\n button and select \nDownload ZIP\n, then select a location on your computer.\n\n\n\n\nExpand the \ncoronium-skytable-client-master.zip\n file and navigate to the \ncoronium-skytable-client-master\n directory.\n\n\n\n\nCopy the \nskytable\n directory to the root of your Corona project. The project tree should look similar to:\n\n\nCoronaProject/\n  skytable\n  main.lua\n  ...\n\n\n\n\n\n\n\nAdding The Client\n\n\nOnce you have the \nskytable\n directory in your project, open your \nmain.lua\n file and add the following:\n\n\nlocal\n \nskytable\n \n=\n \nrequire\n(\n'skytable.client'\n)\n\n\n\n\n\n\nNow you're ready to get started. See the \nClient API\n and \nClient Guide\n to start using Coronium SkyTable.",
+            "text": "Coronium SkyTable\n\n\nA performant and secure user scoped table datastore and client for use with \nCorona\n.\n\n\n\n\nGet The Client\n\n\nFirst point your browser to the \nCoronium SkyTable Client GitHub repo\n.\n\n\nNext, click the \nClone or Download\n button and select \nDownload ZIP\n, then select a location on your computer.\n\n\n\n\nExpand the \ncoronium-skytable-client-master.zip\n file and navigate to the \ncoronium-skytable-client-master\n directory.\n\n\nCopy the \nskytable\n directory to the root of your Corona project.\n\n\n\n\nThe project tree should look similar to:\n\n\nCoronaProject/\n  skytable\n  main.lua\n  ...\n\n\n\n\n\n\n\nAdding The Client\n\n\nOnce you have the \nskytable\n directory in your project, open your \nmain.lua\n file and add the following:\n\n\nlocal\n \nskytable\n \n=\n \nrequire\n(\n'skytable.client'\n)\n\n\n\n\n\n\nNow you're ready to get started. See the \nClient API\n and \nClient Guide\n to start using Coronium SkyTable.",
             "title": "Introduction"
         },
         {
@@ -12,7 +12,7 @@
         },
         {
             "location": "/#get-the-client",
-            "text": "First point your browser to the  Coronium SkyTable Client GitHub repo .  Next, click the  Clone or Download  button and select  Download ZIP , then select a location on your computer.   Expand the  coronium-skytable-client-master.zip  file and navigate to the  coronium-skytable-client-master  directory.   Copy the  skytable  directory to the root of your Corona project. The project tree should look similar to:  CoronaProject/\n  skytable\n  main.lua\n  ...",
+            "text": "First point your browser to the  Coronium SkyTable Client GitHub repo .  Next, click the  Clone or Download  button and select  Download ZIP , then select a location on your computer.   Expand the  coronium-skytable-client-master.zip  file and navigate to the  coronium-skytable-client-master  directory.  Copy the  skytable  directory to the root of your Corona project.   The project tree should look similar to:  CoronaProject/\n  skytable\n  main.lua\n  ...",
             "title": "Get The Client"
         },
         {
