@@ -212,13 +212,17 @@
   <span class="n">user</span> <span class="o">=</span> <span class="s2">&quot;&lt;user-email&gt;&quot;</span><span class="p">,</span>
   <span class="n">password</span> <span class="o">=</span> <span class="s2">&quot;&lt;user-password&gt;&quot;</span><span class="p">,</span>
   <span class="n">base</span> <span class="o">=</span> <span class="s2">&quot;app1&quot;</span><span class="p">,</span>
-  <span class="n">host</span> <span class="o">=</span> <span class="s2">&quot;http://skytable-host&quot;</span><span class="p">,</span>
+  <span class="n">host</span> <span class="o">=</span> <span class="s2">&quot;http://&lt;skytable-host&gt;:7173&quot;</span><span class="p">,</span>
   <span class="n">key</span> <span class="o">=</span> <span class="s2">&quot;&lt;server-key&gt;&quot;</span><span class="p">,</span>
   <span class="n">debug</span> <span class="o">=</span> <span class="kc">true</span>
 <span class="p">})</span>
 </pre></div>
 
 
+<div class="admonition important">
+<p class="admonition-title">Important</p>
+<p>The SkyTable server runs on port <strong>7173</strong>, make sure to include this on the <em>host</em> property; <code>http://&lt;skytable-host&gt;:7173</code>.</p>
+</div>
 <hr />
 <h2 id="open">open</h2>
 <p>Open a SkyTable for usage.</p>

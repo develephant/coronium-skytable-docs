@@ -33,11 +33,14 @@ skytable:init({
   user = "<user-email>",
   password = "<user-password>",
   base = "app1",
-  host = "http://skytable-host",
+  host = "http://<skytable-host>:7173",
   key = "<server-key>",
   debug = true
 })
 ```
+
+!!! important
+    The SkyTable server runs on port __7173__, make sure to include this on the _host_ property; `http://<skytable-host>:7173`.
 
 ---
 
