@@ -30,7 +30,7 @@ local function onResult(evt)
   if evt.isError then
     print(evt.error)
   else
-    print(evt.data.name)
+    print(evt.data) --will be the "name" value
   end
 end
 
@@ -53,9 +53,9 @@ local function onResult(evt)
     print(evt.error)
   else
     if evt.tag == "get-name" then
-      print(evt.data.name)
+      print(evt.data) --will be the "name" value
     elseif evt.tag == "get-street" then
-      print(evt.data.street)
+      print(evt.data) --will be the "street" value
     end
   end
 end

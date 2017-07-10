@@ -168,7 +168,7 @@
   <span class="kr">if</span> <span class="n">evt</span><span class="p">.</span><span class="n">isError</span> <span class="kr">then</span>
     <span class="nb">print</span><span class="p">(</span><span class="n">evt</span><span class="p">.</span><span class="n">error</span><span class="p">)</span>
   <span class="kr">else</span>
-    <span class="nb">print</span><span class="p">(</span><span class="n">evt</span><span class="p">.</span><span class="n">data</span><span class="p">.</span><span class="n">name</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">evt</span><span class="p">.</span><span class="n">data</span><span class="p">)</span> <span class="c1">--will be the &quot;name&quot; value</span>
   <span class="kr">end</span>
 <span class="kr">end</span>
 
@@ -188,9 +188,9 @@
     <span class="nb">print</span><span class="p">(</span><span class="n">evt</span><span class="p">.</span><span class="n">error</span><span class="p">)</span>
   <span class="kr">else</span>
     <span class="kr">if</span> <span class="n">evt</span><span class="p">.</span><span class="n">tag</span> <span class="o">==</span> <span class="s2">&quot;get-name&quot;</span> <span class="kr">then</span>
-      <span class="nb">print</span><span class="p">(</span><span class="n">evt</span><span class="p">.</span><span class="n">data</span><span class="p">.</span><span class="n">name</span><span class="p">)</span>
+      <span class="nb">print</span><span class="p">(</span><span class="n">evt</span><span class="p">.</span><span class="n">data</span><span class="p">)</span> <span class="c1">--will be the &quot;name&quot; value</span>
     <span class="kr">elseif</span> <span class="n">evt</span><span class="p">.</span><span class="n">tag</span> <span class="o">==</span> <span class="s2">&quot;get-street&quot;</span> <span class="kr">then</span>
-      <span class="nb">print</span><span class="p">(</span><span class="n">evt</span><span class="p">.</span><span class="n">data</span><span class="p">.</span><span class="n">street</span><span class="p">)</span>
+      <span class="nb">print</span><span class="p">(</span><span class="n">evt</span><span class="p">.</span><span class="n">data</span><span class="p">)</span> <span class="c1">--will be the &quot;street&quot; value</span>
     <span class="kr">end</span>
   <span class="kr">end</span>
 <span class="kr">end</span>
