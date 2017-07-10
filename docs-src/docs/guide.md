@@ -143,7 +143,7 @@ __Set event properties:__
 |isError|An error has occured.|Boolean|
 |error|A descriptive error string.|String|
 |success|A flag noting a successful __set__ action.|Boolean|
-|key|The user key of the calling client.|String|
+|user|The user key of the calling client.|String|
 
 !!! note
     If set, the __success__ flag will almost always be _true_. An unsuccessful call will usually be propagated to the __error__ property.
@@ -155,7 +155,7 @@ __Get, Delete, Keys event properties:__
 |isError|An error has occurred.|Boolean|
 |error|A descriptive error string.|String|
 |data|The returned data.|String, Number, Boolean, or Table|
-|key|The user key of the calling client.|String|
+|user|The user key of the calling client.|String|
 
 !!! note
     The __data__ property can potentially be _nil_.
