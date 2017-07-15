@@ -54,19 +54,18 @@
 <li>
           
             <li>
-    <li class="toctree-l1 ">
-        <a class="" href="../api/">Client API</a>
-        
-    </li>
-<li>
-          
-            <li>
     <li class="toctree-l1 current">
         <a class="current" href="./">Client Guide</a>
         
             <ul>
             
-                <li class="toctree-l3"><a href="#overview">Overview</a></li>
+                <li class="toctree-l3"><a href="#get-the-plugin">Get The Plugin</a></li>
+                
+            
+                <li class="toctree-l3"><a href="#adding-the-plugin">Adding The Plugin</a></li>
+                
+            
+                <li class="toctree-l3"><a href="#getting-started">Getting Started</a></li>
                 
             
                 <li class="toctree-l3"><a href="#user-scope">User Scope</a></li>
@@ -100,6 +99,13 @@
                 
             
             </ul>
+        
+    </li>
+<li>
+          
+            <li>
+    <li class="toctree-l1 ">
+        <a class="" href="../api/">Client API</a>
         
     </li>
 <li>
@@ -150,34 +156,79 @@
           <div role="main">
             <div class="section">
               
-                <h1 id="overview">Overview</h1>
+                <h2 id="get-the-plugin">Get The Plugin</h2>
+<p>If you don't already have it, get the <strong>Coronium SkyTable Plugin</strong> from the <strong><a href="https://marketplace.coronalabs.com/">Corona Marketplace</a></strong>.</p>
+<h2 id="adding-the-plugin">Adding The Plugin</h2>
+<p>Add the plugin by adding an entry to the <strong>plugins</strong> table of <strong>build.settings</strong> file:</p>
+<div class="codehilite"><pre><span></span>settings =
+{
+    plugins =
+    {
+        [&quot;plugin.skytable&quot;] =
+        {
+            publisherId = &quot;com.develephant&quot;
+        },
+    },
+}
+</pre></div>
+
+
+<p>You're now ready to use the <strong>Coronium SkyTable</strong> plugin.</p>
+<h1 id="getting-started">Getting Started</h1>
 <p>A SkyTable is a <em>user scoped</em> data table. This means the data is tied to a <strong><em>single</em></strong> user. It is less of a database, and more of a secure per user table datastore.</p>
 <div class="admonition important">
 <p class="admonition-title">Important</p>
-<p>Make sure you understand how Coronium SkyTable works before commiting to using it in your project. <strong><em>You cannot access any other data than the user provided credentials allow.</em></strong></p>
+<p>Make sure you understand how <strong>Coronium SkyTable</strong> works before commiting to using it in your project. <strong><em>You cannot access any other data than the user provided credentials allow.</em></strong></p>
 </div>
-<p>While a SkyTable is tied to a specific user, you can create as many specific, per user, SkyTables as you need for a given application. You do this with the <strong><a href="../api/#open">open</a></strong> Api method:</p>
-<div class="codehilite"><pre><span></span><span class="kd">local</span> <span class="n">skytable</span> <span class="o">=</span> <span class="nb">require</span><span class="p">(</span><span class="s2">&quot;skytable.client&quot;</span><span class="p">)</span>
+<p>While a SkyTable is tied to a specific user, you can create as many specific, per user, SkyTables as you need for a given application (See <strong><a href="../api/#open">open</a></strong>).</p>
+<p><strong>Example of basic usage:</strong></p>
+<div class="codehilite"><pre><span></span><span class="c1">--Require plugin</span>
+<span class="kd">local</span> <span class="n">skytable</span> <span class="o">=</span> <span class="nb">require</span><span class="p">(</span><span class="s2">&quot;plugin.skytable&quot;</span><span class="p">)</span>
 
-<span class="c1">--###########################################</span>
-<span class="c1">--# Initialization (init) method goes here...</span>
-<span class="c1">--###########################################</span>
+<span class="c1">--Initialize SkyTable</span>
+<span class="n">skytable</span><span class="p">:</span><span class="n">init</span><span class="p">({</span>
+  <span class="n">user</span> <span class="o">=</span> <span class="s2">&quot;&lt;user-email&gt;&quot;</span><span class="p">,</span>
+  <span class="n">password</span> <span class="o">=</span> <span class="s2">&quot;&lt;user-password&gt;&quot;</span><span class="p">,</span>
+  <span class="n">base</span> <span class="o">=</span> <span class="s2">&quot;app1&quot;</span><span class="p">,</span>
+  <span class="n">key</span> <span class="o">=</span> <span class="s2">&quot;&lt;server-key&gt;&quot;</span><span class="p">,</span>
+  <span class="n">host</span> <span class="o">=</span> <span class="s2">&quot;http://&lt;server-host&gt;:7173&quot;</span><span class="p">,</span>
+  <span class="n">debug</span> <span class="o">=</span> <span class="kc">true</span>
+<span class="p">})</span>
 
-<span class="c1">--open a &quot;profile&quot; table</span>
+<span class="c1">--Open a &quot;profile&quot; SkyTable</span>
 <span class="kd">local</span> <span class="n">profile</span> <span class="o">=</span> <span class="n">skytable</span><span class="p">:</span><span class="n">open</span><span class="p">(</span><span class="s2">&quot;profile&quot;</span><span class="p">)</span>
 
-<span class="c1">--open an &quot;inventory&quot; table</span>
-<span class="kd">local</span> <span class="n">inventory</span> <span class="o">=</span> <span class="n">skytable</span><span class="p">:</span><span class="n">open</span><span class="p">(</span><span class="s2">&quot;inventory&quot;</span><span class="p">)</span>
+<span class="c1">--Get action listener</span>
+<span class="kd">local</span> <span class="kr">function</span> <span class="nf">onResult</span><span class="p">(</span><span class="n">evt</span><span class="p">)</span>
+  <span class="kr">if</span> <span class="n">evt</span><span class="p">.</span><span class="n">isError</span> <span class="kr">then</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">evt</span><span class="p">.</span><span class="n">error</span><span class="p">)</span>
+  <span class="kr">else</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">evt</span><span class="p">.</span><span class="n">data</span><span class="p">.</span><span class="n">name</span><span class="p">)</span> <span class="c1">-- Jimmy</span>
+  <span class="kr">end</span>
+<span class="kr">end</span>
 
-<span class="c1">--###########################################</span>
-<span class="c1">--# Response listener functions go here...</span>
-<span class="c1">--###########################################</span>
+<span class="c1">--Set action listener</span>
+<span class="kd">local</span> <span class="kr">function</span> <span class="nf">onSetResult</span><span class="p">(</span><span class="n">evt</span><span class="p">)</span>
+  <span class="kr">if</span> <span class="n">evt</span><span class="p">.</span><span class="n">isError</span> <span class="kr">then</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">evt</span><span class="p">.</span><span class="n">error</span><span class="p">)</span>
+  <span class="kr">else</span>
+    <span class="kr">if</span> <span class="n">evt</span><span class="p">.</span><span class="n">success</span> <span class="kr">then</span>
+      <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;saved&#39;</span><span class="p">)</span>
+    <span class="kr">end</span>
+  <span class="kr">end</span>
+<span class="kr">end</span>
 
-<span class="c1">--set profile name</span>
-<span class="n">profile</span><span class="p">:</span><span class="n">set</span><span class="p">(</span><span class="s2">&quot;name&quot;</span><span class="p">,</span> <span class="s2">&quot;Sara&quot;</span><span class="p">,</span> <span class="o">&lt;</span><span class="n">listener</span><span class="o">&gt;</span><span class="p">)</span>
+<span class="c1">--Setting data</span>
+<span class="kd">local</span> <span class="kr">function</span> <span class="nf">setData</span><span class="p">()</span>
+  <span class="c1">--Set action</span>
+  <span class="n">profile</span><span class="p">:</span><span class="n">set</span><span class="p">({</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;Jimmy&quot;</span><span class="p">,</span> <span class="n">age</span><span class="o">=</span><span class="mi">23</span><span class="p">},</span> <span class="n">onSetResult</span><span class="p">)</span>
+<span class="kr">end</span>
 
-<span class="c1">--get an inventory item</span>
-<span class="n">inventory</span><span class="p">:</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;gear.arms.def&quot;</span><span class="p">,</span> <span class="o">&lt;</span><span class="n">listener</span><span class="o">&gt;</span><span class="p">)</span>
+<span class="c1">--Getting data</span>
+<span class="kd">local</span> <span class="kr">function</span> <span class="nf">getData</span><span class="p">()</span>
+  <span class="c1">--Get action</span>
+  <span class="n">profile</span><span class="p">:</span><span class="n">get</span><span class="p">(</span><span class="n">onResult</span><span class="p">)</span>
+<span class="kr">end</span>
 </pre></div>
 
 
@@ -186,10 +237,10 @@
 <p>A SkyTable, and its data, is scoped per user. When first initalizing the SkyTable client, you must provide a <em>username</em> (usually an email address), and a <em>password</em>. These values are the responsibility of the developer to gather.</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>The <em>username</em> and <em>password</em> is never stored on the SkyTable server. Instead a unique key is generated to identify the user.</p>
+<p>The <em>username</em> and <em>password</em> are never stored on the SkyTable server. Instead a unique key is generated to identify the user.</p>
 </div>
 <p>The <em>username</em> and <em>password</em> are passed to the <strong>init</strong> API method:</p>
-<div class="codehilite"><pre><span></span><span class="kd">local</span> <span class="n">skytable</span> <span class="o">=</span> <span class="nb">require</span><span class="p">(</span><span class="s2">&quot;skytable.client&quot;</span><span class="p">)</span>
+<div class="codehilite"><pre><span></span><span class="kd">local</span> <span class="n">skytable</span> <span class="o">=</span> <span class="nb">require</span><span class="p">(</span><span class="s2">&quot;plugin.skytable&quot;</span><span class="p">)</span>
 
 <span class="n">skytable</span><span class="p">:</span><span class="n">init</span><span class="p">({</span>
   <span class="n">user</span> <span class="o">=</span> <span class="s2">&quot;user@email.com&quot;</span><span class="p">,</span>
@@ -213,7 +264,7 @@
 <p>Even if you don't think you will have the same users on different applications, it is a best practice to assign a <em>base scope</em> anyway. This future-proofs the SkyTable data.</p>
 </div>
 <p>The <em>base scope</em> is assigned in the <strong><a href="../api/#init">init</a></strong> Api method:</p>
-<div class="codehilite"><pre><span></span><span class="kd">local</span> <span class="n">skytable</span> <span class="o">=</span> <span class="nb">require</span><span class="p">(</span><span class="s2">&quot;skytable.client&quot;</span><span class="p">)</span>
+<div class="codehilite"><pre><span></span><span class="kd">local</span> <span class="n">skytable</span> <span class="o">=</span> <span class="nb">require</span><span class="p">(</span><span class="s2">&quot;plugin.skytable&quot;</span><span class="p">)</span>
 
 <span class="n">skytable</span><span class="p">:</span><span class="n">init</span><span class="p">({</span>
   <span class="n">user</span> <span class="o">=</span> <span class="s2">&quot;user@email.com&quot;</span><span class="p">,</span>
@@ -225,7 +276,7 @@
 
 
 <p>Now when we want to access data from a different app (in this case "app2"), for the same user, we can do:</p>
-<div class="codehilite"><pre><span></span><span class="kd">local</span> <span class="n">skytable</span> <span class="o">=</span> <span class="nb">require</span><span class="p">(</span><span class="s2">&quot;skytable.client&quot;</span><span class="p">)</span>
+<div class="codehilite"><pre><span></span><span class="kd">local</span> <span class="n">skytable</span> <span class="o">=</span> <span class="nb">require</span><span class="p">(</span><span class="s2">&quot;plugin.skytable&quot;</span><span class="p">)</span>
 
 <span class="n">skytable</span><span class="p">:</span><span class="n">init</span><span class="p">({</span>
   <span class="n">user</span> <span class="o">=</span> <span class="s2">&quot;user@email.com&quot;</span><span class="p">,</span>
@@ -378,7 +429,7 @@
     <span class="n">street</span> <span class="o">=</span> <span class="s2">&quot;123 Main St.&quot;</span><span class="p">,</span>
     <span class="n">city</span> <span class="o">=</span> <span class="s2">&quot;San Diego&quot;</span><span class="p">,</span>
     <span class="n">state</span> <span class="o">=</span> <span class="s2">&quot;CA&quot;</span><span class="p">,</span>
-    <span class="n">zip</span> <span class="o">=</span> <span class="s2">&quot;92037&quot;</span>
+    <span class="n">zip</span> <span class="o">=</span> <span class="mi">92037</span>
   <span class="p">},</span>
   <span class="n">colors</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;red&quot;</span><span class="p">,</span> <span class="s2">&quot;green&quot;</span><span class="p">,</span> <span class="s2">&quot;blue&quot;</span><span class="p">}</span>
 <span class="p">}</span>
@@ -493,7 +544,7 @@
   <span class="n">street</span> <span class="o">=</span> <span class="s2">&quot;123 Main St.&quot;</span><span class="p">,</span>
   <span class="n">city</span> <span class="o">=</span> <span class="s2">&quot;San Diego&quot;</span><span class="p">,</span>
   <span class="n">state</span> <span class="o">=</span> <span class="s2">&quot;CA&quot;</span><span class="p">,</span>
-  <span class="n">zip</span> <span class="o">=</span> <span class="s2">&quot;92037&quot;</span>
+  <span class="n">zip</span> <span class="o">=</span> <span class="mi">92037</span>
 <span class="p">}</span>
 
 <span class="kd">local</span> <span class="kr">function</span> <span class="nf">onSetResult</span><span class="p">(</span><span class="n">evt</span><span class="p">)</span>
@@ -794,10 +845,10 @@
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="../example/" class="btn btn-neutral float-right" title="Examples">Next <span class="icon icon-circle-arrow-right"></span></a>
+        <a href="../api/" class="btn btn-neutral float-right" title="Client API">Next <span class="icon icon-circle-arrow-right"></span></a>
       
       
-        <a href="../api/" class="btn btn-neutral" title="Client API"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href=".." class="btn btn-neutral" title="Introduction"><span class="icon icon-circle-arrow-left"></span> Previous</a>
       
     </div>
   
@@ -825,10 +876,10 @@
     <span class="rst-current-version" data-toggle="rst-current-version">
       
       
-        <span><a href="../api/" style="color: #fcfcfc;">&laquo; Previous</a></span>
+        <span><a href=".." style="color: #fcfcfc;">&laquo; Previous</a></span>
       
       
-        <span style="margin-left: 15px"><a href="../example/" style="color: #fcfcfc">Next &raquo;</a></span>
+        <span style="margin-left: 15px"><a href="../api/" style="color: #fcfcfc">Next &raquo;</a></span>
       
     </span>
 </div>

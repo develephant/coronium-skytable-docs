@@ -4,39 +4,84 @@
 
 ___A performant and secure user scoped table datastore and client for use with [Corona](https://coronalabs.com).___
 
----
+## Installation
 
-## Get The Client
+__Coronium SkyTable__ runs best on a __[DigitalOcean](https://m.do.co/c/cddeeddbbdb8) Ubuntu 16.04__ droplet.
 
-First point your browser to the __[Coronium SkyTable Client GitHub repo](https://github.com/develephant/coronium-skytable-client)__.
+!!! tip
+    If you're new to [DigitalOcean](https://m.do.co/c/cddeeddbbdb8) please consider signing up with __[this link](https://m.do.co/c/cddeeddbbdb8)__. Not only will you receive a $10 credit (2 free months), but it also helps support the continued development, and testing of __Coronium SkyTable__.
 
-Next, click the __Clone or Download__ button and select __Download ZIP__, then select a location on your computer.
 
-![step09](imgs/step09.png)
+### Create A New Droplet
 
-Expand the __coronium-skytable-client-master.zip__ file and navigate to the __coronium-skytable-client-master__ directory.
+Once you log into your [DigitalOcean](https://m.do.co/c/cddeeddbbdb8) account, click the __Create__ button and select __Droplets__ from the menu.
 
-Copy the __skytable__ directory to the root of your Corona project.
+![step1](imgs/step01.png)
 
-![step10](imgs/step10.png)
+On the next screen, first select a __Ubuntu 16.04__ droplet distribution.
 
- The project tree should look similar to:
+![step2](imgs/step02.png) 
+
+Select your preferred droplet size. A __512MB/1 CPU__ droplet is a good starting point. You can always increase the size later.
+
+![step3](imgs/step03.png)
+
+Next, select a region for the droplet. Consider choosing a location closest to your most active user base.
+
+![step4](imgs/step04.png)
+
+Select your SSH profile to attach to the droplet.
+
+![step5](imgs/step05.png)
+
+!!! caution
+    There is an option where you can use a password instead of an SSH key, which may be easier if you're only testing __Coronium SkyTable__, though I wouldn't recommend it. You can learn more about generating SSH keys for [DigitalOcean](https://m.do.co/c/cddeeddbbdb8) here: [Creating SSH Keys](https://www.digitalocean.com/community/tutorials/how-to-use-ssh-keys-with-digitalocean-droplets).
+
+Now give your droplet a hostname.
+
+![step6](imgs/step06.png)
+
+_Be sure to replace __skytable.develephant.com__ with your own hostname._
+
+And finally, click the __Create__ button to spin up the droplet.
+
+![step7](imgs/step07.png)
+
+### Connect To The Droplet
+
+Once your droplet is done spinning up, note the ip address.
+
+![step8](imgs/step08.png)
+
+Using a terminal/shell of your choice, SSH into the droplet.
+
+!!! tip
+    You can use the built in shells on both OSX and Linux. For Windows, check out __[PuTTY](https://www.chiark.greenend.org.uk/~sgtatham/putty/latest.html)__.
 
 ```
-CoronaProject/
-  skytable
-  main.lua
-  ...
+ssh root@<your-instance-ip>
 ```
 
----
+_Replace __<your-instance-ip\>__ with the address that was assigned to your droplet._
 
-## Adding The Client
+Once you are connected to the droplet, copy and paste the following line into the terminal:
 
-Once you have the __skytable__ directory in your project, open your __main.lua__ file and add the following:
+`curl -LO https://s3.amazonaws.com/coronium-skytable-server/do.sh && sudo bash ./do.sh`
 
-```lua
-local skytable = require('skytable.client')
+Once the installation is complete, __Coronium SkyTable__ is ready for action. Log out of the server by typing __exit__ on the command line.
+
+If you need to edit the config, view logs, etc. then log in with the __coronium__ user.
+
+```
+ssh coronium@<your-instance-ip>
 ```
 
-Now you're ready to get started. See the __[Client API](client-api)__ and __[Client Guide](client-guide)__ to start using Coronium SkyTable.
+Log files can be found in the __logs__ directory.
+
+Config options can be changed in __lib/coronium/config.lua__
+
+!!! note
+    The default password for a fresh install is: __coroniumadmin__.
+
+!!! warning
+    You should change the default password after the install. Making sure to log in as the __coronium__ user, enter __sudo passwd coronium__ in the shell, and then follow the prompts.

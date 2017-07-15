@@ -1,34 +1,86 @@
-# Overview
+## Get The Plugin
+
+If you don't already have it, get the __Coronium SkyTable Plugin__ from the __[Corona Marketplace](https://marketplace.coronalabs.com/)__.
+
+
+## Adding The Plugin
+
+Add the plugin by adding an entry to the __plugins__ table of __build.settings__ file:
+
+```
+settings =
+{
+    plugins =
+    {
+        ["plugin.skytable"] =
+        {
+            publisherId = "com.develephant"
+        },
+    },
+}
+```
+
+You're now ready to use the __Coronium SkyTable__ plugin.
+
+# Getting Started
 
 A SkyTable is a _user scoped_ data table. This means the data is tied to a ___single___ user. It is less of a database, and more of a secure per user table datastore.
 
 !!! important
-    Make sure you understand how Coronium SkyTable works before commiting to using it in your project. ___You cannot access any other data than the user provided credentials allow.___
+    Make sure you understand how __Coronium SkyTable__ works before commiting to using it in your project. ___You cannot access any other data than the user provided credentials allow.___
 
-While a SkyTable is tied to a specific user, you can create as many specific, per user, SkyTables as you need for a given application. You do this with the __[open](api/#open)__ Api method:
+While a SkyTable is tied to a specific user, you can create as many specific, per user, SkyTables as you need for a given application (See __[open](api/#open)__).
+
+__Example of basic usage:__
 
 ```lua
-local skytable = require("skytable.client")
+--Require plugin
+local skytable = require("plugin.skytable")
 
---###########################################
---# Initialization (init) method goes here...
---###########################################
+--Initialize SkyTable
+skytable:init({
+  user = "<user-email>",
+  password = "<user-password>",
+  base = "app1",
+  key = "<server-key>",
+  host = "http://<server-host>:7173",
+  debug = true
+})
 
---open a "profile" table
+--Open a "profile" SkyTable
 local profile = skytable:open("profile")
 
---open an "inventory" table
-local inventory = skytable:open("inventory")
+--Get action listener
+local function onResult(evt)
+  if evt.isError then
+    print(evt.error)
+  else
+    print(evt.data.name) -- Jimmy
+  end
+end
 
---###########################################
---# Response listener functions go here...
---###########################################
+--Set action listener
+local function onSetResult(evt)
+  if evt.isError then
+    print(evt.error)
+  else
+    if evt.success then
+      print('saved')
+    end
+  end
+end
 
---set profile name
-profile:set("name", "Sara", <listener>)
+--Setting data
+local function setData()
+  --Set action
+  profile:set({name="Jimmy", age=23}, onSetResult)
+end
 
---get an inventory item
-inventory:get("gear.arms.def", <listener>)
+--Getting data
+local function getData()
+  --Get action
+  profile:get(onResult)
+end
 ```
 
 ---
@@ -38,12 +90,12 @@ inventory:get("gear.arms.def", <listener>)
 A SkyTable, and its data, is scoped per user. When first initalizing the SkyTable client, you must provide a _username_ (usually an email address), and a _password_. These values are the responsibility of the developer to gather.
 
 !!! note
-    The _username_ and _password_ is never stored on the SkyTable server. Instead a unique key is generated to identify the user.
+    The _username_ and _password_ are never stored on the SkyTable server. Instead a unique key is generated to identify the user.
 
 The _username_ and _password_ are passed to the __init__ API method:
 
 ```lua
-local skytable = require("skytable.client")
+local skytable = require("plugin.skytable")
 
 skytable:init({
   user = "user@email.com",
@@ -71,7 +123,7 @@ You can also assign a _base scope_ to the SkyTable. This allows the saving of di
 The _base scope_ is assigned in the __[init](api/#init)__ Api method:
 
 ```lua
-local skytable = require("skytable.client")
+local skytable = require("plugin.skytable")
 
 skytable:init({
   user = "user@email.com",
@@ -84,7 +136,7 @@ skytable:init({
 Now when we want to access data from a different app (in this case "app2"), for the same user, we can do:
 
 ```lua
-local skytable = require("skytable.client")
+local skytable = require("plugin.skytable")
 
 skytable:init({
   user = "user@email.com",
@@ -204,7 +256,7 @@ When calling any of the value methods _without_ a data path, a "root" path is im
     street = "123 Main St.",
     city = "San Diego",
     state = "CA",
-    zip = "92037"
+    zip = 92037
   },
   colors = {"red", "green", "blue"}
 }
@@ -332,7 +384,7 @@ local address = {
   street = "123 Main St.",
   city = "San Diego",
   state = "CA",
-  zip = "92037"
+  zip = 92037
 }
 
 local function onSetResult(evt)

@@ -1,8 +1,8 @@
 site_name: Coronium SkyTable
 pages:
   - 'Introduction': 'index.md'
-  - 'Client API': 'api.md'
   - 'Client Guide': 'guide.md'
+  - 'Client API': 'api.md'
   - 'Examples': 'example.md'
   - 'About': 'about.md'
 copyright: "&copy;2017 C. Byerley - develephant.com"

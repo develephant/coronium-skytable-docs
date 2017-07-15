@@ -1,8 +1,6 @@
 # Basic Get
 
 ```lua
-local skytable = require("skytable.client")
-
 local profile = skytable:open("profile")
 
 local function onResult(evt)
@@ -22,8 +20,6 @@ profile:get(onResult)
 # Get with Path
 
 ```lua
-local skytable = require("skytable.client")
-
 local profile = skytable:open("profile")
 
 local function onResult(evt)
@@ -43,8 +39,6 @@ profile:get("name", onResult)
 # Get with Tags
 
 ```lua
-local skytable = require("skytable.client")
-
 local profile = skytable:open("profile")
 local location = skytable:open("location")
 
@@ -70,8 +64,6 @@ location:get("address.street", onResult, {tag="get-street"})
 # Basic Set
 
 ```lua
-local skytable = require("skytable.client")
-
 local location = skytable:open("location")
 
 local function onSetResult(evt)
@@ -100,8 +92,6 @@ location:set(locationData, onSetResult)
 # Set with Path
 
 ```lua
-local skytable = require("skytable.client")
-
 local location = skytable:open("location")
 
 local function onSetResult(evt)
@@ -120,8 +110,6 @@ location:set("address.state", "Someplace", onSetResult)
 # Set with Tags
 
 ```lua
-local skytable = require("skytable.client")
-
 local location = skytable:open("location")
 local profile = skytable:open("profile")
 
@@ -156,8 +144,6 @@ profile:set("name", "Steve", onSetResult, {tag="set-profile-name"})
 # Set with Flags
 
 ```lua
-local skytable = require("skytable.client")
-
 local location = skytable:open("location")
 
 local function onSetResult(evt)
@@ -184,8 +170,6 @@ location:set(locationData, onSetResult, {flag = "XX"})
 # Set with Expiry
 
 ```lua
-local skytable = require("skytable.client")
-
 local location = skytable:open("location")
 
 local function onSetResult(evt)
