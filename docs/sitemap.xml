@@ -10,6 +10,28 @@
     
 
     
+        
+    <url>
+     <loc>https://develephant.github.io/coronium-skytable-docs/install/digitalocean/</loc>
+     <lastmod>2017-07-16</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+        
+    <url>
+     <loc>https://develephant.github.io/coronium-skytable-docs/install/ec2/</loc>
+     <lastmod>2017-07-16</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+        
+    <url>
+     <loc>https://develephant.github.io/coronium-skytable-docs/install/config/</loc>
+     <lastmod>2017-07-16</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+        
+    
+
+    
     <url>
      <loc>https://develephant.github.io/coronium-skytable-docs/guide/</loc>
      <lastmod>2017-07-16</lastmod>

@@ -1,6 +1,10 @@
 site_name: Coronium SkyTable
 pages:
   - 'Introduction': 'index.md'
+  - 'Server Install':
+    - 'DigitalOcean': 'install/digitalocean.md'
+    - 'Amazon EC2': 'install/ec2.md'
+    - 'Configuration': 'install/config.md'
   - 'Client Guide': 'guide.md'
   - 'Client API': 'api.md'
   - 'Examples': 'example.md'
