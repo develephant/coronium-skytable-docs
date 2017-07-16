@@ -3,7 +3,7 @@ After the __Coronium SkyTable__ server is running, you can change the server key
 Log in with the __coronium__ user:
 
 ```
-ssh coronium@<instance-ip>
+ssh coronium@<your-instance-ip>
 ```
 
 Enter your password. If you have not updated the password yet, the default is __coroniumadmin__.
