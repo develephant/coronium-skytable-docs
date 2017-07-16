@@ -66,7 +66,7 @@ _Replace __<your-instance-ip\>__ with the address that was assigned to your drop
 
 Once you are connected to the droplet, copy and paste the following line into the terminal:
 
-`curl -LO https://s3.amazonaws.com/coronium-skytable-server/do.sh && sudo bash ./do.sh`
+`curl -LO https://s3.amazonaws.com/coronium-skytable-server/up.sh && sudo bash ./up.sh`
 
 Once the installation is complete, __Coronium SkyTable__ is ready for action. Log out of the server by typing __exit__ on the command line.
 
