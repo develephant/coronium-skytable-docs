@@ -3,7 +3,7 @@ __Coronium SkyTable__ is eligible for the EC2 free tier using Amazon Web Service
 !!! note
     This guide assumes that you have an active AWS account, and are familiar with managing EC2 instances.
 
-### Create A New Instance
+### Create An Instance
 
 Once you log into the __[AWS Console](https://aws.amazon.com/console/)__, navigate to the __EC2__ service. Click the __Launch Instance__ button.
 
@@ -19,7 +19,7 @@ Click the __Add Rule__ button on the __Configure Security Group__ screen, and ad
 
 Adjust any additional settings, and then __Launch__ the AMI.
 
-### Connect To The Instance
+### Install SkyTable
 
 Once your instance is in a __running__ state, note the __IPv4 Public IP__ address.
 
@@ -39,19 +39,3 @@ Once you are connected to the droplet, copy and paste the following line into th
 `curl -LO https://s3.amazonaws.com/coronium-skytable/ami.sh && sudo bash ./ami.sh`
 
 Once the installation is complete, __Coronium SkyTable__ is ready for action. Log out of the server by typing __exit__ on the command line.
-
-If you need to edit the config, view logs, etc. then log in with the __coronium__ user.
-
-```
-ssh coronium@<your-instance-ip>
-```
-
-Log files can be found in the __logs__ directory.
-
-Config options can be changed in __lib/coronium/config.lua__
-
-!!! note
-    The default password for a fresh install is: __coroniumadmin__.
-
-!!! warning
-    You should change the default password after the install. Making sure to log in as the __coronium__ user, enter __sudo passwd coronium__ in the shell, and then follow the prompts.

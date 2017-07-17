@@ -4,7 +4,7 @@ __Coronium SkyTable__ runs best on a __[DigitalOcean](https://m.do.co/c/cddeeddb
     If you're new to [DigitalOcean](https://m.do.co/c/cddeeddbbdb8) please consider signing up with __[this link](https://m.do.co/c/cddeeddbbdb8)__. Not only will you receive a $10 credit (2 free months), but it also helps support the continued development, and testing of __Coronium SkyTable__.
 
 
-### Create A New Droplet
+### Create A Droplet
 
 Once you log into your [DigitalOcean](https://m.do.co/c/cddeeddbbdb8) account, click the __Create__ button and select __Droplets__ from the menu.
 
@@ -39,7 +39,7 @@ And finally, click the __Create__ button to spin up the droplet.
 
 ![step7](../imgs/step07.png)
 
-### Connect To The Droplet
+### Install SkyTable
 
 Once your droplet is done spinning up, note the ip address.
 
@@ -62,18 +62,3 @@ Once you are connected to the droplet, copy and paste the following line into th
 
 Once the installation is complete, __Coronium SkyTable__ is ready for action. Log out of the server by typing __exit__ on the command line.
 
-If you need to edit the config, view logs, etc. then log in with the __coronium__ user.
-
-```
-ssh coronium@<your-instance-ip>
-```
-
-Log files can be found in the __logs__ directory.
-
-Config options can be changed in __lib/coronium/config.lua__
-
-!!! note
-    The default password for a fresh install is: __coroniumadmin__.
-
-!!! warning
-    You should change the default password after the install. Making sure to log in as the __coronium__ user, enter __sudo passwd coronium__ in the shell, and then follow the prompts.

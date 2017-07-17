@@ -1,6 +1,3 @@
-
-# SkyTable
-
 ## init
 
 Initialize the SkyTable module.

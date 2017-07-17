@@ -24,7 +24,35 @@
     </url>
         
     <url>
-     <loc>https://develephant.github.io/coronium-skytable-docs/install/config/</loc>
+     <loc>https://develephant.github.io/coronium-skytable-docs/install/testing/</loc>
+     <lastmod>2017-07-16</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+        
+    
+
+    
+        
+    <url>
+     <loc>https://develephant.github.io/coronium-skytable-docs/server/config/</loc>
+     <lastmod>2017-07-16</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+        
+    <url>
+     <loc>https://develephant.github.io/coronium-skytable-docs/server/password/</loc>
+     <lastmod>2017-07-16</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+        
+    <url>
+     <loc>https://develephant.github.io/coronium-skytable-docs/server/logs/</loc>
+     <lastmod>2017-07-16</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+        
+    <url>
+     <loc>https://develephant.github.io/coronium-skytable-docs/server/system/</loc>
      <lastmod>2017-07-16</lastmod>
      <changefreq>daily</changefreq>
     </url>
