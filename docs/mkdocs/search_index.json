@@ -42,7 +42,7 @@
         },
         {
             "location": "/install/testing/",
-            "text": "Test the server connection, point your browser to:\n\n\nhttp://<your-instance-ip>:7173\n\n\n\n\n\nThe server should respond with:\n\n\n{401}",
+            "text": "To quickly verify the server connection, point your browser to:\n\n\nhttp://<your-instance-ip>:7173\n\n\n\n\n\nThe server should respond with:\n\n\n{\n  error: 401,\n  result: \"Unauthorized\"\n}",
             "title": "Quick Test"
         },
         {

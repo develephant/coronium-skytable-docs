@@ -1,4 +1,4 @@
-Test the server connection, point your browser to:
+To quickly verify the server connection, point your browser to:
 
 ```
 http://<your-instance-ip>:7173
@@ -7,5 +7,8 @@ http://<your-instance-ip>:7173
 The server should respond with:
 
 ```
-{401}
+{
+  error: 401,
+  result: "Unauthorized"
+}
 ```

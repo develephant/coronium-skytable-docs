@@ -186,13 +186,16 @@
           <div role="main">
             <div class="section">
               
-                <p>Test the server connection, point your browser to:</p>
+                <p>To quickly verify the server connection, point your browser to:</p>
 <div class="codehilite"><pre><span></span>http://&lt;your-instance-ip&gt;:7173
 </pre></div>
 
 
 <p>The server should respond with:</p>
-<div class="codehilite"><pre><span></span>{401}
+<div class="codehilite"><pre><span></span>{
+  error: 401,
+  result: &quot;Unauthorized&quot;
+}
 </pre></div>
               
             </div>
