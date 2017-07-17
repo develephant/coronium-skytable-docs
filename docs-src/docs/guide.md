@@ -1,6 +1,6 @@
 ## Get The Plugin
 
-If you don't already have it, get the __Coronium SkyTable Plugin__ from the __[Corona Marketplace](https://marketplace.coronalabs.com/)__.
+If you don't already have it, get the __Coronium SkyTable Plugin__ from the __[Corona Marketplace](https://marketplace.coronalabs.com/plugin/coronium-skytable)__.
 
 
 ## Adding The Plugin
