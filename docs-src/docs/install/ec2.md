@@ -1,7 +1,10 @@
 __Coronium SkyTable__ is eligible for the EC2 free tier using Amazon Web Services.
 
-!!! note
+!!! warning "Prerequisites"
     This guide assumes that you have an active AWS account, and are familiar with managing EC2 instances.
+
+!!! note "Screencast"
+    View the installation instructions in a screencast format by [clicking here](https://www.youtube.com/watch?v=_PhYz5T7OK4).
 
 ### Create An Instance
 

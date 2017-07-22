@@ -13,6 +13,7 @@ pages:
   - 'Client Guide': 'guide.md'
   - 'Client API': 'api.md'
   - 'Examples': 'example.md'
+  - 'Demo': 'demo.md'
   - 'About': 'about.md'
 copyright: "&copy;2017 C. Byerley - develephant.com"
 theme: readthedocs

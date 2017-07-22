@@ -4,7 +4,7 @@
     
     <url>
      <loc>https://develephant.github.io/coronium-skytable-docs/</loc>
-     <lastmod>2017-07-17</lastmod>
+     <lastmod>2017-07-21</lastmod>
      <changefreq>daily</changefreq>
     </url>
     
@@ -13,19 +13,19 @@
         
     <url>
      <loc>https://develephant.github.io/coronium-skytable-docs/install/digitalocean/</loc>
-     <lastmod>2017-07-17</lastmod>
+     <lastmod>2017-07-21</lastmod>
      <changefreq>daily</changefreq>
     </url>
         
     <url>
      <loc>https://develephant.github.io/coronium-skytable-docs/install/ec2/</loc>
-     <lastmod>2017-07-17</lastmod>
+     <lastmod>2017-07-21</lastmod>
      <changefreq>daily</changefreq>
     </url>
         
     <url>
      <loc>https://develephant.github.io/coronium-skytable-docs/install/testing/</loc>
-     <lastmod>2017-07-17</lastmod>
+     <lastmod>2017-07-21</lastmod>
      <changefreq>daily</changefreq>
     </url>
         
@@ -35,25 +35,25 @@
         
     <url>
      <loc>https://develephant.github.io/coronium-skytable-docs/server/config/</loc>
-     <lastmod>2017-07-17</lastmod>
+     <lastmod>2017-07-21</lastmod>
      <changefreq>daily</changefreq>
     </url>
         
     <url>
      <loc>https://develephant.github.io/coronium-skytable-docs/server/password/</loc>
-     <lastmod>2017-07-17</lastmod>
+     <lastmod>2017-07-21</lastmod>
      <changefreq>daily</changefreq>
     </url>
         
     <url>
      <loc>https://develephant.github.io/coronium-skytable-docs/server/logs/</loc>
-     <lastmod>2017-07-17</lastmod>
+     <lastmod>2017-07-21</lastmod>
      <changefreq>daily</changefreq>
     </url>
         
     <url>
      <loc>https://develephant.github.io/coronium-skytable-docs/server/system/</loc>
-     <lastmod>2017-07-17</lastmod>
+     <lastmod>2017-07-21</lastmod>
      <changefreq>daily</changefreq>
     </url>
         
@@ -62,7 +62,7 @@
     
     <url>
      <loc>https://develephant.github.io/coronium-skytable-docs/guide/</loc>
-     <lastmod>2017-07-17</lastmod>
+     <lastmod>2017-07-21</lastmod>
      <changefreq>daily</changefreq>
     </url>
     
@@ -70,7 +70,7 @@
     
     <url>
      <loc>https://develephant.github.io/coronium-skytable-docs/api/</loc>
-     <lastmod>2017-07-17</lastmod>
+     <lastmod>2017-07-21</lastmod>
      <changefreq>daily</changefreq>
     </url>
     
@@ -78,7 +78,15 @@
     
     <url>
      <loc>https://develephant.github.io/coronium-skytable-docs/example/</loc>
-     <lastmod>2017-07-17</lastmod>
+     <lastmod>2017-07-21</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+    
+
+    
+    <url>
+     <loc>https://develephant.github.io/coronium-skytable-docs/demo/</loc>
+     <lastmod>2017-07-21</lastmod>
      <changefreq>daily</changefreq>
     </url>
     
@@ -86,7 +94,7 @@
     
     <url>
      <loc>https://develephant.github.io/coronium-skytable-docs/about/</loc>
-     <lastmod>2017-07-17</lastmod>
+     <lastmod>2017-07-21</lastmod>
      <changefreq>daily</changefreq>
     </url>
     

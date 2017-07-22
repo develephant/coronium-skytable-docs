@@ -3,6 +3,9 @@ __Coronium SkyTable__ runs best on a __[DigitalOcean](https://m.do.co/c/cddeeddb
 !!! tip
     If you're new to [DigitalOcean](https://m.do.co/c/cddeeddbbdb8) please consider signing up with __[this link](https://m.do.co/c/cddeeddbbdb8)__. Not only will you receive a $10 credit (2 free months), but it also helps support the continued development, and testing of __Coronium SkyTable__.
 
+!!! note "Screencast"
+    View the installation instructions in a screencast format by [clicking here](https://www.youtube.com/watch?v=8Lx0ko2s6fY).
+
 
 ### Create A Droplet
 
