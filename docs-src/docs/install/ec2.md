@@ -42,3 +42,6 @@ Once you are connected to the droplet, copy and paste the following line into th
 `curl -LO https://s3.amazonaws.com/coronium-skytable/ami.sh && sudo bash ./ami.sh`
 
 Once the installation is complete, __Coronium SkyTable__ is ready for action. Log out of the server by typing __exit__ on the command line.
+
+!!! tip "Upgrade to HTTPS"
+    Now is a good time to secure your SkyTable server using HTTPS. See the __[HTTPS/SSL](/ssl)__ section of the documentation.

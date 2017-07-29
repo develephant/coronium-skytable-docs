@@ -199,6 +199,10 @@
             <div class="section">
               
                 <h1 id="overview">Overview</h1>
+<div class="admonition note">
+<p class="admonition-title">Screencast</p>
+<p>View the secure install instructions in a screencast format by <a href="https://youtu.be/8WyWMkVLQWw">clicking here</a>.</p>
+</div>
 <p>Secure your <strong>SkyTable</strong> server by utilizing the free SSL certificate service <strong><a href="https://letsencrypt.org/">Let's Encrypt</a></strong>.</p>
 <div class="admonition warning">
 <p class="admonition-title">Warning</p>
@@ -262,6 +266,10 @@
 <p>The script will install the needed components, and update the configuration files. </p>
 <p>You will then be propted for the <em>hostname</em>, a <em>fully qualified domain name</em>, and a valid <em>email</em>. These items are required to request a certificate from Let's Encrypt.</p>
 <p>As stated earlier, you should have created a 3rd level domain, for example: <strong>skytable.&lt;domain>.com</strong>. Using the example, when entering the requested information, it might look like:</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Make sure to hit the <em>delete</em> key a few times before entering values. If the update returns a confirmation instantly, then a space in the data is the most likely reason. If this happens, start again at step 2 above.</p>
+</div>
 <p><em>Enter a hostname:</em> <strong>skytable</strong></p>
 <p><em>Enter a FQDN:</em> <strong>skytable.&lt;domain>.com</strong></p>
 <p><em>Enter an email:</em> <strong>you@your-email.com</strong></p>
@@ -270,7 +278,12 @@
 <p class="admonition-title">Warning</p>
 <p>Make sure to triple check your information. If not, then you might not be issued a certificate.</p>
 </div>
-<p>After receiving your secure certificate, the script will exit and your SkyTable server will be accesible using <strong>https</strong>. Be sure to update the <strong>host</strong> in the client configuration (in the Corona project):</p>
+<p>After receiving your secure certificate, the script will exit and your SkyTable server will be accesible using <strong>https</strong>. </p>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>It's generally a good idea to reboot the server instance by entering <strong>sudo reboot -h</strong> on the command line. Wait a minute, and then check to make sure the server is running again.</p>
+</div>
+<p>Be sure to update the <strong>host</strong> in the client configuration (in the Corona project):</p>
 <div class="codehilite"><pre><span></span><span class="n">skytable</span><span class="p">:</span><span class="n">init</span><span class="p">({</span>
   <span class="n">user</span> <span class="o">=</span> <span class="s2">&quot;&lt;user-email&gt;&quot;</span><span class="p">,</span>
   <span class="n">password</span> <span class="o">=</span> <span class="s2">&quot;&lt;user-password&gt;&quot;</span><span class="p">,</span>
@@ -279,12 +292,6 @@
   <span class="n">key</span> <span class="o">=</span> <span class="s2">&quot;&lt;server-key&gt;&quot;</span>
 <span class="p">})</span>
 </pre></div>
-
-
-<div class="admonition tip">
-<p class="admonition-title">Tip</p>
-<p>It's generally a good idea to reboot the server instance by entering <strong>sudo reboot -h</strong> on the command line. Wait a minute, and then check to make sure the server is running again.</p>
-</div>
               
             </div>
           </div>

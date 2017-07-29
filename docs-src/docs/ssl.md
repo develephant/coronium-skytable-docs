@@ -1,5 +1,8 @@
 # Overview
 
+!!! note "Screencast"
+    View the secure install instructions in a screencast format by [clicking here](https://youtu.be/8WyWMkVLQWw).
+
 Secure your __SkyTable__ server by utilizing the free SSL certificate service __[Let's Encrypt](https://letsencrypt.org/)__.
 
 !!! warning
@@ -91,6 +94,9 @@ You will then be propted for the _hostname_, a _fully qualified domain name_, an
 
 As stated earlier, you should have created a 3rd level domain, for example: __skytable.<domain\>.com__. Using the example, when entering the requested information, it might look like:
 
+!!! note
+    Make sure to hit the _delete_ key a few times before entering values. If the update returns a confirmation instantly, then a space in the data is the most likely reason. If this happens, start again at step 2 above.
+
 _Enter a hostname:_ __skytable__
 
 _Enter a FQDN:_ __skytable.<domain\>.com__
@@ -102,7 +108,12 @@ Be sure to replace the information with your own answers.
 !!! warning
     Make sure to triple check your information. If not, then you might not be issued a certificate.
 
-After receiving your secure certificate, the script will exit and your SkyTable server will be accesible using __https__. Be sure to update the __host__ in the client configuration (in the Corona project):
+After receiving your secure certificate, the script will exit and your SkyTable server will be accesible using __https__. 
+
+!!! tip
+    It's generally a good idea to reboot the server instance by entering __sudo reboot -h__ on the command line. Wait a minute, and then check to make sure the server is running again.
+
+Be sure to update the __host__ in the client configuration (in the Corona project):
 
 ```lua
 skytable:init({
@@ -113,6 +124,3 @@ skytable:init({
   key = "<server-key>"
 })
 ```
-
-!!! tip
-    It's generally a good idea to reboot the server instance by entering __sudo reboot -h__ on the command line. Wait a minute, and then check to make sure the server is running again.
