@@ -3,13 +3,13 @@
 Secure your __SkyTable__ server by utilizing the free SSL certificate service __[Let's Encrypt](https://letsencrypt.org/)__.
 
 !!! warning
-    Setting up a secure server is not a trivial process, so be sure to read through _all_ of the steps before starting, and then follow them carefully.
+    Setting up a secure SkyTable server is not a trivial process, so be sure to read through _all_ of the steps before starting, and then follow them carefully.
 
 To be issued a secure certificate, you must have a fully qualified domain name, and the proper DNS set up to serve the domain.
 
 A fully qualified domain name is basically a registered domain name. Where you decide to purchase a domain is up to you. __[GoDaddy](https://www.godaddy.com/)__ is a popular choice. 
 
-Once you have your domain name, you will need to "point" it to your __SkyTable__ server. Most domain registars provide a means of setting up DNS.
+Once you have your domain name, you will need to "point" it to your SkyTable server. Most domain registars provide a means of setting up DNS.
 
 You will want to set up a 3rd level domain for your SkyTable server. This looks something like:
 
@@ -78,40 +78,41 @@ _Note: The root user is __ubuntu__ if hosting on Amazon._
 
 If you have not changed the password yet, the default is __coroniumadmin__. You may be prompted for your password at various times during this process.
 
-2\. Copy and paste the following on the command line to download the SkyTable SSL updater:
+2\. Copy and paste the following on the command line to run the SkyTable SSL updater:
 
 !!! warning
     At this point make sure you're ready to move over to HTTPS. The following process will permanently modify your configuration settings.
 
 `curl -LO https://s3.amazonaws.com/coronium-skytable/ssl.sh && sudo bash ./ssl.sh`
 
-3\. Generate the certificates from Let's Encrypt.
+The script will install the needed components, and update the configuration files. 
 
-It's a good idea to install a staging certificate first, to make sure the HTTPS endpoint is working properly. Let's Encrypt limits you to 5 updates to the _production_ certificate per day. So use a staging certificate for testing.
+You will then be propted for the _hostname_, a _fully qualified domain name_, and a valid _email_. These items are required to request a certificate from Let's Encrypt.
 
-To install a staging certificate, on the command line, run the following:
+As stated earlier, you should have created a 3rd level domain, for example: __skytable.<domain\>.com__. Using the example, when entering the requested information, it might look like:
 
-```sh
-sudo certbot certonly --standalone --staging
+_Enter a hostname:_ __skytable__
+
+_Enter a FQDN:_ __skytable.<domain\>.com__
+
+_Enter an email:_ __you@your-email.com__
+
+Be sure to replace the information with your own answers.
+
+!!! warning
+    Make sure to triple check your information. If not, then you might not be issued a certificate.
+
+After receiving your secure certificate, the script will exit and your SkyTable server will be accesible using __https__. Be sure to update the __host__ in the client configuration (in the Corona project):
+
+```lua
+skytable:init({
+  user = "<user-email>",
+  password = "<user-password>",
+  base = "app1",
+  host = "https://<skytable-host>:7173",
+  key = "<server-key>"
+})
 ```
 
-You will be prompted for your domain name to issue the certificate against. __Use the full domain name (skytable.<your-domain\>.com)__. You will also need to supply a valid email address.
-
-4\. When the process is complete, you will need to restart __nginx__:
-
-```sh
-sudo monit restart nginx
-```
-
-You can now vist your SkyTable server at __https://skytable.<your-domain\>.com:7173__.
-
-!!! note
-    A staging certificate will generally be blocked by your web browser. This is normal, and confirms that the HTTPS endpoint is active. You can usually override the browser block, and see the server respond for further confirmation.
-
-5\. When you're ready to install your production certificates, run the following:
-
-```sh
-sudo certbot certonly --standalone
-```
-
-If __certbot__ complains of an existing certificate, select the re-issue option.
+!!! tip
+    It's generally a good idea to reboot the server instance by entering __sudo reboot -h__ on the command line. Wait a minute, and then check to make sure the server is running again.
