@@ -81,6 +81,13 @@ local function getData()
   --Get action
   profile:get(onResult)
 end
+
+--Set the data
+setData()
+
+--OR, get the data
+--getData()
+
 ```
 
 ---
